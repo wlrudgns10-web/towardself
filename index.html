@@ -80,11 +80,11 @@ p{margin:0}
 .vol .bar i{background:var(--accent)}
 .vol b{white-space:nowrap}
 .vol small{color:var(--muted);font-variant-numeric:tabular-nums}
-.who .strong{width:100%;text-align:left;background:var(--accent);color:var(--surface);border-radius:12px;padding:14px 16px}
-.who .strong span{font-size:.8rem;font-weight:700;opacity:.9}
-.who .strong p{margin:2px 0 0;font-size:1.05rem;font-weight:600;line-height:1.45}
-.who .watch{width:100%;text-align:left;font-size:.9rem;color:var(--muted);margin-top:-4px}
-.who .watch b{color:var(--ink);margin-right:4px}
+.who .pair{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.who .pair>div{text-align:left;background:var(--accent-soft);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.who .pair span{font-size:.8rem;font-weight:700;color:var(--accent)}
+.who .pair p{margin:0;font-size:.95rem;font-weight:600;line-height:1.45}
+.who .mine{background:none!important;border:1px solid var(--line)}
 .who .tip{width:100%;text-align:left;border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
 .who .tip .eyebrow{color:var(--accent)}
 .who .tip p,.who .mine p{font-size:.93rem}
@@ -449,8 +449,7 @@ function finish(){
   $("indexCard").innerHTML=`<img src="sokdagi.png" width="768" height="512" alt="">
    <div class="who-head"><span class="eyebrow">당신의 속닥이는</span><h2>${who.name}</h2><p class="one">${who.one}</p>
     <div class="vol"><span>속닥이 목소리</span><div class="bar"><i style="width:${Math.max(tint,2)}%"></i></div><b>${METER[lensBand][0]}</b><small>${tint}</small></div></div>
-   <div class="strong"><span>✦ 나의 강점</span><p>${who.strong}</p></div>
-   <p class="watch"><b>살펴볼 점</b> ${who.watch}</p>
+   <div class="pair"><div><span>✦ 나의 강점</span><p>${who.strong}</p></div><div><span>⚑ 살펴볼 점</span><p>${who.watch}</p></div></div>
    ${mine}
    <div class="tip"><span class="eyebrow">오늘의 연습 · ${RX_TOOL[tk][0]}</span><p>${RX_TOOL[tk][2]}</p></div>
    <p class="own">목소리 크기는 내 점수가 아니에요. 그 말을 믿을지는 내가 골라요.</p>`;
