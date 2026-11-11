@@ -89,6 +89,7 @@ p{margin:0}
 .who .tip .eyebrow{color:var(--accent)}
 .who .tip p,.who .mine p{font-size:.93rem}
 .who .own{font-size:.82rem;color:var(--muted)}
+.who .share{width:100%;margin-top:2px}
 .more{padding:6px 24px}
 .more>details{border-top:1px solid var(--line);padding:16px 0;font-size:1rem}
 .more>details:first-child{border-top:none}
@@ -445,13 +446,21 @@ function finish(){
     mineFull=`<div class="mine"><span class="eyebrow">▸ The answer you picked</span><p class="situ">${s.situ} <b>${s.q}</b></p><p>→ "${o[0]}"</p><p class="hint">${why}</p></div>`;
   }
   const tk=top||"Q";
-  $("indexCard").innerHTML=`<img src="/sokdagi.png" width="768" height="512" alt="">
+  $("indexCard").innerHTML=`<img src="/share/type-${tk.toLowerCase()}.png" width="800" height="800" alt="">
    <div class="who-head"><span class="eyebrow">Your Whisperling is a</span><h2>${who.name}</h2><p class="one">${who.one}</p>
     <div class="vol"><span>Volume</span><div class="bar"><i style="width:${Math.max(tint,2)}%"></i></div><b>${METER[lensBand][0]}</b><small>${tint}</small></div></div>
    <div class="pair"><div><span>✦ Your strength</span><p>${who.strong}</p></div><div><span>⚑ Watch for</span><p>${who.watch}</p></div></div>
    ${mine}
    <div class="tip"><span class="eyebrow">Try this · ${RX_TOOL[tk][0]}</span><p>${RX_TOOL[tk][2]}</p></div>
-   <p class="own">Volume isn't your score. Whether to believe it is up to you.</p>`;
+   <p class="own">Volume isn't your score. Whether to believe it is up to you.</p>
+   <button class="btn share" id="shareBtn" type="button">Share my result</button>`;
+  const shareUrl=`https://towardself.co.kr/en/s/${tk.toLowerCase()}${lensBand}`;
+  $("shareBtn").onclick=async()=>{
+    const text=`My Whisperling is a ${who.name}! What's yours?`;
+    if(window.gtag) gtag("event","share_click",{whisper_type:tk,band:lensBand});
+    try{ if(navigator.share){ await navigator.share({title:"Whisperling Test",text,url:shareUrl}); return; } }catch(e){ if(e.name==="AbortError") return; }
+    try{ await navigator.clipboard.writeText(text+" "+shareUrl); $("shareBtn").textContent="Link copied! Paste it anywhere"; }catch(e){ prompt("Copy this link",shareUrl); }
+  };
 
   let html=`<p style="margin-bottom:12px">${who.plain}</p>${mineFull}<p class="hint" style="margin:12px 0 20px">${METER[lensBand][1]} Loud isn't bad and soft isn't good.</p><h3 style="margin-bottom:6px">Your Whisperling's three tricks</h3><p class="hint" style="margin-bottom:14px">Out of the 8 scenarios, we counted which trick each whisper-following answer used.</p><div class="types">`;
   ["H","S","I"].forEach(k=>{ html+=`<div class="type${k===top?" top":""}"><b>${proj[k]}<span style="font-size:.8rem"> / ${avail[k]}</span></b><span>${TYPES[k].short}</span></div>`; });

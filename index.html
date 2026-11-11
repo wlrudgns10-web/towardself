@@ -89,6 +89,7 @@ p{margin:0}
 .who .tip .eyebrow{color:var(--accent)}
 .who .tip p,.who .mine p{font-size:.93rem}
 .who .own{font-size:.82rem;color:var(--muted)}
+.who .share{width:100%;margin-top:2px}
 .more{padding:6px 24px}
 .more>details{border-top:1px solid var(--line);padding:16px 0;font-size:1rem}
 .more>details:first-child{border-top:none}
@@ -446,13 +447,21 @@ function finish(){
     mineFull=`<div class="mine"><span class="eyebrow">▸ 당신이 고른 답</span><p class="situ">${s.situ} <b>${s.q}</b></p><p>→ "${o[0]}"</p><p class="hint">${why}</p></div>`;
   }
   const tk=top||"Q";
-  $("indexCard").innerHTML=`<img src="sokdagi.png" width="768" height="512" alt="">
+  $("indexCard").innerHTML=`<img src="share/type-${tk.toLowerCase()}.png" width="800" height="800" alt="">
    <div class="who-head"><span class="eyebrow">당신의 속닥이는</span><h2>${who.name}</h2><p class="one">${who.one}</p>
     <div class="vol"><span>속닥이 목소리</span><div class="bar"><i style="width:${Math.max(tint,2)}%"></i></div><b>${METER[lensBand][0]}</b><small>${tint}</small></div></div>
    <div class="pair"><div><span>✦ 나의 강점</span><p>${who.strong}</p></div><div><span>⚑ 살펴볼 점</span><p>${who.watch}</p></div></div>
    ${mine}
    <div class="tip"><span class="eyebrow">오늘의 연습 · ${RX_TOOL[tk][0]}</span><p>${RX_TOOL[tk][2]}</p></div>
-   <p class="own">목소리 크기는 내 점수가 아니에요. 그 말을 믿을지는 내가 골라요.</p>`;
+   <p class="own">목소리 크기는 내 점수가 아니에요. 그 말을 믿을지는 내가 골라요.</p>
+   <button class="btn share" id="shareBtn" type="button">내 결과 공유하기</button>`;
+  const shareUrl=`https://towardself.co.kr/s/${tk.toLowerCase()}${lensBand}`;
+  $("shareBtn").onclick=async()=>{
+    const text=`나의 속닥이는 ${who.name}! 너의 속닥이는?`;
+    if(window.gtag) gtag("event","share_click",{whisper_type:tk,band:lensBand});
+    try{ if(navigator.share){ await navigator.share({title:"속닥이 테스트",text,url:shareUrl}); return; } }catch(e){ if(e.name==="AbortError") return; }
+    try{ await navigator.clipboard.writeText(text+" "+shareUrl); $("shareBtn").textContent="링크를 복사했어요! 카톡에 붙여 넣어 보세요"; }catch(e){ prompt("이 링크를 복사해 주세요",shareUrl); }
+  };
 
   let html=`<p style="margin-bottom:12px">${who.plain}</p>${mineFull}<p class="hint" style="margin:12px 0 20px">${METER[lensBand][1]} 크다고 나쁜 것도, 작다고 좋은 것도 아니에요.</p><h3 style="margin-bottom:6px">속닥이의 세 가지 수법</h3><p class="hint" style="margin-bottom:14px">상황 문항 8개에서 실제 말보다 속닥임을 따른 답을 어떤 수법으로 골랐는지 셌어요.</p><div class="types">`;
   ["H","S","I"].forEach(k=>{ html+=`<div class="type${k===top?" top":""}"><b>${proj[k]}<span style="font-size:.8rem"> / ${avail[k]}</span></b><span>${TYPES[k].name}</span></div>`; });
