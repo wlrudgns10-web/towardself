@@ -1,0 +1,55 @@
+/* 그림자 렌즈 — 글·안내 페이지 공통 스타일 (검사 페이지와 같은 색·글꼴) */
+:root{
+  --bg:#EEEDF3; --surface:#FAF9FC; --ink:#1E1C2A; --muted:#5E5A72; --line:#D5D2E0;
+  --accent:#3F5E8C; --accent-soft:#DCE4F0; --shadow:#2B2840; --light:#F2E6C9; --mid:#A0762A;
+  --f-display:"Gowun Batang","Noto Serif KR",serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#15141D; --surface:#1F1D2A; --ink:#ECEAF4; --muted:#A6A2BA; --line:#34314A;
+  --accent:#8FB0E0; --accent-soft:#283550; --shadow:#0B0A12; --light:#E9DDBF; --mid:#D9AE5E; color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.8;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent)}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.site-head{max-width:720px;margin:0 auto;padding-block:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:700;font-size:1.1rem;color:var(--ink);text-decoration:none}
+.brand i{width:34px;height:34px;flex:none;background:url(/devil-icon.png) center/contain no-repeat}
+.site-head nav{display:flex;gap:16px;font-size:.92rem;font-weight:600}
+.site-head nav a{text-decoration:none}
+main{max-width:720px;margin:0 auto;padding-block:8px 48px}
+article{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px clamp(18px,5vw,40px)}
+h1,h2,h3{font-family:var(--f-display);line-height:1.35;text-wrap:balance}
+h1{font-size:1.9rem;margin:6px 0 10px}
+h2{font-size:1.35rem;margin:36px 0 8px}
+h3{font-size:1.1rem;margin:24px 0 4px}
+p{margin:0 0 14px}
+ul,ol{padding-left:1.3em;margin:0 0 14px}
+li{margin-bottom:6px}
+.eyebrow{font-size:.8rem;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.lede{color:var(--muted);font-size:1.05rem}
+.box{background:var(--accent-soft);border-radius:10px;padding:14px 18px;margin:18px 0}
+.box p:last-child{margin:0}
+.note{border-left:4px solid var(--mid);background:var(--bg);border-radius:8px;padding:12px 16px;font-size:.92rem;color:var(--muted);margin:24px 0 0}
+.cta{display:inline-block;background:var(--accent);color:var(--surface);text-decoration:none;font-weight:600;border-radius:10px;padding:12px 20px;margin-top:8px}
+.cards{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.cards li{margin:0}
+.cards a{display:flex;flex-direction:column;gap:4px;height:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--ink)}
+.cards a b{font-family:var(--f-display);font-size:1.05rem}
+.cards a span{color:var(--muted);font-size:.9rem;line-height:1.6}
+.table-wrap{overflow-x:auto;margin:0 0 14px}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:480px}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+form{display:flex;flex-direction:column;gap:14px}
+label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:.95rem}
+input,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+button{font:inherit;cursor:pointer;background:var(--accent);color:var(--surface);border:0;border-radius:10px;padding:12px 20px;font-weight:600;align-self:flex-start}
+.check{flex-direction:row;align-items:flex-start;gap:8px;font-weight:400;font-size:.9rem;color:var(--muted)}
+.check input{margin-top:5px}
+.site-foot{max-width:720px;margin:0 auto;padding-block:20px 36px;font-size:.82rem;color:var(--muted);display:flex;flex-direction:column;gap:6px;text-align:center}
+.site-foot nav{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}

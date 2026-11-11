@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="남의 말을 비틀어 내 귀에 속닥이는 작은 악마, 속닥이. 칼 융, 필 스터츠·배리 마이클스, 빅터 프랭클의 생각에서 착안한 5분 자기이해 테스트로 내 속닥이가 얼마나 끼어드는지 살펴보고, 휘둘리지 않는 연습을 안내합니다.">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>속닥이 테스트 · 관계를 방해하는 내 안의 작은 악마</title>
+<link rel="canonical" href="https://towardself.co.kr/">
+<link rel="alternate" hreflang="ko" href="https://towardself.co.kr/">
+<link rel="alternate" hreflang="en" href="https://towardself.co.kr/en/">
+<link rel="alternate" hreflang="x-default" href="https://towardself.co.kr/en/">
+<meta property="og:title" content="속닥이 테스트 · 관계를 방해하는 내 안의 작은 악마">
+<meta property="og:description" content="남의 말을 비틀어 내 귀에 속닥이는 작은 악마, 속닥이. 지금 당신의 속닥이는 얼마나 끼어들고 있을까요? 5분 자기이해 테스트">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://towardself.co.kr/">
+<meta property="og:site_name" content="속닥이 테스트">
+<meta property="og:image" content="https://towardself.co.kr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="속닥이 테스트: 귀에 속닥이는 작은 보라색 악마 그림">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<style>
+/* Layout: 한 장씩 넘기는 좁은 카드 흐름 — 빛(밝은 면)과 그림자(어두운 면)를 반달 모티프로 */
+:root{
+  --bg:#EEEDF3; --surface:#FAF9FC; --ink:#1E1C2A; --muted:#5E5A72; --line:#D5D2E0;
+  --accent:#3F5E8C; --accent-soft:#DCE4F0; --shadow:#2B2840; --light:#F2E6C9;
+  --good:#2F7A5B; --mid:#A0762A; --warn:#A6463F; --disagree:#8A6A9C;
+  --f-display:"Gowun Batang","Noto Serif KR",serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#15141D; --surface:#1F1D2A; --ink:#ECEAF4; --muted:#A6A2BA; --line:#34314A;
+  --accent:#8FB0E0; --accent-soft:#283550; --shadow:#0B0A12; --light:#E9DDBF;
+  --good:#6CC49C; --mid:#D9AE5E; --warn:#E58A82; --disagree:#C3A3D6; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#15141D; --surface:#1F1D2A; --ink:#ECEAF4; --muted:#A6A2BA; --line:#34314A;
+  --accent:#8FB0E0; --accent-soft:#283550; --shadow:#0B0A12; --light:#E9DDBF;
+  --good:#6CC49C; --mid:#D9AE5E; --warn:#E58A82; --disagree:#C3A3D6; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px}
+.wrap{max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.3}
+h1{font-size:2rem} h2{font-size:1.45rem} h3{font-size:1.1rem}
+p{margin:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.moon{width:72px;height:72px;border-radius:50%;background:linear-gradient(90deg,var(--light) 50%,var(--shadow) 50%);box-shadow:0 0 0 1px var(--line)}
+.hero{display:flex;flex-direction:column;gap:14px}
+.lead{color:var(--muted)}
+.lead b{color:var(--ink)}
+.lang{align-self:flex-end;font-weight:600;font-size:.9rem;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:4px 12px;margin-bottom:-6px}
+.mascot{display:block;width:100%;max-width:360px;height:auto;align-self:center;margin-bottom:-8px}
+.sub{font-family:var(--f-display);font-size:1.15rem;color:var(--accent);margin-top:-8px}
+.who{display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center}
+.who img{width:100%;max-width:260px;height:auto}
+.who h2{font-size:1.8rem}
+.who .meter{width:100%;display:flex;flex-direction:column;gap:6px;text-align:left;margin-top:10px}
+.who .meter-head{display:flex;justify-content:space-between;align-items:baseline;gap:4px 8px;flex-wrap:wrap}
+.who .meter-head>span:last-child{white-space:nowrap}
+.who .meter-head b{font-family:var(--f-display);font-size:1.6rem;font-variant-numeric:tabular-nums}
+.who .bar{height:14px}
+.who .what{font-size:.9rem;color:var(--muted)}
+.who .mine{width:100%;text-align:left;background:var(--accent-soft);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.who .mine .eyebrow{color:var(--accent)}
+.who .trait{width:100%;text-align:left;border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.who .trait p{margin:0;font-size:.93rem}
+.who .trait b{display:block;color:var(--accent);font-size:.8rem;margin-bottom:2px}
+.who{gap:12px}
+.who img{max-width:170px}
+.who-head{width:100%;display:flex;flex-direction:column;align-items:center;gap:4px}
+.who .one{color:var(--muted);font-size:.95rem}
+.vol{display:flex;align-items:center;gap:10px;margin-top:10px;background:var(--accent-soft);border-radius:99px;padding:7px 16px;font-size:.85rem;width:100%;max-width:360px}
+.vol span{white-space:nowrap;color:var(--accent);font-weight:600}
+.vol .bar{flex:1;height:8px;background:var(--surface)}
+.vol .bar i{background:var(--accent)}
+.vol b{white-space:nowrap}
+.vol small{color:var(--muted);font-variant-numeric:tabular-nums}
+.who .strong{width:100%;text-align:left;background:var(--accent);color:var(--surface);border-radius:12px;padding:14px 16px}
+.who .strong span{font-size:.8rem;font-weight:700;opacity:.9}
+.who .strong p{margin:2px 0 0;font-size:1.05rem;font-weight:600;line-height:1.45}
+.who .watch{width:100%;text-align:left;font-size:.9rem;color:var(--muted);margin-top:-4px}
+.who .watch b{color:var(--ink);margin-right:4px}
+.who .tip{width:100%;text-align:left;border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.who .tip .eyebrow{color:var(--accent)}
+.who .tip p,.who .mine p{font-size:.93rem}
+.who .own{font-size:.82rem;color:var(--muted)}
+.more{padding:6px 24px}
+.more>details{border-top:1px solid var(--line);padding:16px 0;font-size:1rem}
+.more>details:first-child{border-top:none}
+.more>details>summary{font-size:1.02rem}
+.more>details[open]>summary{margin-bottom:16px}
+.notice{border:1px solid var(--line);border-left:4px solid var(--mid);background:var(--surface);border-radius:10px;padding:14px 16px;font-size:.92rem;display:flex;flex-direction:column;gap:6px}
+.notice strong{color:var(--ink)}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.fact{background:var(--accent-soft);border-radius:10px;padding:12px;text-align:center}
+.fact b{display:block;font-size:1.3rem;font-family:var(--f-display);font-variant-numeric:tabular-nums}
+.fact span{font-size:.8rem;color:var(--muted)}
+.factors{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+.factors li{display:flex;flex-direction:column;gap:2px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
+.factors li:last-child{border-bottom:0;padding-bottom:0}
+.factors b{font-weight:600}
+.factors span{color:var(--muted);font-size:.92rem}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--accent);color:var(--surface);border:0;border-radius:10px;padding:14px 20px;font-weight:600;font-size:1rem;width:100%}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn:focus-visible,.opt:focus-visible,.lk:focus-visible,.back:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+/* quiz */
+.topbar{display:flex;align-items:center;gap:12px}
+.back{background:none;border:0;color:var(--accent);padding:6px 0;font-weight:600}
+.back:disabled{color:var(--line);cursor:default}
+.prog{flex:1;height:12px;background:var(--line);border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent-soft),var(--accent));transition:width .45s ease-out}
+.qcard{display:flex;flex-direction:column;gap:20px;min-height:360px}
+.qtext{font-family:var(--f-display);font-size:1.3rem;line-height:1.5}
+.quote{font-family:var(--f-display);font-size:1.2rem;background:var(--accent-soft);border-radius:10px;padding:14px 16px}
+.situ{color:var(--muted);font-size:.95rem}
+.likert{display:flex;flex-direction:column;gap:10px;margin-top:auto}
+.scale{display:flex;align-items:center;justify-content:space-between;gap:4px}
+.lk{flex:none;border-radius:50%;background:transparent;border:2px solid var(--c);padding:0;transition:background .15s,transform .15s}
+.lk,.opt,.btn,.back{-webkit-tap-highlight-color:transparent}
+@media (hover:hover) and (pointer:fine){.lk:hover{background:color-mix(in srgb,var(--c) 18%,transparent)}}
+.lk.on{background:var(--c);transform:scale(1.08)}
+.ends{display:flex;justify-content:space-between;font-size:.85rem;font-weight:600}
+.ends .no{color:var(--disagree)} .ends .yes{color:var(--accent)}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:14px 16px;line-height:1.55}
+.opt.on{border-color:var(--accent);background:var(--accent-soft)}
+.hint{font-size:.85rem;color:var(--muted)}
+/* result */
+.index{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.lens{width:120px;height:120px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:var(--f-display);font-size:2.2rem;font-variant-numeric:tabular-nums;position:relative}
+.lens small{font-size:.8rem;font-family:var(--f-body);color:var(--muted);position:absolute;bottom:22px}
+.index .txt{flex:1;min-width:200px;display:flex;flex-direction:column;gap:6px}
+.res-list{display:flex;flex-direction:column;gap:14px}
+.res{display:flex;flex-direction:column;gap:8px}
+.res-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.pill{white-space:nowrap;font-size:.78rem;font-weight:600;padding:2px 10px;border-radius:99px;border:1px solid currentColor}
+.bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px}
+.score{font-variant-numeric:tabular-nums;font-weight:600}
+.dir{font-size:.8rem;color:var(--muted)}
+.res p{font-size:.95rem}
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.type{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:2px}
+.type b{font-size:1.4rem;font-family:var(--f-display);font-variant-numeric:tabular-nums}
+.type span{font-size:.82rem;color:var(--muted)}
+.type.top{border-color:var(--accent);background:var(--accent-soft)}
+.actions{display:flex;flex-direction:column;gap:10px}
+.rx{display:flex;flex-direction:column;gap:16px}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;counter-reset:st}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:12px;counter-increment:st}
+.steps li::before{content:counter(st);width:36px;height:36px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--f-display);font-weight:700}
+.steps li div{min-width:0;display:flex;flex-direction:column;gap:4px}
+.steps small{color:var(--muted);font-size:.85rem}
+.ex{background:var(--bg);border-radius:8px;padding:8px 12px;font-size:.88rem;display:grid;grid-template-columns:auto 1fr;gap:2px 10px}
+.ex b{color:var(--muted);font-weight:600}
+.focus{border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.focus .eyebrow{color:var(--accent)}
+details{border-top:1px dashed var(--line);padding-top:12px;font-size:.9rem}
+summary{cursor:pointer;font-weight:600;color:var(--accent)}
+details ul{margin:10px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px;color:var(--muted)}
+details b{color:var(--ink);font-weight:600}
+footer{font-size:.8rem;color:var(--muted);text-align:center}
+@media (max-width:440px){.facts,.types{grid-template-columns:1fr 1fr 1fr}.card{padding:18px}h1{font-size:1.7rem}.qtext{font-size:1.15rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<meta name="naver-site-verification" content="b17a4d42eed4d588fadafaa9c085962c197b3f6e">
+<meta name="google-adsense-account" content="ca-pub-9743896158161620">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NL1EPS71XC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NL1EPS71XC');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9743896158161620" crossorigin="anonymous"></script>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#2B2840">
+</head>
+<body>
+
+<div class="wrap">
+
+<!-- 시작 화면 -->
+<section id="intro" class="hero">
+  <a class="lang" href="/en/" hreflang="en" lang="en">English</a>
+  <img class="mascot" src="sokdagi.png" width="768" height="512" alt="사람의 귀에 대고 무언가 속닥이는 작은 보라색 악마, 속닥이">
+  <span class="eyebrow">칼 융 · 필 스터츠 · 배리 마이클스 · 빅터 프랭클에서 착안</span>
+  <h1>속닥이 테스트</h1>
+  <p class="sub">관계를 방해하는 내 안의 작은 악마</p>
+  <p class="lead">우리 모두의 귓가에는 <b>속닥이</b>가 살아요. 누군가 말을 건네면 그 말을 몰래 비틀어서 "저거 너 무시하는 거야", "넌 또 실수했어" 하고 속닥이죠. 그러면 우리는 상대가 한 말보다 속닥이가 전한 말을 듣게 돼요. 지금 당신의 속닥이는 얼마나 끼어들고 있을까요?</p>
+
+  <div class="notice" role="note">
+    <strong>먼저 읽어 주세요</strong>
+    <span>이 검사는 <b>임상 진단 도구가 아니며, 타당도 검증 전의 자기이해용 검사</b>입니다. 칼 융의 그림자 이론과 필 스터츠·배리 마이클스의 'Part X'(내 안의 적) 개념에서 착안해 새로 만든 자작 척도이고, 결과에 따른 연습은 빅터 프랭클의 로고테라피와 스터츠·마이클스의 《툴스》를 바탕으로 했습니다. 신뢰도·타당도 연구를 거치지 않았고 저자들과 관련 없는 비공식 검사입니다. 결과는 나를 돌아보는 질문거리로만 사용하고, 마음이 힘들다면 전문가와 상담하세요.</span>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><b>약 5분</b><span>소요 시간</span></div>
+    <div class="fact"><b>바로</b><span>결과 확인</span></div>
+    <div class="fact"><b>무료</b><span>가입 없이</span></div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom:12px">이렇게 답해 주세요</h3>
+    <ul class="factors">
+      <li><b>정답도, 좋은 답도 없어요</b><span>모든 문항은 사람마다 자연스럽게 다른 성향을 묻습니다. 어느 쪽을 골라도 괜찮아요.</span></li>
+      <li><b>오래 고민하지 마세요</b><span>읽자마자 떠오르는 쪽이 가장 나다운 답이에요.</span></li>
+      <li><b>되고 싶은 나 말고, 평소의 나</b><span>요즘 실제로 어떻게 느끼고 반응하는지를 기준으로 골라 주세요.</span></li>
+    </ul>
+  </div>
+  <p class="hint">무엇을 재는지는 결과 화면에서 자세히 알려 드려요.</p>
+  <button class="btn" id="startBtn" type="button">검사 시작하기</button>
+</section>
+
+<!-- 문항 화면 -->
+<section id="quiz" hidden>
+  <div class="wrap" style="gap:16px">
+    <div class="topbar">
+      <button class="back" id="backBtn" type="button">← 이전</button>
+      <div class="prog" id="prog" role="progressbar" aria-label="진행 정도" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="progBar"></i></div>
+    </div>
+    <div class="card qcard" id="qcard" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- 결과 화면 -->
+<section id="result" hidden>
+  <div class="wrap">
+    <span class="eyebrow">나의 결과</span>
+    <div class="card who" id="indexCard"></div>
+    <div class="card more">
+      <details><summary>속닥이 자세히 보기</summary>
+        <div id="typeCard"></div>
+        <h3 style="margin:22px 0 6px">다섯 가지 세부 항목</h3>
+        <p class="hint" style="margin-bottom:16px">속닥이가 어떤 재료로 속닥이는지, 그리고 내가 얼마나 알아차리는지예요. 괄호 안은 칼 융의 개념이에요.</p>
+        <div class="res-list" id="resList"></div>
+      </details>
+      <details><summary>속닥이에게 휘둘리지 않는 연습</summary><div class="rx" id="rxCard"></div></details>
+      <details><summary>결과를 읽을 때 기억해 주세요</summary><p class="hint">이 결과는 <b>임상 진단이 아니며, 타당도 검증 전의 자기이해용 검사</b>에서 나온 참고 정보입니다. 점수 구간과 해석은 이론에 기대어 임의로 정한 것이고, 다른 사람과 비교할 수 있는 규준(평균 자료)이 없습니다. 그날의 기분이나 최근 일에 따라 결과가 달라질 수 있어요. 필 스터츠·배리 마이클스의 개념에서 착안했지만 저자들과 관련 없는 비공식 검사입니다.</p></details>
+    </div>
+    <div class="actions">
+      <a class="btn ghost" href="results.html" style="text-align:center;text-decoration:none">결과 읽는 법 자세히 보기</a>
+      <button class="btn" id="retryBtn" type="button">처음부터 다시 하기</button>
+    </div>
+  </div>
+</section>
+
+<footer style="display:flex;flex-direction:column;gap:8px"><nav aria-label="사이트 메뉴" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-weight:600"><a href="guide.html" style="color:var(--accent)">해설</a><a href="results.html" style="color:var(--accent)">결과 읽는 법</a><a href="about.html" style="color:var(--accent)">소개</a><a href="contact.html" style="color:var(--accent)">문의</a><a href="privacy.html" style="color:var(--accent)">개인정보처리방침</a><a href="/en/" hreflang="en" lang="en" style="color:var(--accent)">English</a></nav><span>속닥이 테스트 · 자기이해용 자작 척도 (미검증) · 필 스터츠·배리 마이클스와 관련 없는 비공식 검사 · 응답은 이 브라우저 안에서만 계산되고 저장·전송되지 않습니다</span></footer>
+</div>
+
+<script>
+const LIKERT = ["전혀 그렇지 않다","그렇지 않다","약간 그렇지 않다","잘 모르겠다","약간 그렇다","그렇다","매우 그렇다"];
+
+const FACTORS = {
+  SP:{name:"가시 재료", jung:"그림자 투영", high:"bad", desc:"높을수록 남의 단점에 크게 흔들림",
+    bands:[
+      "다른 사람의 단점을 봐도 감정이 크게 흔들리지 않는 편이에요. 내 안의 불편한 면을 남에게 덮어씌우는 일이 적어서, 상대를 비교적 있는 그대로 봅니다.",
+      "특정한 유형의 사람이나 행동에 유독 강하게 반응할 때가 있어요. 그 '유난히 거슬리는 지점'이 내가 받아들이지 못한 내 모습과 닿아 있을 수 있습니다. 그런 순간을 알아차리기만 해도 시야가 넓어집니다.",
+      "남의 단점이 크게 보이고 강한 반감이 자주 드는 편이에요. 융의 관점에서는 내가 인정하기 어려운 면(그림자)을 남에게서 보고 있을 가능성이 큽니다. 다음에 누군가 몹시 싫을 때 \"이 사람의 어떤 점이 내 안의 어떤 면을 건드리지?\" 하고 물어보세요."]},
+  AP:{name:"후광 재료", jung:"아니마/아니무스 투영", high:"bad", desc:"높을수록 이상화했다가 실망하기 쉬움",
+    bands:[
+      "가까운 사람을 비교적 현실적으로 바라보는 편이에요. 상대를 이상형이라는 틀에 맞추기보다 한 사람으로 알아 가려 합니다.",
+      "끌리는 사람에게 기대를 얹거나, 기대와 달라 실망하는 일이 가끔 있어요. 관계 초반의 설렘 속에 '내가 보고 싶은 모습'이 섞여 있지 않은지 살펴보면 좋습니다.",
+      "끌리는 사람을 실제보다 특별하게 보다가 크게 실망하는 패턴이 있을 수 있어요. 융은 이것을 내 안의 덜 자란 반대편 성향(아니마/아니무스)을 상대에게 비추는 일로 설명했습니다. 상대에게 바라는 그 모습을 내 안에서 키워 볼 수 있을지 생각해 보세요."]},
+  SA:{name:"나의 알아차림", jung:"그림자 인식", high:"good", desc:"높을수록 속닥임을 알아차리고 내 안을 돌아봄",
+    bands:[
+      "갈등이나 불편한 감정의 원인을 주로 바깥에서 찾는 편이에요. 나에게도 보고 싶지 않은 면이 있다는 걸 받아들이면, 오히려 남을 덜 탓하게 되고 마음이 가벼워질 수 있습니다.",
+      "때때로 자신을 돌아보지만, 감정이 강할 때는 그게 어려워지는 편이에요. 감정이 한창일 때보다 한숨 돌린 뒤에 돌아보는 습관이 도움이 됩니다.",
+      "불편한 감정이 들 때 내 안을 돌아볼 줄 아는 편이에요. 융이 말한 '그림자와의 대면'을 이미 어느 정도 하고 있습니다. 다만 모든 갈등을 내 탓으로만 돌리지 않도록 균형을 잡는 것도 중요해요."]},
+  ID:{name:"속뜻 덧붙이기", jung:"해석 왜곡 경향", high:"bad", desc:"높을수록 남의 말에 숨은 뜻을 덧붙여 들음",
+    bands:[
+      "다른 사람의 말을 말 그대로 받아들이고, 애매할 땐 확인하는 편이에요. 오해가 생길 여지가 적습니다.",
+      "상황에 따라 상대의 말에 숨은 뜻을 덧붙여 읽을 때가 있어요. 특히 피곤하거나 불안할 때 해석이 부정적으로 기울 수 있습니다.",
+      "짧은 답장, 애매한 말, 웃음소리 같은 것을 나와 연결해 부정적으로 해석하는 경향이 강해요. 해석은 사실이 아니라 '가설'이라고 생각하고, 확인할 수 있는 건 직접 물어보세요."]},
+  SC:{name:"상황 속 말 읽기", jung:"말 읽기 정확도", high:"good", desc:"높을수록 속닥임보다 실제 말을 따름",
+    bands:[
+      "애매한 말을 들었을 때 한쪽으로 단정하는 선택이 많았어요. 실제 말에 담긴 정보보다 내 마음속 이야기가 해석을 이끄는 경우가 많을 수 있습니다.",
+      "상황에 따라 근거에 맞게 읽기도 하고, 감정에 따라 읽기도 했어요. 어떤 장면에서 해석이 흔들렸는지 위의 '속닥이의 세 가지 수법'을 참고해 보세요.",
+      "말에 담긴 정보에 근거해 해석하고, 애매하면 판단을 미루는 선택이 많았어요. 다른 사람의 말을 비교적 정확하게 읽는 편입니다."]}
+};
+
+// 리커트 문항 (r:true = 역채점). 요인이 섞이도록 배치
+const L = [
+ ["SP","어떤 사람의 특정 행동은, 이유를 딱 집어 말하긴 어려워도 유독 거슬린다."],
+ ["AP","누군가에게 끌리면 그 사람이 특별하게 느껴지고, 단점은 잘 눈에 들어오지 않는다."],
+ ["SA","누군가가 몹시 싫을 때, 그 감정이 어디서 오는지 내 쪽도 들여다보게 된다."],
+ ["ID","메시지의 말투나 답장 속도만 봐도 상대의 기분이 느껴진다."],
+ ["SP","사람을 만나면 그 사람의 아쉬운 점이 비교적 빨리 눈에 들어온다."],
+ ["AP","처음엔 반짝여 보이던 사람이 시간이 지나며 평범해 보여 아쉬웠던 적이 여러 번 있다."],
+ ["SA","내 판단과 방식이 대체로 옳다는 확신이 있는 편이다.",true],
+ ["ID","애매한 말을 들으면, 혼자 짐작하기보다 그냥 물어보는 편이다.",true],
+ ["SP","누가 나와 다르게 행동해도 \"저 사람은 저런가 보다\" 하고 넘기는 편이다.",true],
+ ["AP","가까운 사람이 내가 알던 모습과 다르게 행동하면 마음이 꽤 크게 흔들린다."],
+ ["SA","기분이 크게 상했던 일을 나중에 떠올려 보면, 그날 내 상태 탓도 있었다는 걸 알게 된다."],
+ ["ID","근처에서 누가 웃거나 수군대면, 나와 관련 있는 건지 신경이 쓰인다."],
+ ["SP","다른 사람의 무책임한 행동을 보면 그냥 넘기기가 어렵다."],
+ ["AP","좋아하는 사람이라도 장단점을 비교적 차분하게 따져 보는 편이다.",true],
+ ["SA","갈등을 돌아보면, 상대 쪽 문제가 더 컸던 경우가 많았다.",true],
+ ["ID","사람들의 말에는 겉으로 한 말과 다른 속뜻이 담겨 있을 때가 많다고 생각한다."],
+ ["SP","나랑 맞지 않는 사람은 꽤 분명하게 구분되는 편이다."],
+ ["AP","나와 정반대 성향인 사람에게 강하게 끌리거나, 반대로 강하게 거부감이 든다."],
+ ["SA","듣기 싫은 말이었는데, 시간이 지나 곱씹어 보니 일리가 있었던 적이 종종 있다."],
+ ["ID","칭찬을 들으면 고맙기보다 \"왜 이런 말을 하지?\" 싶을 때가 있다."],
+ ["SP","첫인상만으로 누군가를 싫어하게 되는 일은 드물다.",true],
+ ["AP","관계 초반의 설렘보다, 천천히 알아 가며 쌓이는 믿음이 더 중요하다.",true],
+ ["SA","내 성격 중에 남에게 별로 보여 주고 싶지 않은 면이 있다는 걸 안다."],
+ ["ID","사람들의 말은 대체로 들은 그대로 받아들인다.",true]
+];
+
+// 상황 문항: s=점수(2 근거중심, 1 부분, 0 투영), t=투영 방향(H 적대, S 자기비하, I 이상화)
+const S = [
+ {situ:"회의가 끝난 뒤 팀장이 나에게 말했다.", q:"\"이 보고서, 내일 다시 얘기하죠.\"", o:[
+  ["뭔가 마음에 안 드는 부분이 있나 보네.",0,"H"],
+  ["오늘은 시간이 없나 보다. 내일 하면 되겠지.",2],
+  ["내가 뭘 놓쳤나? 다시 봐야겠다.",0,"S"],
+  ["내일 얘기한다니, 보완할 데가 있는지 미리 훑어 둬야지.",1]]},
+ {situ:"친구에게 고민을 길게 적어 보냈는데, 답장이 이렇게 왔다.", q:"\"ㅇㅋ\"", o:[
+  ["좀 성의 없네. 내 얘기가 별로였나.",0,"H"],
+  ["내가 너무 길게 보냈나…",0,"S"],
+  ["바쁜가 보다.",2],
+  ["괜찮은 거겠지? 나중에 한번 물어봐야지.",1]]},
+ {situ:"내 작업을 본 동료가 말했다.", q:"\"너는 참 꼼꼼하네.\"", o:[
+  ["이 사람, 나를 제대로 알아봐 주는구나.",0,"I"],
+  ["좋게 봐 줬네.",2],
+  ["혹시 너무 느리다는 뜻인가?",0,"H"],
+  ["칭찬이지만, 다음엔 더 잘해야겠다는 생각이 든다.",1]]},
+ {situ:"처음 만난 소개팅 상대가 자기 이야기를 하며 말했다.", q:"\"저는 혼자 있는 시간이 꼭 필요한 편이에요.\"", o:[
+  ["깊이 있는 사람 같다. 더 알고 싶어진다.",0,"I"],
+  ["나한테 미리 선을 긋는 건가?",0,"S"],
+  ["좋긴 한데, 연락은 자주 못 하려나 조금 신경 쓰인다.",1],
+  ["그런 성향이구나. 알아 두면 좋겠다.",2]]},
+ {situ:"오랜만에 만난 가족이 나를 보며 말했다.", q:"\"요즘 좀 피곤해 보인다.\"", o:[
+  ["걱정해 주는구나.",2],
+  ["고맙긴 한데, 그런 말 들으면 괜히 더 피곤해진다.",1],
+  ["또 생활 습관 얘기하려는 건가.",0,"H"],
+  ["티가 났구나. 괜히 걱정 끼쳤네.",0,"S"]]},
+ {situ:"회의에서 내 의견을 들은 동료가 말했다.", q:"\"음, 다른 방법도 생각해 볼까요?\"", o:[
+  ["굳이 지금 그 말을? 좀 김새네.",0,"H"],
+  ["내 의견이 별로였나 보다.",0,"S"],
+  ["선택지를 더 모아 보자는 거구나.",2],
+  ["어떤 점이 걸렸는지 궁금하다.",1]]},
+ {situ:"평소 존경하던 선배에게 일을 어떻게 할지 묻자, 선배가 말했다.", q:"\"그건 네가 알아서 해.\"", o:[
+  ["나를 믿어 주는구나. 역시 이 선배는 다르다.",0,"I"],
+  ["맡겨 준 건 좋은데, 잘해야 한다는 부담이 생긴다.",1],
+  ["좀 무심하네. 기대했는데.",0,"H"],
+  ["바쁘거나, 맡겨도 된다고 본 거겠지.",2]]},
+ {situ:"단체 대화방에 의견을 올렸는데, 한 시간째 아무도 반응이 없다.", q:"(아무 말 없음)", o:[
+  ["다들 바쁜가 보다.",2],
+  ["다들 내 글은 대충 넘기는 것 같다.",0,"H"],
+  ["조금 머쓱하다. 좀 더 기다려 본다.",1],
+  ["괜한 얘길 했나.",0,"S"]]}
+];
+
+const ITEMS = [...L.map(([f,text,r])=>({kind:"L",f,text,r:!!r})), ...S.map(s=>({kind:"S",...s}))];
+const answers = new Array(ITEMS.length).fill(null);
+let idx = 0;
+const $ = id=>document.getElementById(id);
+
+function show(id){ ["intro","quiz","result"].forEach(s=>$(s).hidden = s!==id); window.scrollTo(0,0); }
+
+function render(){
+  const it = ITEMS[idx], n = ITEMS.length;
+  const pct = Math.round(idx/n*100);
+  $("progBar").style.width = Math.max(pct,3)+"%";
+  $("prog").setAttribute("aria-valuenow", pct);
+  $("backBtn").disabled = idx===0;
+  if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  const c = $("qcard"); c.innerHTML = "";
+  if(it.kind==="L"){
+    c.innerHTML = `<span class="eyebrow">나와 얼마나 비슷한가요?</span><p class="qtext"></p><div class="likert"><div class="scale" role="radiogroup" aria-label="응답"></div><div class="ends"><span class="no">그렇지 않다</span><span class="yes">그렇다</span></div></div>`;
+    c.querySelector(".qtext").textContent = it.text;
+    const box = c.querySelector(".scale");
+    const SIZES=[46,38,31,24,31,38,46];
+    LIKERT.forEach((lab,i)=>{
+      const b = document.createElement("button");
+      b.type="button"; b.className="lk"+(answers[idx]===i+1?" on":""); b.id="lk"+i;
+      b.style.width=b.style.height=SIZES[i]+"px";
+      b.style.setProperty("--c", i<3?"var(--disagree)":i>3?"var(--accent)":"var(--muted)");
+      b.setAttribute("aria-label",lab); b.setAttribute("role","radio"); b.setAttribute("aria-checked",answers[idx]===i+1);
+      b.onclick = ()=>pick(i+1); box.appendChild(b);
+    });
+  } else {
+    if(idx===L.length && answers[idx]===null) c.insertAdjacentHTML("beforeend",`<p class="hint" style="margin-bottom:-8px">여기부터는 상황 문항이에요. 모두 흔히 드는 생각이라 정답은 없어요. 그 말을 들은 순간 <b>머릿속을 먼저 스치는 생각</b>을 골라 주세요.</p>`);
+    c.insertAdjacentHTML("beforeend",`<span class="eyebrow">상황 문항</span><p class="situ"></p><p class="quote"></p><span class="hint">솔직히, 제일 먼저 드는 생각은?</span><div class="opts"></div>`);
+    c.querySelector(".situ").textContent = it.situ;
+    c.querySelector(".quote").textContent = it.q;
+    const box = c.querySelector(".opts");
+    it.o.forEach((o,i)=>{
+      const b = document.createElement("button");
+      b.type="button"; b.className="opt"+(answers[idx]===i?" on":""); b.id="opt"+i;
+      b.textContent = o[0]; b.onclick = ()=>pick(i); box.appendChild(b);
+    });
+  }
+}
+
+let busy=false;
+function pick(v){
+  if(busy) return;
+  answers[idx]=v; render(); busy=true;
+  setTimeout(()=>{ busy=false; if(idx<ITEMS.length-1){idx++;render();} else finish(); },220);
+}
+
+function band(p){ return p<34?0:p<67?1:2; }
+const BAND_LABEL=["낮음","보통","높음"];
+
+function finish(){
+  $("progBar").style.width="100%";
+  const sums={SP:[],AP:[],SA:[],ID:[]};
+  ITEMS.forEach((it,i)=>{ if(it.kind==="L"){ const v=answers[i]; sums[it.f].push(it.r?8-v:v);} });
+  const score={};
+  for(const f in sums){ const m=sums[f].reduce((a,b)=>a+b,0)/sums[f].length; score[f]=Math.round((m-1)/6*100); }
+  let sc=0; const proj={H:0,S:0,I:0}, avail={H:0,S:0,I:0};
+  S.forEach((s,k)=>{ s.o.forEach(o=>{ if(o[2]) avail[o[2]]++; });
+    const o=s.o[answers[L.length+k]]; sc+=o[1]; if(o[2]) proj[o[2]]++; });
+  score.SC=Math.round(sc/(S.length*2)*100);
+
+  const clear=[100-score.SP,100-score.AP,score.SA,100-score.ID,score.SC];
+  const lensIdx=Math.round(clear.reduce((a,b)=>a+b,0)/clear.length);
+  const lensBand = lensIdx>=70?2:lensIdx>=40?1:0;
+  const tint=100-lensIdx; // 속닥이 목소리 크기: 높을수록 크게 들림
+
+  // 속닥이 유형: 상황 문항에서 고른 투영 응답의 방향(비율이 가장 높은 쪽)
+  const total=proj.H+proj.S+proj.I;
+  let top=null, best=0;
+  for(const k in proj){ const r=proj[k]/avail[k]; if(proj[k]>0 && r>best){best=r;top=k;} }
+  const who = top ? TYPES[top] : TYPES.Q;
+  if(window.gtag) gtag('event','test_complete',{whisper_type: top||'Q'});
+
+  const METER=[
+    ["큰 편","속닥이 목소리가 큰 편이에요. 상대가 실제로 한 말보다 속닥이가 전한 말이 더 크게 들릴 때가 있어요. 요즘 지쳤거나 마음 다친 일이 있으면 목소리가 더 커지기도 해요."],
+    ["보통","대체로 상대의 말을 그대로 듣지만, 특정한 사람이나 상황에서는 속닥이 목소리가 커져요. 어떤 재료로 속닥이는지 아래에서 확인해 보세요."],
+    ["작은 편","속닥이 목소리가 작은 편이에요. 상대가 실제로 한 말과 속닥임을 잘 구분하는 편이에요."]];
+  const mColor="var(--accent)";
+  // 본인이 고른 상황 문항 답 하나를 예시로 (유형이 있으면 그 수법의 답, 없으면 실제 말을 따른 답)
+  const k0 = S.findIndex((s,k)=>{ const o=s.o[answers[L.length+k]]; return top ? o[2]===top : o[1]===2; });
+  let mine="", mineFull="";
+  if(k0>=0){
+    const s=S[k0], o=s.o[answers[L.length+k0]];
+    const said = s.q.startsWith("(") ? "상대는 아무 말도 하지 않았는데, " : `상대는 ${s.q}라고만 했는데, `;
+    const why = top ? `${said}속닥이가 ${who.gloss}로 바꿔 전한 거예요.` : "속닥이 없이 상대의 말을 그대로 들었어요.";
+    const heard = s.q.startsWith("(") ? "(아무 말 없음)" : s.q;
+    mine=`<div class="mine"><span class="eyebrow">내가 고른 답</span><p><b>${heard}</b> → "${o[0]}"</p></div>`;
+    mineFull=`<div class="mine"><span class="eyebrow">▸ 당신이 고른 답</span><p class="situ">${s.situ} <b>${s.q}</b></p><p>→ "${o[0]}"</p><p class="hint">${why}</p></div>`;
+  }
+  const tk=top||"Q";
+  $("indexCard").innerHTML=`<img src="sokdagi.png" width="768" height="512" alt="">
+   <div class="who-head"><span class="eyebrow">당신의 속닥이는</span><h2>${who.name}</h2><p class="one">${who.one}</p>
+    <div class="vol"><span>속닥이 목소리</span><div class="bar"><i style="width:${Math.max(tint,2)}%"></i></div><b>${METER[lensBand][0]}</b><small>${tint}</small></div></div>
+   <div class="strong"><span>✦ 나의 강점</span><p>${who.strong}</p></div>
+   <p class="watch"><b>살펴볼 점</b> ${who.watch}</p>
+   ${mine}
+   <div class="tip"><span class="eyebrow">오늘의 연습 · ${RX_TOOL[tk][0]}</span><p>${RX_TOOL[tk][2]}</p></div>
+   <p class="own">목소리 크기는 내 점수가 아니에요. 그 말을 믿을지는 내가 골라요.</p>`;
+
+  let html=`<p style="margin-bottom:12px">${who.plain}</p>${mineFull}<p class="hint" style="margin:12px 0 20px">${METER[lensBand][1]} 크다고 나쁜 것도, 작다고 좋은 것도 아니에요.</p><h3 style="margin-bottom:6px">속닥이의 세 가지 수법</h3><p class="hint" style="margin-bottom:14px">상황 문항 8개에서 실제 말보다 속닥임을 따른 답을 어떤 수법으로 골랐는지 셌어요.</p><div class="types">`;
+  ["H","S","I"].forEach(k=>{ html+=`<div class="type${k===top?" top":""}"><b>${proj[k]}<span style="font-size:.8rem"> / ${avail[k]}</span></b><span>${TYPES[k].name}</span></div>`; });
+  html+=`</div><p style="margin-top:14px">${who.desc}</p>`;
+  if(top) html+=`<p class="hint" style="margin-top:8px">비슷한 말을 들으면 "이건 상대가 한 말일까, 속닥이가 덧붙인 말일까?" 하고 한 번 나눠 보세요.</p>`;
+  $("typeCard").innerHTML=html;
+
+  const list=$("resList"); list.innerHTML="";
+  ["SP","AP","ID","SC","SA"].forEach(f=>{
+    const F=FACTORS[f], p=score[f], b=band(p);
+    const healthy = F.high==="good" ? b : 2-b; // 0 주의 ~ 2 양호
+    const col=["var(--warn)","var(--mid)","var(--good)"][healthy];
+    const el=document.createElement("div"); el.className="res";
+    el.innerHTML=`<div class="res-head"><h3>${F.name} <span class="dir">(${F.jung})</span></h3><span class="pill" style="color:${col}">${BAND_LABEL[b]}</span></div>
+      <div class="bar"><i style="width:${Math.max(p,2)}%;background:${col}"></i></div>
+      <span class="dir">${F.desc}</span><p>${F.bands[b]}</p>`;
+    list.appendChild(el);
+  });
+  renderRx(lensBand, score, top);
+  show("result");
+}
+
+// 속닥이 유형 (상황 문항 투영 방향)
+const TYPES={
+  H:{name:"가시형", plain:"가시형 속닥이는 남의 말을 <b>'나를 공격하거나 무시하는 말'</b>로 바꿔 들려줘요.", gloss:"<b>불만이나 무시가 담긴 말</b>",
+     one:"남의 말을 '나를 공격하는 말'로 바꿔 들려줘요.", strong:"무례하거나 위험한 신호를 잘 알아채는 경계심이 있기도 해요.", watch:"악의 없는 말도 공격처럼 들릴 수 있어요.",
+     desc:"<b>가시형</b> 속닥이는 상대가 나를 공격하거나 무시한다고 들리게 만들어요. 재료는 내가 인정하기 싫은 불만과 공격성, 칼 융이 말한 <b>그림자</b>예요. 내 안에 있는 것을 상대의 말에 비춰 들려주는 거죠."},
+  S:{name:"채점형", plain:"채점형 속닥이는 남의 말을 <b>'나에 대한 평가'</b>로 바꿔 들려줘요.", gloss:"<b>나를 낮게 평가하는 말</b>",
+     one:"남의 말을 '나에 대한 평가'로 바꿔 들려줘요.", strong:"기준이 높고 스스로를 잘 돌아보는 면이 있기도 해요.", watch:"모든 말이 평가처럼 들려 지칠 수 있어요.",
+     desc:"<b>채점형</b> 속닥이는 상대가 나를 낮게 평가한다고 들리게 만들어요. 재료는 내 안의 엄격한 비판자예요. 내가 나에게 매기던 점수를 상대의 입을 빌려 들려주는 거죠."},
+  I:{name:"후광형", plain:"후광형 속닥이는 남의 말에 <b>'특별한 의미'</b>를 덧붙여 들려줘요. 그래서 상대가 실제보다 더 특별하고 완벽해 보여요.", gloss:"<b>특별한 뜻이 담긴 말</b>",
+     one:"남의 말에 '특별한 의미'를 덧붙여 들려줘요.", strong:"사람의 좋은 면을 먼저 알아보는 따뜻함이 있기도 해요.", watch:"상대를 크게 그렸다가 실망할 수 있어요.",
+     desc:"<b>후광형</b> 속닥이는 상대를 실제보다 특별하고 완벽하게 들리게 만들어요. 재료는 칼 융이 말한 <b>아니마/아니무스</b>, 내가 바라는 이상형의 모습이에요. 달콤하지만 나중에 실망으로 돌아오기 쉬워요."},
+  Q:{name:"졸고 있는 속닥이", plain:"이번 검사에서는 속닥이가 남의 말을 거의 바꾸지 않았어요. 상대가 한 말을 그대로 들은 답이 많았어요.", gloss:"",
+     one:"이번엔 남의 말을 거의 바꾸지 않았어요.", strong:"말을 있는 그대로 들어서 오해가 적은 편이기도 해요.", watch:"돌려 말한 마음은 한 번 더 물어봐도 좋아요.",
+     desc:"상황 문항에서 속닥임보다 실제 말을 따르는 답을 골랐어요. 다만 속닥이는 사라지지 않아요. 지치거나 마음이 다치는 날에는 누구의 속닥이든 다시 깨어나요."}};
+
+// 처방: 속닥이에게 휘둘리지 않는 연습
+const RX_INTRO=[
+  "속닥이가 시끄럽다는 건 내 마음속 이야기가 크고 생생하다는 뜻이기도 해요. 속닥이를 없앨 필요는 없어요. <b>속닥임과 실제 말을 구분하기만</b> 하면 됩니다. 아래 세 단계를 2주 동안 매일 연습해 보세요.",
+  "대체로 괜찮지만 속닥이가 크게 끼어드는 순간이 있어요. 그럴 때 반응하기 전에 아래 세 단계를 꺼내 쓰세요.",
+  "속닥이를 잘 다루고 있어요. 아래 세 단계는 유독 지치거나 예민해서 속닥이가 깨어나는 날을 위한 점검표로 두세요."];
+const RX_ROUTINE=[
+  "<b>2주 동안 매일 저녁 5분.</b> 오늘 속닥이가 가장 크게 속닥인 순간 하나를 떠올리고 ① 속닥이가 한 말 ② 실제로 있었던 일 ③ 내일 다르게 해 볼 한 가지를 적어요. 마지막에 오늘 의미 있었던 순간도 하나 적고 마칩니다.",
+  "<b>일주일에 세 번, 잠들기 전 5분.</b> 속닥이가 끼어든 순간 하나를 골라 속닥이가 한 말과 실제로 있었던 일을 나눠 적어요. 의미 있었던 순간 하나도 함께 적어요.",
+  "<b>흔들린 날에만 5분.</b> 속닥이가 한 말과 실제로 있었던 일을 나눠 적는 것만으로 충분해요."];
+const RX_FOCUS={
+  SP:["거울 질문","유독 거슬리는 사람의 특징을 세 가지 적고, 각각 \"내 삶에서 이 모습이 나온 적은?\" 하고 찾아보세요. 하나라도 찾으면 속닥이의 가시가 눈에 띄게 무뎌집니다."],
+  AP:["사실과 바람 나누기","끌리거나 실망한 사람에 대해 '내가 직접 본 것'과 '내가 바랐던 모습'을 두 줄로 나눠 적어요. 바랐던 모습 중 하나를 골라, 내가 직접 키워 볼 작은 행동으로 바꿔 보세요."],
+  SA:["판결 없이 돌아보기","하루 돌아보기를 할 때 남 탓인지 내 탓인지 판결을 내리지 마세요. \"그때 내 마음이 어땠지?\"만 적어요. 판결을 미루면 돌아보는 일이 덜 괴로워지고, 그래서 오래 할 수 있어요."],
+  ID:["세 가지 해석","애매한 말을 들으면 가능한 해석을 세 개 만들어 보세요. 나쁜 해석, 평범한 해석, 좋은 해석 하나씩. 속닥이의 해석은 셋 중 하나일 뿐이에요. 중요한 일이면 짧게 확인하세요: \"아까 그 말, 이런 뜻이었어?\""],
+  SC:["들은 그대로 받아 적기","마음에 걸린 말을 들은 그대로 적고, 그 문장에 없는 단어(예: '무시', '실망', '귀찮다')를 지워 보세요. 지운 단어는 속닥이가 붙인 것이고, 남은 것이 상대가 실제로 준 정보예요."]};
+// 수법별 도구: 필 스터츠·배리 마이클스의 《툴스》에서 착안해 쉽게 풀어 씀 (원문 인용 아님)
+const RX_TOOL={
+  H:["적극적 사랑","가시형 속닥이는 원망을 먹고 자라요. 누군가가 계속 곱씹힐 때, 눈을 감고 그 사람을 떠올린 뒤 내 쪽에서 먼저 따뜻한 마음을 건네는 장면을 그려 보세요. 상대가 사과하기를 기다리며 원망 속에 머물지 않고, 내가 먼저 그 자리에서 걸어 나오는 연습이에요. 상대를 봐주려는 게 아니라 내가 자유로워지기 위해서예요.","누군가 계속 곱씹힐 때, 내가 먼저 따뜻한 마음을 건네는 장면을 그려 보세요."],
+  S:["내면의 권위","채점형 속닥이는 숨기고 싶은 모습을 들킬까 봐 겁주는 방식으로 일해요. 위축되는 자리에 가기 전에, 내가 부끄러워하는 내 모습(그림자)을 한 사람의 모습으로 떠올려 내 옆에 세워 보세요. 숨기던 그 모습과 나란히 서서 상대를 마주한다고 상상하는 거예요. 숨길 게 줄어들면 점수 매기는 속닥임도 힘을 잃어요.","위축될 때, 숨기고 싶은 내 모습과 나란히 서 있다고 상상해 보세요."],
+  I:["욕구 반전","후광형 속닥이는 실망이 두려운 마음을 이용해요. 상대가 특별해 보일 때, 그 사람의 평범한 면과 언젠가 느낄 수 있는 실망을 떠올리고 \"와도 괜찮아\" 하며 그쪽으로 한 걸음 걸어 들어가는 상상을 해 보세요. 실망을 견딜 수 있다고 느끼면 상대를 있는 그대로 볼 여유가 생겨요.","상대가 특별해 보일 때, 실망해도 괜찮다며 한 걸음 다가가 보세요."],
+  Q:["감사의 흐름","속닥이를 계속 졸게 하는 방법이에요. 마음이 가라앉거나 날이 설 때, 오늘 고마웠던 작은 일을 하나씩 천천히 떠올려 보세요. 잘 잔 것, 따뜻한 커피, 안부를 물어 준 사람. 몇 가지를 이어서 떠올리다 보면 생각의 흐름 자체가 바뀌어요.","날이 설 때, 오늘 고마웠던 작은 일을 하나씩 떠올려 보세요."]};
+
+function renderRx(b, score, top){
+  const gap={SP:score.SP, AP:score.AP, SA:100-score.SA, ID:score.ID, SC:100-score.SC};
+  const weak=Object.keys(gap).sort((x,y)=>gap[y]-gap[x])[0];
+  const tk=top||"Q";
+  let h=`<p>${RX_INTRO[b]}</p>
+  <p class="hint" style="margin-top:-6px">핵심은 하나예요. <b>바로 들리는 속닥임은 사실이 아니라 '가설'</b>입니다. 믿기 전에 한 번 구분하세요. 아래 세 단계는 빅터 프랭클의 <b>로고테라피</b>에서 가져왔어요.</p>
+  <ol class="steps">
+   <li><div><h3>멈추기: 속닥임에 이름 붙이기</h3><p>마음이 확 흔들리면 반응하기 전에 속으로 말해 보세요. "아, 속닥이가 또 왔구나." 그 생각을 내 판단이 아니라 귓가에 들른 손님처럼 대하는 거예요. 문을 열어 줄지는 내가 정합니다.</p></div></li>
+   <li><div><h3>나누기: 들은 말과 속닥인 말</h3><p>상대가 실제로 한 말과 속닥이가 덧붙인 말을 두 칸으로 나눠 보세요. 두 칸이 다르다는 걸 보는 것만으로 속닥임의 힘이 약해집니다.</p>
+     <div class="ex"><b>들은 말</b><span>"ㅇㅋ"</span><b>속닥인 말</b><span>"네 얘기 귀찮대."</span></div></div></li>
+   <li><div><h3>고르기: 내가 지키고 싶은 것 묻기</h3><p>"이 속닥임은 상대에 대한 정보일까, 내 마음에 대한 정보일까?" 물어보세요. 속닥이가 유독 시끄러운 순간은 내가 요즘 무엇을 두려워하거나 바라는지 알려 줄 때가 많아요. 그다음 "이 관계에서 내가 지키고 싶은 건 뭐지?"를 떠올리고, 그 답에 맞는 반응을 고르세요. 그래도 궁금하면 물어보면 됩니다.</p><small>속닥이가 끼어드는 건 고를 수 없지만, 그 말을 믿을지는 내가 고를 수 있어요.</small></div></li>
+  </ol>
+  <div class="focus"><span class="eyebrow">${top?"수법에 맞춘 도구 · "+TYPES[top].name:"속닥이를 재우는 도구"}</span><h3>${RX_TOOL[tk][0]}</h3><p>${RX_TOOL[tk][1]}</p><span class="hint">필 스터츠·배리 마이클스의 《툴스》에서 착안해 쉽게 풀어 썼어요.</span></div>
+  <div class="focus"><span class="eyebrow">나에게 맞춘 연습 · ${FACTORS[weak].name}</span><h3>${RX_FOCUS[weak][0]}</h3><p>${RX_FOCUS[weak][1]}</p></div>
+  <div class="focus"><span class="eyebrow">하루 돌아보기</span><p>${RX_ROUTINE[b]}</p></div>
+  <details><summary>속닥이와 이 연습들은 어디서 왔나요?</summary><ul>
+   <li><b>칼 융 · 그림자와 투영</b>: 스위스의 정신과 의사 칼 융은 내가 받아들이지 못한 면(그림자)과 내가 바라는 이상(아니마/아니무스)을 다른 사람에게 비춰 보는 일을 '투영'이라고 불렀어요. 속닥이가 쓰는 재료예요.</li>
+   <li><b>필 스터츠 · 배리 마이클스 · Part X</b>: 두 심리치료사는 책 《Coming Alive》에서 성장을 막는 내 안의 적에 'Part X'라는 이름을 붙였어요. 속닥이는 이 개념을 관계 속 말 듣기에 맞게 새로 만든 캐릭터예요.</li>
+   <li><b>《툴스》의 도구</b>: 수법별 도구(적극적 사랑, 내면의 권위, 욕구 반전, 감사의 흐름)는 두 사람의 책 《The Tools》에 나오는 도구에서 착안해 쉽게 풀어 쓴 것이에요.</li>
+   <li><b>빅터 프랭클 · 로고테라피</b>: 사람은 의미를 찾을 때 가장 단단해진다고 보는 상담 방법이에요. 멈추기(자기 거리두기), 나누기(태도를 고를 자유), 고르기(의미 묻기), 하루 돌아보기의 '의미 있었던 순간'이 여기서 왔어요.</li>
+  </ul></details>
+  <p class="hint">이 검사와 연습은 저자들과 관련 없는 비공식 자작물이며, 상담이나 치료를 대신하지 않아요. 마음이 오래 힘들다면 전문가와 이야기해 보세요.</p>`;
+  $("rxCard").innerHTML=h;
+}
+
+$("startBtn").onclick=()=>{ idx=0; answers.fill(null); show("quiz"); render(); };
+$("backBtn").onclick=()=>{ if(idx>0 && !busy){ idx--; render(); } };
+$("retryBtn").onclick=()=>{ show("intro"); };
+</script>
+</body>
+</html>

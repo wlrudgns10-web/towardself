@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="The Whisperling is the little devil that twists other people's words before they reach your ear. A 5-minute self-reflection test inspired by Carl Jung, Phil Stutz and Barry Michels, and Viktor Frankl shows how often yours chimes in, with practices to quiet it.">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Whisperling Test · The Little Devil Between You and Others</title>
+<link rel="canonical" href="https://towardself.co.kr/en/">
+<link rel="alternate" hreflang="ko" href="https://towardself.co.kr/">
+<link rel="alternate" hreflang="en" href="https://towardself.co.kr/en/">
+<link rel="alternate" hreflang="x-default" href="https://towardself.co.kr/en/">
+<meta property="og:title" content="Whisperling Test · The Little Devil Between You and Others">
+<meta property="og:description" content="The little devil that twists other people's words before they reach your ear. How often does your Whisperling chime in? A 5-minute self-reflection test.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://towardself.co.kr/en/">
+<meta property="og:site_name" content="Whisperling Test">
+<meta property="og:image" content="https://towardself.co.kr/og-image-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Whisperling Test: a small purple devil whispering into an ear">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<style>
+/* Layout: 한 장씩 넘기는 좁은 카드 흐름 — 빛(밝은 면)과 그림자(어두운 면)를 반달 모티프로 */
+:root{
+  --bg:#EEEDF3; --surface:#FAF9FC; --ink:#1E1C2A; --muted:#5E5A72; --line:#D5D2E0;
+  --accent:#3F5E8C; --accent-soft:#DCE4F0; --shadow:#2B2840; --light:#F2E6C9;
+  --good:#2F7A5B; --mid:#A0762A; --warn:#A6463F; --disagree:#8A6A9C;
+  --f-display:"Gowun Batang","Noto Serif KR",serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#15141D; --surface:#1F1D2A; --ink:#ECEAF4; --muted:#A6A2BA; --line:#34314A;
+  --accent:#8FB0E0; --accent-soft:#283550; --shadow:#0B0A12; --light:#E9DDBF;
+  --good:#6CC49C; --mid:#D9AE5E; --warn:#E58A82; --disagree:#C3A3D6; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#15141D; --surface:#1F1D2A; --ink:#ECEAF4; --muted:#A6A2BA; --line:#34314A;
+  --accent:#8FB0E0; --accent-soft:#283550; --shadow:#0B0A12; --light:#E9DDBF;
+  --good:#6CC49C; --mid:#D9AE5E; --warn:#E58A82; --disagree:#C3A3D6; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px}
+.wrap{max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.3}
+h1{font-size:2rem} h2{font-size:1.45rem} h3{font-size:1.1rem}
+p{margin:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.moon{width:72px;height:72px;border-radius:50%;background:linear-gradient(90deg,var(--light) 50%,var(--shadow) 50%);box-shadow:0 0 0 1px var(--line)}
+.hero{display:flex;flex-direction:column;gap:14px}
+.lead{color:var(--muted)}
+.lead b{color:var(--ink)}
+.lang{align-self:flex-end;font-weight:600;font-size:.9rem;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:4px 12px;margin-bottom:-6px}
+.mascot{display:block;width:100%;max-width:360px;height:auto;align-self:center;margin-bottom:-8px}
+.sub{font-family:var(--f-display);font-size:1.15rem;color:var(--accent);margin-top:-8px}
+.who{display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center}
+.who img{width:100%;max-width:260px;height:auto}
+.who h2{font-size:1.8rem}
+.who .meter{width:100%;display:flex;flex-direction:column;gap:6px;text-align:left;margin-top:10px}
+.who .meter-head{display:flex;justify-content:space-between;align-items:baseline;gap:4px 8px;flex-wrap:wrap}
+.who .meter-head>span:last-child{white-space:nowrap}
+.who .meter-head b{font-family:var(--f-display);font-size:1.6rem;font-variant-numeric:tabular-nums}
+.who .bar{height:14px}
+.who .what{font-size:.9rem;color:var(--muted)}
+.who .mine{width:100%;text-align:left;background:var(--accent-soft);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.who .mine .eyebrow{color:var(--accent)}
+.who .trait{width:100%;text-align:left;border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.who .trait p{margin:0;font-size:.93rem}
+.who .trait b{display:block;color:var(--accent);font-size:.8rem;margin-bottom:2px}
+.who{gap:12px}
+.who img{max-width:170px}
+.who-head{width:100%;display:flex;flex-direction:column;align-items:center;gap:4px}
+.who .one{color:var(--muted);font-size:.95rem}
+.vol{display:flex;align-items:center;gap:10px;margin-top:10px;background:var(--accent-soft);border-radius:99px;padding:7px 16px;font-size:.85rem;width:100%;max-width:360px}
+.vol span{white-space:nowrap;color:var(--accent);font-weight:600}
+.vol .bar{flex:1;height:8px;background:var(--surface)}
+.vol .bar i{background:var(--accent)}
+.vol b{white-space:nowrap}
+.vol small{color:var(--muted);font-variant-numeric:tabular-nums}
+.who .strong{width:100%;text-align:left;background:var(--accent);color:var(--surface);border-radius:12px;padding:14px 16px}
+.who .strong span{font-size:.8rem;font-weight:700;opacity:.9}
+.who .strong p{margin:2px 0 0;font-size:1.05rem;font-weight:600;line-height:1.45}
+.who .watch{width:100%;text-align:left;font-size:.9rem;color:var(--muted);margin-top:-4px}
+.who .watch b{color:var(--ink);margin-right:4px}
+.who .tip{width:100%;text-align:left;border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.who .tip .eyebrow{color:var(--accent)}
+.who .tip p,.who .mine p{font-size:.93rem}
+.who .own{font-size:.82rem;color:var(--muted)}
+.more{padding:6px 24px}
+.more>details{border-top:1px solid var(--line);padding:16px 0;font-size:1rem}
+.more>details:first-child{border-top:none}
+.more>details>summary{font-size:1.02rem}
+.more>details[open]>summary{margin-bottom:16px}
+.notice{border:1px solid var(--line);border-left:4px solid var(--mid);background:var(--surface);border-radius:10px;padding:14px 16px;font-size:.92rem;display:flex;flex-direction:column;gap:6px}
+.notice strong{color:var(--ink)}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.fact{background:var(--accent-soft);border-radius:10px;padding:12px;text-align:center}
+.fact b{display:block;font-size:1.3rem;font-family:var(--f-display);font-variant-numeric:tabular-nums}
+.fact span{font-size:.8rem;color:var(--muted)}
+.factors{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+.factors li{display:flex;flex-direction:column;gap:2px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
+.factors li:last-child{border-bottom:0;padding-bottom:0}
+.factors b{font-weight:600}
+.factors span{color:var(--muted);font-size:.92rem}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--accent);color:var(--surface);border:0;border-radius:10px;padding:14px 20px;font-weight:600;font-size:1rem;width:100%}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn:focus-visible,.opt:focus-visible,.lk:focus-visible,.back:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+/* quiz */
+.topbar{display:flex;align-items:center;gap:12px}
+.back{background:none;border:0;color:var(--accent);padding:6px 0;font-weight:600}
+.back:disabled{color:var(--line);cursor:default}
+.prog{flex:1;height:12px;background:var(--line);border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent-soft),var(--accent));transition:width .45s ease-out}
+.qcard{display:flex;flex-direction:column;gap:20px;min-height:360px}
+.qtext{font-family:var(--f-display);font-size:1.3rem;line-height:1.5}
+.quote{font-family:var(--f-display);font-size:1.2rem;background:var(--accent-soft);border-radius:10px;padding:14px 16px}
+.situ{color:var(--muted);font-size:.95rem}
+.likert{display:flex;flex-direction:column;gap:10px;margin-top:auto}
+.scale{display:flex;align-items:center;justify-content:space-between;gap:4px}
+.lk{flex:none;border-radius:50%;background:transparent;border:2px solid var(--c);padding:0;transition:background .15s,transform .15s}
+.lk,.opt,.btn,.back{-webkit-tap-highlight-color:transparent}
+@media (hover:hover) and (pointer:fine){.lk:hover{background:color-mix(in srgb,var(--c) 18%,transparent)}}
+.lk.on{background:var(--c);transform:scale(1.08)}
+.ends{display:flex;justify-content:space-between;font-size:.85rem;font-weight:600}
+.ends .no{color:var(--disagree)} .ends .yes{color:var(--accent)}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:14px 16px;line-height:1.55}
+.opt.on{border-color:var(--accent);background:var(--accent-soft)}
+.hint{font-size:.85rem;color:var(--muted)}
+/* result */
+.index{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.lens{width:120px;height:120px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:var(--f-display);font-size:2.2rem;font-variant-numeric:tabular-nums;position:relative}
+.lens small{font-size:.8rem;font-family:var(--f-body);color:var(--muted);position:absolute;bottom:22px}
+.index .txt{flex:1;min-width:200px;display:flex;flex-direction:column;gap:6px}
+.res-list{display:flex;flex-direction:column;gap:14px}
+.res{display:flex;flex-direction:column;gap:8px}
+.res-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.pill{white-space:nowrap;font-size:.78rem;font-weight:600;padding:2px 10px;border-radius:99px;border:1px solid currentColor}
+.bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px}
+.score{font-variant-numeric:tabular-nums;font-weight:600}
+.dir{font-size:.8rem;color:var(--muted)}
+.res p{font-size:.95rem}
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.type{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:2px}
+.type b{font-size:1.4rem;font-family:var(--f-display);font-variant-numeric:tabular-nums}
+.type span{font-size:.82rem;color:var(--muted)}
+.type.top{border-color:var(--accent);background:var(--accent-soft)}
+.actions{display:flex;flex-direction:column;gap:10px}
+.rx{display:flex;flex-direction:column;gap:16px}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;counter-reset:st}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:12px;counter-increment:st}
+.steps li::before{content:counter(st);width:36px;height:36px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--f-display);font-weight:700}
+.steps li div{min-width:0;display:flex;flex-direction:column;gap:4px}
+.steps small{color:var(--muted);font-size:.85rem}
+.ex{background:var(--bg);border-radius:8px;padding:8px 12px;font-size:.88rem;display:grid;grid-template-columns:auto 1fr;gap:2px 10px}
+.ex b{color:var(--muted);font-weight:600}
+.focus{border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.focus .eyebrow{color:var(--accent)}
+details{border-top:1px dashed var(--line);padding-top:12px;font-size:.9rem}
+summary{cursor:pointer;font-weight:600;color:var(--accent)}
+details ul{margin:10px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px;color:var(--muted)}
+details b{color:var(--ink);font-weight:600}
+footer{font-size:.8rem;color:var(--muted);text-align:center}
+@media (max-width:440px){.facts,.types{grid-template-columns:1fr 1fr 1fr}.card{padding:18px}h1{font-size:1.7rem}.qtext{font-size:1.15rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<meta name="google-adsense-account" content="ca-pub-9743896158161620">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NL1EPS71XC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NL1EPS71XC');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9743896158161620" crossorigin="anonymous"></script>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#2B2840">
+</head>
+<body>
+
+<div class="wrap">
+
+<!-- intro -->
+<section id="intro" class="hero">
+  <a class="lang" href="/" hreflang="ko" lang="ko">한국어</a>
+  <img class="mascot" src="/sokdagi.png" width="768" height="512" alt="The Whisperling, a small purple devil whispering something into a person's ear">
+  <span class="eyebrow">Inspired by Carl Jung · Phil Stutz · Barry Michels · Viktor Frankl</span>
+  <h1>Whisperling Test</h1>
+  <p class="sub">The little devil between you and other people</p>
+  <p class="lead">A <b>Whisperling</b> lives at everyone's ear. When someone speaks to you, it quietly twists their words and whispers, "They're ignoring you," or "You messed up again." Then we end up hearing the Whisperling's version instead of what the person actually said. How often is your Whisperling chiming in right now?</p>
+
+  <div class="notice" role="note">
+    <strong>Please read first</strong>
+    <span>This test is <b>not a clinical diagnostic tool. It is a self-understanding test that has not yet been validated.</b> It is a homemade scale inspired by Carl Jung's theory of the shadow and Phil Stutz and Barry Michels's idea of "Part X" (the inner enemy), and the practices in your results draw on Viktor Frankl's logotherapy and Stutz and Michels's <i>The Tools</i>. It has not been studied for reliability or validity, and it is an unofficial test with no connection to these authors. Use your results only as prompts for self-reflection, and if you're struggling, please talk with a professional.</span>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><b>~5 min</b><span>to finish</span></div>
+    <div class="fact"><b>Instant</b><span>results</span></div>
+    <div class="fact"><b>Free</b><span>no sign-up</span></div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom:12px">How to answer</h3>
+    <ul class="factors">
+      <li><b>There are no right or good answers</b><span>Every question asks about tendencies that naturally differ from person to person. Either side is fine.</span></li>
+      <li><b>Don't overthink it</b><span>The answer that comes to mind first is usually the most "you."</span></li>
+      <li><b>Your everyday self, not your ideal self</b><span>Answer based on how you actually feel and react these days.</span></li>
+    </ul>
+  </div>
+  <p class="hint">We'll explain what each part measures on the results screen.</p>
+  <button class="btn" id="startBtn" type="button">Start the test</button>
+</section>
+
+<!-- quiz -->
+<section id="quiz" hidden>
+  <div class="wrap" style="gap:16px">
+    <div class="topbar">
+      <button class="back" id="backBtn" type="button">← Back</button>
+      <div class="prog" id="prog" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="progBar"></i></div>
+    </div>
+    <div class="card qcard" id="qcard" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- result -->
+<section id="result" hidden>
+  <div class="wrap">
+    <span class="eyebrow">Your results</span>
+    <div class="card who" id="indexCard"></div>
+    <div class="card more">
+      <details><summary>A closer look at your Whisperling</summary>
+        <div id="typeCard"></div>
+        <h3 style="margin:22px 0 6px">Five detailed measures</h3>
+        <p class="hint" style="margin-bottom:16px">What fuel your Whisperling uses, and how well you notice it. The names in parentheses are Carl Jung's concepts.</p>
+        <div class="res-list" id="resList"></div>
+      </details>
+      <details><summary>Not letting your Whisperling push you around</summary><div class="rx" id="rxCard"></div></details>
+      <details><summary>Keep this in mind when reading your results</summary><p class="hint">
+These results come from a test that is <b>not a clinical diagnosis and has not yet been validated</b>. They're for reference only. The score ranges and interpretations are based on theory, and there are no norms (average data) to compare against. Your results may change with your mood or recent events. The test was inspired by the ideas of Phil Stutz and Barry Michels but is an unofficial test with no connection to the authors.</p></details>
+    </div>
+    <div class="actions">
+      <a class="btn ghost" href="results.html" style="text-align:center;text-decoration:none">How to read your results</a>
+      <button class="btn" id="retryBtn" type="button">Start over</button>
+    </div>
+  </div>
+</section>
+
+<footer style="display:flex;flex-direction:column;gap:8px"><nav aria-label="Site menu" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-weight:600"><a href="guide.html" style="color:var(--accent)">Guides</a><a href="results.html" style="color:var(--accent)">Reading results</a><a href="about.html" style="color:var(--accent)">About</a><a href="contact.html" style="color:var(--accent)">Contact</a><a href="privacy.html" style="color:var(--accent)">Privacy</a><a href="/" hreflang="ko" lang="ko" style="color:var(--accent)">한국어</a></nav><span>Whisperling Test · homemade self-reflection scale (not validated) · unofficial, not affiliated with Phil Stutz or Barry Michels · your answers are calculated only in this browser and are never stored or sent</span></footer>
+</div>
+
+<script>
+const LIKERT = ["Strongly disagree","Disagree","Somewhat disagree","Not sure","Somewhat agree","Agree","Strongly agree"];
+
+const FACTORS = {
+  SP:{name:"Thorn fuel", jung:"shadow projection", high:"bad", desc:"Higher means other people's flaws shake you more",
+    bands:[
+      "Seeing other people's flaws doesn't shake you much. You rarely cover others with the uncomfortable parts of yourself, so you see them fairly clearly.",
+      "Sometimes you react unusually strongly to certain types of people or behavior. That \"especially irritating spot\" may touch a part of yourself you haven't accepted. Simply noticing those moments widens your view.",
+      "Other people's flaws look big to you, and strong dislike comes up often. From Jung's point of view, you may be seeing in others something hard to admit in yourself (your shadow). Next time someone really bothers you, ask: \"What about this person touches what part of me?\""]},
+  AP:{name:"Halo fuel", jung:"anima/animus projection", high:"bad", desc:"Higher means you tend to idealize, then feel let down",
+    bands:[
+      "You see the people close to you fairly realistically. Rather than fitting them into an ideal, you try to get to know them as people.",
+      "Now and then you place expectations on someone you're drawn to, or feel let down when they don't match them. It helps to check whether \"the version I want to see\" is mixed into that early excitement.",
+      "You may have a pattern of seeing people you're drawn to as more special than they are, then being deeply disappointed. Jung explained this as shining the less-developed opposite side within you (anima/animus) onto the other person. Think about whether you could grow that longed-for quality in yourself."]},
+  SA:{name:"Self-awareness", jung:"shadow awareness", high:"good", desc:"Higher means you notice the whisper and look inward",
+    bands:[
+      "You tend to look outside yourself for the cause of conflicts and uncomfortable feelings. Accepting that you, too, have sides you'd rather not see can actually make you blame others less and feel lighter.",
+      "You look back on yourself at times, but it gets hard when feelings run strong. Reflecting after you've caught your breath, rather than in the heat of the moment, helps.",
+      "When uncomfortable feelings come up, you know how to look inward. You're already doing some of what Jung called \"facing the shadow.\" Just keep a balance so you don't turn every conflict into your own fault."]},
+  ID:{name:"Hidden-meaning habit", jung:"interpretive distortion", high:"bad", desc:"Higher means you add hidden meanings to what people say",
+    bands:[
+      "You take what people say at face value and check when things are unclear. There's little room for misunderstanding.",
+      "Depending on the situation, you sometimes add hidden meanings to what people say. Especially when you're tired or anxious, your readings can tilt negative.",
+      "You strongly tend to link short replies, ambiguous remarks or nearby laughter to yourself and read them negatively. Treat your reading as a \"guess,\" not a fact, and ask directly when you can."]},
+  SC:{name:"Reading the situation", jung:"word-reading accuracy", high:"good", desc:"Higher means you follow what was actually said over the whisper",
+    bands:[
+      "When you heard ambiguous words, you often jumped to one conclusion. Your inner story may lead your interpretation more than the information in the words themselves.",
+      "Sometimes you read by the evidence, sometimes by your feelings. To see in which scenes your reading wavered, check \"Your Whisperling's three tricks\" above.",
+      "You mostly interpreted based on what was actually said, and held off judging when things were unclear. You read other people's words fairly accurately."]}
+};
+
+// Likert items (r:true = reverse-scored), factors interleaved
+const L = [
+ ["SP","Certain behaviors from some people bother me in a way I can't quite explain."],
+ ["AP","When I'm drawn to someone, they feel special and I barely notice their flaws."],
+ ["SA","When I really dislike someone, I also look at my own side to see where that feeling comes from."],
+ ["ID","Just from the tone of a message or how fast someone replies, I can sense their mood."],
+ ["SP","When I meet people, I notice their shortcomings fairly quickly."],
+ ["AP","More than once, someone who seemed to sparkle at first started to look ordinary over time, and I felt let down."],
+ ["SA","I'm fairly sure my judgment and ways of doing things are usually right.",true],
+ ["ID","When I hear something ambiguous, I tend to just ask rather than guess on my own.",true],
+ ["SP","When someone acts differently from me, I usually think \"that's just how they are\" and let it go.",true],
+ ["AP","When someone close to me acts differently from the person I knew, it shakes me quite a bit."],
+ ["SA","When I think back on times I was really upset, I often realize my own state that day played a part."],
+ ["ID","When people nearby laugh or whisper, I wonder whether it has something to do with me."],
+ ["SP","I find it hard to let it go when I see someone act irresponsibly."],
+ ["AP","Even with someone I like, I can weigh their strengths and weaknesses fairly calmly.",true],
+ ["SA","Looking back on conflicts, the other person's part was usually the bigger problem.",true],
+ ["ID","I think what people say often carries a hidden meaning different from their actual words."],
+ ["SP","I can clearly tell which people just don't suit me."],
+ ["AP","I'm strongly drawn to, or strongly put off by, people whose personalities are the opposite of mine."],
+ ["SA","Often, something I didn't want to hear turned out, on reflection, to have a point."],
+ ["ID","When I'm complimented, I sometimes wonder \"Why are they saying this?\" instead of feeling grateful."],
+ ["SP","I rarely come to dislike someone from a first impression alone.",true],
+ ["AP","Trust built slowly by getting to know someone matters more to me than the early excitement.",true],
+ ["SA","I know there are sides of my personality I'd rather not show others."],
+ ["ID","I usually take what people say at face value.",true]
+];
+
+// Scenario items: s = score (2 evidence-based, 1 partial, 0 projection), t = direction (H hostile, S self-critical, I idealizing)
+const S = [
+ {situ:"After a meeting, your manager says to you:", q:"\"Let's talk about this report tomorrow.\"", o:[
+  ["Looks like something about it bothered them.",0,"H"],
+  ["They must be short on time today. Tomorrow's fine.",2],
+  ["Did I miss something? I should go over it again.",0,"S"],
+  ["Since we're talking tomorrow, I'll skim it for anything to improve.",1]]},
+ {situ:"You sent a friend a long message about something on your mind. They replied:", q:"\"k\"", o:[
+  ["That's kind of low-effort. Was my message boring?",0,"H"],
+  ["Did I write too much…",0,"S"],
+  ["They must be busy.",2],
+  ["They're probably fine? I'll ask them later.",1]]},
+ {situ:"A coworker looks at your work and says:", q:"\"You're really thorough.\"", o:[
+  ["This person really gets me.",0,"I"],
+  ["That was nice of them.",2],
+  ["Wait, do they mean I'm too slow?",0,"H"],
+  ["It's a compliment, but it makes me feel I should do even better next time.",1]]},
+ {situ:"On a first date, the other person says while talking about themselves:", q:"\"I really need time to myself.\"", o:[
+  ["They seem so deep. I want to know more.",0,"I"],
+  ["Are they drawing a line with me already?",0,"S"],
+  ["Sounds fine, but I'm a little worried we won't talk much.",1],
+  ["So that's how they are. Good to know.",2]]},
+ {situ:"A family member you haven't seen in a while looks at you and says:", q:"\"You look a bit tired lately.\"", o:[
+  ["They're worried about me.",2],
+  ["Thanks, but hearing that somehow makes me feel more tired.",1],
+  ["Here comes the lecture about my habits.",0,"H"],
+  ["It shows, huh. Sorry to make them worry.",0,"S"]]},
+ {situ:"In a meeting, a coworker responds to your idea:", q:"\"Hmm, should we think about other options too?\"", o:[
+  ["Did they have to say that right now? That's deflating.",0,"H"],
+  ["I guess my idea wasn't very good.",0,"S"],
+  ["They want to gather more options.",2],
+  ["I wonder what part gave them pause.",1]]},
+ {situ:"You ask a senior colleague you admire how to handle a task. They say:", q:"\"That's up to you.\"", o:[
+  ["They trust me. They really are different from everyone else.",0,"I"],
+  ["Nice to be trusted, but now I feel pressure to get it right.",1],
+  ["That's a bit dismissive. I expected more.",0,"H"],
+  ["They're busy, or they figure I can handle it.",2]]},
+ {situ:"You shared an idea in a group chat, and an hour later nobody has responded.", q:"(silence)", o:[
+  ["Everyone must be busy.",2],
+  ["People always seem to skim past what I post.",0,"H"],
+  ["Feels a little awkward. I'll wait a bit longer.",1],
+  ["Maybe I shouldn't have said anything.",0,"S"]]}
+];
+
+const ITEMS = [...L.map(([f,text,r])=>({kind:"L",f,text,r:!!r})), ...S.map(s=>({kind:"S",...s}))];
+const answers = new Array(ITEMS.length).fill(null);
+let idx = 0;
+const $ = id=>document.getElementById(id);
+
+function show(id){ ["intro","quiz","result"].forEach(s=>$(s).hidden = s!==id); window.scrollTo(0,0); }
+
+function render(){
+  const it = ITEMS[idx], n = ITEMS.length;
+  const pct = Math.round(idx/n*100);
+  $("progBar").style.width = Math.max(pct,3)+"%";
+  $("prog").setAttribute("aria-valuenow", pct);
+  $("backBtn").disabled = idx===0;
+  if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  const c = $("qcard"); c.innerHTML = "";
+  if(it.kind==="L"){
+    c.innerHTML = `<span class="eyebrow">How much is this like you?</span><p class="qtext"></p><div class="likert"><div class="scale" role="radiogroup" aria-label="Answer"></div><div class="ends"><span class="no">Disagree</span><span class="yes">Agree</span></div></div>`;
+    c.querySelector(".qtext").textContent = it.text;
+    const box = c.querySelector(".scale");
+    const SIZES=[46,38,31,24,31,38,46];
+    LIKERT.forEach((lab,i)=>{
+      const b = document.createElement("button");
+      b.type="button"; b.className="lk"+(answers[idx]===i+1?" on":""); b.id="lk"+i;
+      b.style.width=b.style.height=SIZES[i]+"px";
+      b.style.setProperty("--c", i<3?"var(--disagree)":i>3?"var(--accent)":"var(--muted)");
+      b.setAttribute("aria-label",lab); b.setAttribute("role","radio"); b.setAttribute("aria-checked",answers[idx]===i+1);
+      b.onclick = ()=>pick(i+1); box.appendChild(b);
+    });
+  } else {
+    if(idx===L.length && answers[idx]===null) c.insertAdjacentHTML("beforeend",`<p class="hint" style="margin-bottom:-8px">From here on, you'll see short scenarios. These are all common thoughts, so there's no right answer. Pick <b>the thought that crosses your mind first</b> when you hear those words.</p>`);
+    c.insertAdjacentHTML("beforeend",`<span class="eyebrow">Scenario</span><p class="situ"></p><p class="quote"></p><span class="hint">Honestly, what's your first thought?</span><div class="opts"></div>`);
+    c.querySelector(".situ").textContent = it.situ;
+    c.querySelector(".quote").textContent = it.q;
+    const box = c.querySelector(".opts");
+    it.o.forEach((o,i)=>{
+      const b = document.createElement("button");
+      b.type="button"; b.className="opt"+(answers[idx]===i?" on":""); b.id="opt"+i;
+      b.textContent = o[0]; b.onclick = ()=>pick(i); box.appendChild(b);
+    });
+  }
+}
+
+let busy=false;
+function pick(v){
+  if(busy) return;
+  answers[idx]=v; render(); busy=true;
+  setTimeout(()=>{ busy=false; if(idx<ITEMS.length-1){idx++;render();} else finish(); },220);
+}
+
+function band(p){ return p<34?0:p<67?1:2; }
+const BAND_LABEL=["Low","Medium","High"];
+
+function finish(){
+  $("progBar").style.width="100%";
+  const sums={SP:[],AP:[],SA:[],ID:[]};
+  ITEMS.forEach((it,i)=>{ if(it.kind==="L"){ const v=answers[i]; sums[it.f].push(it.r?8-v:v);} });
+  const score={};
+  for(const f in sums){ const m=sums[f].reduce((a,b)=>a+b,0)/sums[f].length; score[f]=Math.round((m-1)/6*100); }
+  let sc=0; const proj={H:0,S:0,I:0}, avail={H:0,S:0,I:0};
+  S.forEach((s,k)=>{ s.o.forEach(o=>{ if(o[2]) avail[o[2]]++; });
+    const o=s.o[answers[L.length+k]]; sc+=o[1]; if(o[2]) proj[o[2]]++; });
+  score.SC=Math.round(sc/(S.length*2)*100);
+
+  const clear=[100-score.SP,100-score.AP,score.SA,100-score.ID,score.SC];
+  const lensIdx=Math.round(clear.reduce((a,b)=>a+b,0)/clear.length);
+  const lensBand = lensIdx>=70?2:lensIdx>=40?1:0;
+  const tint=100-lensIdx; // Whisperling Volume: higher = louder
+
+  const total=proj.H+proj.S+proj.I;
+  let top=null, best=0;
+  for(const k in proj){ const r=proj[k]/avail[k]; if(proj[k]>0 && r>best){best=r;top=k;} }
+  const who = top ? TYPES[top] : TYPES.Q;
+  if(window.gtag) gtag('event','test_complete',{whisper_type: top||'Q'});
+
+  const METER=[
+    ["Loud","Your Whisperling's voice is on the loud side. What it tells you can sound louder than what people actually said. When you're worn out or have been hurt lately, it may get louder still."],
+    ["Medium","Mostly you hear people as they are, but with certain people or situations your Whisperling's voice gets louder. See below for the fuel it uses."],
+    ["Soft","Your Whisperling's voice is on the soft side. You tend to tell apart what people actually said from the whisper."]];
+  const mColor="var(--accent)";
+  // Show one scenario answer the user actually picked (their type's trick, or an evidence-based answer)
+  const k0 = S.findIndex((s,k)=>{ const o=s.o[answers[L.length+k]]; return top ? o[2]===top : o[1]===2; });
+  let mine="", mineFull="";
+  if(k0>=0){
+    const s=S[k0], o=s.o[answers[L.length+k0]];
+    const said = s.q.startsWith("(") ? "Nobody actually said anything, " : `They only said ${s.q.replace(/[.?!]"$/, m=>m[0]==="."?'"':m)}, `;
+    const why = top ? `${said}but your Whisperling passed it on as ${who.gloss}.` : "You heard what they said, without the whisper.";
+    const heard = s.q.startsWith("(") ? "(nothing said)" : s.q;
+    mine=`<div class="mine"><span class="eyebrow">Your answer</span><p><b>${heard}</b> → "${o[0]}"</p></div>`;
+    mineFull=`<div class="mine"><span class="eyebrow">▸ The answer you picked</span><p class="situ">${s.situ} <b>${s.q}</b></p><p>→ "${o[0]}"</p><p class="hint">${why}</p></div>`;
+  }
+  const tk=top||"Q";
+  $("indexCard").innerHTML=`<img src="/sokdagi.png" width="768" height="512" alt="">
+   <div class="who-head"><span class="eyebrow">Your Whisperling is a</span><h2>${who.name}</h2><p class="one">${who.one}</p>
+    <div class="vol"><span>Volume</span><div class="bar"><i style="width:${Math.max(tint,2)}%"></i></div><b>${METER[lensBand][0]}</b><small>${tint}</small></div></div>
+   <div class="strong"><span>✦ Your strength</span><p>${who.strong}</p></div>
+   <p class="watch"><b>Watch for</b> ${who.watch}</p>
+   ${mine}
+   <div class="tip"><span class="eyebrow">Try this · ${RX_TOOL[tk][0]}</span><p>${RX_TOOL[tk][2]}</p></div>
+   <p class="own">Volume isn't your score. Whether to believe it is up to you.</p>`;
+
+  let html=`<p style="margin-bottom:12px">${who.plain}</p>${mineFull}<p class="hint" style="margin:12px 0 20px">${METER[lensBand][1]} Loud isn't bad and soft isn't good.</p><h3 style="margin-bottom:6px">Your Whisperling's three tricks</h3><p class="hint" style="margin-bottom:14px">Out of the 8 scenarios, we counted which trick each whisper-following answer used.</p><div class="types">`;
+  ["H","S","I"].forEach(k=>{ html+=`<div class="type${k===top?" top":""}"><b>${proj[k]}<span style="font-size:.8rem"> / ${avail[k]}</span></b><span>${TYPES[k].short}</span></div>`; });
+  html+=`</div><p style="margin-top:14px">${who.desc}</p>`;
+  if(top) html+=`<p class="hint" style="margin-top:8px">When you hear something similar, try asking once: "Did they actually say this, or did my Whisperling add it?"</p>`;
+  $("typeCard").innerHTML=html;
+
+  const list=$("resList"); list.innerHTML="";
+  ["SP","AP","ID","SC","SA"].forEach(f=>{
+    const F=FACTORS[f], p=score[f], b=band(p);
+    const healthy = F.high==="good" ? b : 2-b;
+    const col=["var(--warn)","var(--mid)","var(--good)"][healthy];
+    const el=document.createElement("div"); el.className="res";
+    el.innerHTML=`<div class="res-head"><h3>${F.name} <span class="dir">(${F.jung})</span></h3><span class="pill" style="color:${col}">${BAND_LABEL[b]}</span></div>
+      <div class="bar"><i style="width:${Math.max(p,2)}%;background:${col}"></i></div>
+      <span class="dir">${F.desc}</span><p>${F.bands[b]}</p>`;
+    list.appendChild(el);
+  });
+  renderRx(lensBand, score, top);
+  show("result");
+}
+
+// Whisperling types (direction of scenario projection answers)
+const TYPES={
+  H:{name:"Thorn Whisperling", short:"Thorn", plain:"A Thorn Whisperling turns other people's words into <b>something that attacks or ignores you</b>.", gloss:"<b>something hostile or dismissive</b>",
+     one:"Turns people's words into attacks on you.", strong:"You may have a sharp eye for signs of rudeness or danger.", watch:"Harmless remarks can sound like attacks.",
+     desc:"A <b>Thorn</b> Whisperling makes it sound like others are attacking or ignoring you. Its fuel is the frustration and aggression you'd rather not admit, what Carl Jung called the <b>shadow</b>. It shines what's inside you onto other people's words."},
+  S:{name:"Grader Whisperling", short:"Grader", plain:"A Grader Whisperling turns other people's words into <b>a judgment of you</b>.", gloss:"<b>a judgment of you</b>",
+     one:"Turns people's words into judgments of you.", strong:"You may hold high standards and reflect on yourself well.", watch:"When everything sounds like a judgment, it wears you out.",
+     desc:"A <b>Grader</b> Whisperling makes it sound like others are rating you low. Its fuel is your harsh inner critic. It borrows other people's voices to read out the scores you've been giving yourself."},
+  I:{name:"Halo Whisperling", short:"Halo", plain:"A Halo Whisperling adds <b>a special meaning</b> to other people's words, so they seem more special and perfect than they really are.", gloss:"<b>something with a special meaning</b>",
+     one:"Adds a special meaning to people's words.", strong:"You may see the good in people first, with real warmth.", watch:"You may see someone as more than they are, then feel let down.",
+     desc:"A <b>Halo</b> Whisperling makes others sound more special and perfect than they are. Its fuel is what Carl Jung called the <b>anima/animus</b>, the ideal you long for. It feels sweet, but it often comes back as disappointment later."},
+  Q:{name:"Dozing Whisperling", short:"Dozing", plain:"This time, your Whisperling barely changed what people said. Most of your answers heard the other person as they were.", gloss:"",
+     one:"Barely changed what people said this time.", strong:"You tend to hear words as they are, so misunderstandings may be rarer.", watch:"If someone hints at a feeling, it's okay to ask once more.",
+     desc:"In the scenarios, you chose answers that followed what was actually said over the whisper. But the Whisperling never goes away. On days when you're worn out or hurt, everyone's Whisperling wakes up again."}};
+
+// Practice: not being pushed around by your Whisperling
+const RX_INTRO=[
+  "A noisy Whisperling also means your inner story is big and vivid. You don't need to get rid of it. <b>Just learn to tell the whisper apart from what was actually said.</b> Practice the three steps below every day for two weeks.",
+  "Things are mostly fine, but there are moments when the Whisperling cuts in hard. In those moments, reach for the three steps below before you react.",
+  "You're handling your Whisperling well. Keep the three steps below as a checklist for days when you're especially tired or sensitive and it wakes up."];
+const RX_ROUTINE=[
+  "<b>Every evening for two weeks, 5 minutes.</b> Recall the moment your Whisperling whispered loudest today and write ① what it said ② what actually happened ③ one thing to try differently tomorrow. Finish by writing one meaningful moment from today.",
+  "<b>Three times a week, 5 minutes before bed.</b> Pick one moment the Whisperling cut in and write what it said and what actually happened, side by side. Add one meaningful moment too.",
+  "<b>Only on shaky days, 5 minutes.</b> Writing what the Whisperling said and what actually happened, side by side, is enough."];
+const RX_FOCUS={
+  SP:["The mirror question","Write down three traits of someone who really gets on your nerves, then for each ask, \"When has this shown up in my own life?\" Find even one and the Whisperling's thorns get noticeably duller."],
+  AP:["Separate facts from wishes","About someone you're drawn to or disappointed in, write two lines: \"what I actually saw\" and \"what I wished they were.\" Pick one wish and turn it into a small action you can grow in yourself."],
+  SA:["Reflect without a verdict","When you do your daily review, don't rule on whether it was their fault or yours. Just write, \"How did I feel then?\" Holding off the verdict makes reflection less painful, so you can keep it up."],
+  ID:["Three interpretations","When you hear something ambiguous, come up with three readings: a negative one, a neutral one and a positive one. The Whisperling's version is just one of three. If it matters, check briefly: \"Did you mean this earlier?\""],
+  SC:["Write it down word for word","Write the remark that bothered you exactly as it was said, then cross out any word that wasn't in it (like \"ignore,\" \"disappointed,\" \"annoying\"). The words you crossed out came from the Whisperling. What's left is what the other person actually gave you."]};
+// Tools by type: inspired by Phil Stutz & Barry Michels's The Tools, retold in plain words (not quoted)
+const RX_TOOL={
+  H:["Active Love","A Thorn Whisperling feeds on resentment. When someone keeps replaying in your head, close your eyes, picture them, and imagine sending warmth to them first, from your side. Instead of waiting for an apology while stuck in resentment, you're practicing walking out of it first. It's not about letting them off the hook. It's about setting yourself free.","When someone keeps replaying in your head, picture sending them warmth first."],
+  S:["Inner Authority","A Grader Whisperling works by scaring you that the parts you hide will be found out. Before going somewhere that makes you shrink, picture the side of yourself you're ashamed of (your shadow) as a person and have them stand beside you. Imagine facing the other people together, side by side. The less you have to hide, the less power the scoring whisper has.","When you start to shrink, imagine standing beside the part of you you would rather hide."],
+  I:["Reversal of Desire","A Halo Whisperling uses your fear of being disappointed. When someone looks special, picture their ordinary side and the disappointment you might feel someday, then imagine stepping toward it, saying \"Bring it on.\" Once you feel you can handle disappointment, you have room to see the person as they really are.","When someone looks special, tell yourself disappointment is okay and step toward it."],
+  Q:["Grateful Flow","A way to keep your Whisperling dozing. When your mood sinks or you're on edge, slowly recall small things you were grateful for today, one after another: a good night's sleep, a warm coffee, someone who asked how you were. Keep the chain going and the whole flow of your thoughts begins to shift.","When you are on edge, recall small things you were grateful for today, one by one."]};
+
+function renderRx(b, score, top){
+  const gap={SP:score.SP, AP:score.AP, SA:100-score.SA, ID:score.ID, SC:100-score.SC};
+  const weak=Object.keys(gap).sort((x,y)=>gap[y]-gap[x])[0];
+  const tk=top||"Q";
+  let h=`
+  <p>${RX_INTRO[b]}</p>
+  <p class="hint" style="margin-top:-6px">It comes down to one thing: <b>the whisper you hear first is a guess, not a fact.</b> Tell them apart once before you believe it. The three steps below come from Viktor Frankl's <b>logotherapy</b>.</p>
+  <ol class="steps">
+   <li><div><h3>Pause: name the whisper</h3><p>When you feel shaken, say to yourself before reacting: "Ah, my Whisperling is back." Treat the thought like a guest who dropped by your ear, not as your own judgment. You decide whether to open the door.</p></div></li>
+   <li><div><h3>Separate: what was said vs. what was whispered</h3><p>Split what the other person actually said and what the Whisperling added into two columns. Just seeing that the columns differ weakens the whisper.</p>
+     <div class="ex"><b>What was said</b><span>"k"</span><b>What was whispered</b><span>"Your message annoyed them."</span></div></div></li>
+   <li><div><h3>Choose: ask what you want to protect</h3><p>Ask, "Is this whisper information about them, or about my own mind?" The moments your Whisperling is loudest often reveal what you fear or long for these days. Then ask, "What do I want to protect in this relationship?" and choose the response that fits. If you're still curious, just ask them.</p><small>You can't choose whether your Whisperling chimes in, but you can choose whether to believe it.</small></div></li>
+  </ol>
+  <div class="focus"><span class="eyebrow">${top?"Tool for your type · "+TYPES[top].short:"A tool to keep it dozing"}</span><h3>${RX_TOOL[tk][0]}</h3><p>${RX_TOOL[tk][1]}</p><span class="hint">Inspired by Phil Stutz and Barry Michels's <i>The Tools</i> and retold in plain words.</span></div>
+  <div class="focus"><span class="eyebrow">Practice for you · ${FACTORS[weak].name}</span><h3>${RX_FOCUS[weak][0]}</h3><p>${RX_FOCUS[weak][1]}</p></div>
+  <div class="focus"><span class="eyebrow">Daily review</span><p>${RX_ROUTINE[b]}</p></div>
+  <details><summary>Where do the Whisperling and these practices come from?</summary><ul>
+   <li><b>Carl Jung · the shadow and projection</b>: the Swiss psychiatrist Carl Jung called it "projection" when we see in others the parts of ourselves we haven't accepted (the shadow) and the ideals we long for (anima/animus). This is the Whisperling's fuel.</li>
+   <li><b>Phil Stutz and Barry Michels · Part X</b>: in their book <i>Coming Alive</i>, the two therapists named the inner enemy that blocks our growth "Part X." The Whisperling is a new character that reimagines this idea for hearing words in relationships.</li>
+   <li><b>Tools from <i>The Tools</i></b>: the tools for each type (Active Love, Inner Authority, Reversal of Desire, Grateful Flow) are inspired by tools in their book <i>The Tools</i> and retold in plain words.</li>
+   <li><b>Viktor Frankl · logotherapy</b>: a form of therapy built on the idea that people are strongest when they find meaning. The pause (self-distancing), separate (freedom to choose your attitude), choose (asking about meaning) steps and the "meaningful moment" in the daily review come from here.</li>
+  </ul></details>
+  <p class="hint">This test and these practices are an unofficial, homemade project with no connection to the authors, and they don't replace counseling or therapy. If you've been struggling for a long time, please talk with a professional.</p>`;
+  $("rxCard").innerHTML=h;
+}
+
+$("startBtn").onclick=()=>{ idx=0; answers.fill(null); show("quiz"); render(); };
+$("backBtn").onclick=()=>{ if(idx>0 && !busy){ idx--; render(); } };
+$("retryBtn").onclick=()=>{ show("intro"); };
+</script>
+</body>
+</html>
