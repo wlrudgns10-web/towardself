@@ -10,7 +10,7 @@
 <meta property="og:description" content="사내 여성은 가만히, 외부 여성은 점프! 너는 몇 명 피할 수 있어?">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://towardself.co.kr/">
-<meta property="og:site_name" content="towardself">
+<meta property="og:site_name" content="가죽재킷 아저씨의 모험">
 <meta property="og:image" content="https://towardself.co.kr/img/og-game.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-tap-highlight-color:transparent}
 a{color:inherit}
-.head{max-width:1080px;margin:0 auto;padding:14px 16px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.head{max-width:1080px;margin:0 auto;padding:14px 16px 0;display:flex;align-items:center;justify-content:flex-end;gap:12px}
 .logo{font-weight:900;font-size:1.05rem;text-decoration:none;letter-spacing:-.01em}
 .head nav{display:flex;gap:14px;font-size:.9rem;font-weight:700}
 .head nav a{text-decoration:none;color:var(--muted)}
@@ -56,9 +56,9 @@ h1{font-size:1.35rem;margin:6px 0 2px}
 .foot{max-width:1080px;margin:0 auto;padding:10px 16px 36px;font-size:.8rem;color:var(--muted);text-align:center;display:flex;flex-direction:column;gap:6px}
 .foot nav{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .sub{color:var(--muted);margin:0 0 12px;font-size:.92rem}
-.stage{position:relative;width:100%;aspect-ratio:8/3.6;background:#FFFDF7;border-radius:18px;overflow:hidden;border:3px solid #26222F;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.stage{position:relative;width:100%;aspect-ratio:8/4.6;background:#FFFDF7;border-radius:18px;overflow:hidden;border:3px solid #26222F;touch-action:manipulation;user-select:none;-webkit-user-select:none}
 canvas#cv{display:block;width:100%;height:100%}
-@media (max-width:600px){.stage{aspect-ratio:4/3.8}}
+@media (max-width:600px){.stage{aspect-ratio:4/4.9}}
 .ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:18px;padding:14px;background:rgba(255,253,247,.94);color:#26222F;text-align:center}
 .ov.hide{display:none}
 .ov .pic{height:min(78%,230px);width:auto;flex:none}
@@ -76,7 +76,6 @@ canvas#cv{display:block;width:100%;height:100%}
 </head>
 <body>
 <header class="head">
-  <a class="logo" href="./">towardself</a>
   <nav aria-label="주 메뉴"><a href="./">게임</a><a href="test.html">속닥이 테스트</a><a href="about.html">소개</a></nav>
 </header>
 <div class="layout">
@@ -129,7 +128,6 @@ canvas#cv{display:block;width:100%;height:100%}
 </div>
 <footer class="foot">
   <nav aria-label="사이트 정보"><a href="about.html">소개</a><a href="contact.html">문의</a><a href="privacy.html">개인정보처리방침</a><a href="/en/" hreflang="en" lang="en">English</a></nav>
-  <span>© towardself</span>
 </footer>
 <script>
 const cv=document.getElementById('cv'), g=cv.getContext('2d');
