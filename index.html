@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>가죽재킷 아저씨 철벽 달리기 · 1분 점프 게임</title>
+<title>가죽재킷 아저씨의 모험 · 1분 점프 게임</title>
 <meta name="description" content="사원증 단 사내 여성은 가만히, 외부 여성은 점프로 피하는 1분 풍자 점프 게임. 칩을 먹으면 목숨 +1. 친구와 몇 명 피했는지 겨뤄 보세요.">
 <link rel="canonical" href="https://towardself.co.kr/">
-<meta property="og:title" content="가죽재킷 아저씨 철벽 달리기">
+<meta property="og:title" content="가죽재킷 아저씨의 모험">
 <meta property="og:description" content="사내 여성은 가만히, 외부 여성은 점프! 너는 몇 명 피할 수 있어?">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://towardself.co.kr/">
 <meta property="og:site_name" content="towardself">
-<meta property="og:image" content="https://towardself.co.kr/img/og-game.png?v=1">
+<meta property="og:image" content="https://towardself.co.kr/img/og-game.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ko_KR">
@@ -34,18 +34,22 @@ a{color:inherit}
 .logo{font-weight:900;font-size:1.05rem;text-decoration:none;letter-spacing:-.01em}
 .head nav{display:flex;gap:14px;font-size:.9rem;font-weight:700}
 .head nav a{text-decoration:none;color:var(--muted)}
-.layout{max-width:1080px;margin:0 auto;padding:8px 16px 16px;display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:20px;align-items:start}
+.layout{max-width:1080px;margin:0 auto;padding:8px 16px 16px;display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:20px;align-items:start}
 @media (max-width:900px){.layout{grid-template-columns:1fr}}
 main{min-width:0}
 h1{font-size:1.35rem;margin:6px 0 2px}
 .side{display:flex;flex-direction:column;gap:12px;position:sticky;top:16px;grid-column:2;grid-row:1 / span 2}
 .below{grid-column:1;min-width:0}
-.mini{display:flex;flex-direction:column;gap:6px;text-decoration:none;background:#fff;border:2px solid #26222F;border-radius:14px;padding:12px;color:#26222F}
-.mini img{width:100%;height:auto;border-radius:8px;background:#EEEDF3}
-.mini b{font-size:.95rem}
-.mini span{font-size:.8rem;color:#6B6578;line-height:1.45}
-.mini em{font-style:normal;font-size:.82rem;font-weight:800;color:#3F5E8C}
-@media (max-width:900px){.side{position:static;grid-column:auto;grid-row:auto}.below{grid-column:auto}.mini{flex-direction:row;align-items:center;gap:12px}.mini img{width:64px;flex:none}}
+.mini{display:block;text-decoration:none;color:var(--muted);font-size:.82rem;line-height:1.5;padding-top:10px}
+.mini img,.mini span,.mini br{display:none}
+.mini b{font-weight:700}
+.mini em{font-style:normal;font-weight:700;color:var(--muted);margin-left:2px}
+.mini:hover b,.mini:hover em{color:var(--ink);text-decoration:underline}
+@media (max-width:900px){.side{position:static;grid-column:auto;grid-row:auto}.below{grid-column:auto}
+ .mini{display:flex;flex-direction:row;align-items:center;gap:12px;background:#fff;border:2px solid #26222F;border-radius:14px;padding:12px;color:#26222F}
+ .mini img{display:block;width:64px;height:auto;flex:none;border-radius:8px;background:#EEEDF3}
+ .mini span{display:inline;font-size:.8rem;color:#6B6578;line-height:1.45}.mini br{display:inline}
+ .mini b{font-size:.95rem}.mini em{color:#3F5E8C;font-weight:800;font-size:.82rem;margin:0}}
 .info{margin-top:22px;line-height:1.7;font-size:.95rem}
 .info h2{font-size:1.1rem;margin:20px 0 6px}
 .info ul{margin:0;padding-left:20px}
@@ -77,7 +81,7 @@ canvas#cv{display:block;width:100%;height:100%}
 </header>
 <div class="layout">
 <main>
-  <h1>가죽재킷 아저씨 철벽 달리기</h1>
+  <h1>가죽재킷 아저씨의 모험</h1>
   <p class="sub">사원증 단 <b>사내 여성</b>은 덮쳐 오니 <b>가만히</b>, <b>외부 여성</b>은 <b>점프</b>로 피하세요. 칩을 먹으면 목숨 +1.</p>
   <div class="stage" id="stage">
     <canvas id="cv" width="800" height="360"></canvas>
@@ -349,7 +353,7 @@ $('share').onclick=async e=>{
   e.stopPropagation();
   if(window.gtag)gtag('event','game_share',{score:dodged});
   const text=`가죽재킷 아저씨로 여자 ${dodged}명 피함 🧥💨 너는 몇 명 피할 수 있어?`;
-  try{ if(navigator.share){await navigator.share({title:'가죽재킷 아저씨 철벽 달리기',text,url:location.href});return} }catch(err){ if(err.name==='AbortError') return }
+  try{ if(navigator.share){await navigator.share({title:'가죽재킷 아저씨의 모험',text,url:location.href});return} }catch(err){ if(err.name==='AbortError') return }
   try{await navigator.clipboard.writeText(text+' '+location.href);$('share').textContent='복사했어요!'}catch(err){prompt('복사해서 공유하세요',text+' '+location.href)}
 };
 addEventListener('keydown',e=>{
