@@ -43,7 +43,9 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 #save:disabled{opacity:.5}
 details{margin-top:28px;font-size:.85rem;color:var(--muted)}
 details p{line-height:1.6}
-.msg{font-size:.88rem;margin:10px 0;min-height:1.3em}
+.msg{font-size:.88rem;margin:10px 0;line-height:1.5}
+.msg:empty{display:none}
+.bottom .msg{max-width:720px;margin:0 auto 8px;text-align:center;font-weight:700}
 .ok{color:var(--econ)}.err{color:var(--accent)}
 </style>
 </head>
@@ -62,8 +64,9 @@ details p{line-height:1.6}
 <label class="f" for="summary">한두 줄 요약 (직접 쓰기)</label>
 <textarea id="summary" maxlength="160" placeholder="기사 문장을 옮기지 말고 내 말로 써 주세요"></textarea>
 <div class="cnt" id="sumCnt">0/160</div>
-<label class="f" for="link">원문 기사 링크 (선택)</label>
-<input type="url" id="link" placeholder="https://">
+<label class="f">원문 기사 링크 (선택, 여러 개 가능)</label>
+<div id="linkList"></div>
+<button class="add" id="addLink" style="padding:9px;font-size:.85rem">+ 링크 추가</button>
 
 <label class="f">1면에 실은 신문</label>
 <div class="grp d">종합일간지</div>
@@ -77,10 +80,10 @@ details p{line-height:1.6}
 <div id="qaList"></div>
 <button class="add" id="addQa">+ 풀이 추가</button>
 
-<div class="msg" id="msg"></div>
+
 
 <details id="setup">
-  <summary>저장 설정 (처음 한 번만)</summary>
+  <summary id="setupSum">저장 설정 (처음 한 번만)</summary>
   <p>저장 버튼을 누르면 이 기기에서 바로 사이트에 올라가요. 그러려면 GitHub에서 만든 "열쇠(토큰)"가 한 번 필요해요. 열쇠는 이 기기 브라우저에만 저장되고, 다른 곳으로 보내지 않아요.</p>
   <label class="f" for="token">GitHub 토큰</label>
   <input type="password" id="token" autocomplete="off" placeholder="github_pat_로 시작">
@@ -88,7 +91,7 @@ details p{line-height:1.6}
 </details>
 </div>
 
-<div class="bottom"><div class="in">
+<div class="bottom"><div class="msg" id="msg"></div><div class="in">
   <a id="view" href="/" target="_blank">미리보기</a>
   <button id="save">저장하고 올리기</button>
 </div></div>
@@ -105,10 +108,14 @@ function store(k,v){try{ v===undefined?localStorage.removeItem(k):localStorage.s
 function read(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function todayKST(){return new Date(Date.now()+9*3600e3).toISOString().slice(0,10)}
 function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function blank(){return {title:'',summary:'',link:'',papers:[],explain:[{q:'',a:''},{q:'',a:''}]}}
+function blank(){return {title:'',summary:'',links:['','',''],papers:[],explain:[{q:'',a:''},{q:'',a:''},{q:'',a:''}]}}
+function norm(s){ const o={...blank(),...s}; o.links=(s.links||(s.link?[s.link]:[])).filter(Boolean); while(o.links.length<3) o.links.push(''); delete o.link; if(!o.explain||!o.explain.length) o.explain=[{q:'',a:''}]; return o }
+function drawLinks(){
+  $('#linkList').innerHTML=S.links.map((u,i)=>`<div style="display:flex;gap:6px;margin-bottom:6px"><input type="url" data-li="${i}" value="${esc(u)}" placeholder="https:// (링크 ${i+1})">${S.links.length>1?`<button class="del" data-ldel="${i}" aria-label="링크 ${i+1} 삭제">✕</button>`:''}</div>`).join('');
+}
 
 function draw(){
-  $('#title').value=S.title; $('#summary').value=S.summary; $('#link').value=S.link;
+  $('#title').value=S.title; $('#summary').value=S.summary; drawLinks();
   $('#sumCnt').textContent=`${S.summary.length}/160`;
   $('#chipsD').innerHTML=PAPERS.daily.map(p=>`<button type="button" data-p="${p}" aria-pressed="${S.papers.includes(p)}">${SHORT[p]}</button>`).join('');
   $('#chipsE').innerHTML=PAPERS.econ.map(p=>`<button type="button" data-p="${p}" aria-pressed="${S.papers.includes(p)}">${SHORT[p]}</button>`).join('');
@@ -127,7 +134,10 @@ function drawQa(){
 }
 function saveDraft(){store('draft1:'+$('#date').value, JSON.stringify(S))}
 
-['title','summary','link'].forEach(k=>$('#'+k).addEventListener('input',e=>{S[k]=e.target.value; if(k==='summary') $('#sumCnt').textContent=`${S.summary.length}/160`; saveDraft()}));
+$('#linkList').addEventListener('input',e=>{ if(e.target.dataset.li===undefined) return; S.links[+e.target.dataset.li]=e.target.value; saveDraft() });
+$('#linkList').addEventListener('click',e=>{ const b=e.target.closest('[data-ldel]'); if(!b) return; S.links.splice(+b.dataset.ldel,1); drawLinks(); saveDraft() });
+$('#addLink').onclick=()=>{ S.links.push(''); drawLinks(); saveDraft(); const l=document.querySelectorAll('#linkList input'); l[l.length-1].focus() };
+['title','summary'].forEach(k=>$('#'+k).addEventListener('input',e=>{S[k]=e.target.value; if(k==='summary') $('#sumCnt').textContent=`${S.summary.length}/160`; saveDraft()}));
 document.addEventListener('click',e=>{
   const b=e.target.closest('.chips button'); if(!b) return; const p=b.dataset.p;
   S.papers = S.papers.includes(p) ? S.papers.filter(x=>x!==p) : [...S.papers,p];
@@ -138,10 +148,10 @@ $('#qaList').addEventListener('click',e=>{const b=e.target.closest('[data-del]')
 $('#addQa').onclick=()=>{S.explain.push({q:'',a:''}); drawQa(); saveDraft(); const q=document.querySelectorAll('.qa'); q[q.length-1].querySelector('input').focus()};
 
 async function loadDate(){
-  const d=$('#date').value; $("#view").href=`/?d=${d}`; $('#loadMsg').textContent=''; S=null;
+  const d=$('#date').value; $("#view").href=`/?preview=1&d=${d}`; $('#loadMsg').textContent=''; S=null;
   const dr=read('draft1:'+d);
-  if(dr){ try{ S=JSON.parse(dr); $('#loadMsg').textContent='쓰던 내용을 불러왔어요.' }catch(e){} }
-  if(!S){ try{ const r=await fetch(`data/${d}.json?nc=${Date.now()}`); if(r.ok){ const j=await r.json(); const s=j.story||(j.stories&&j.stories[0]); if(s){ S={...blank(),...s}; if(!S.explain.length) S.explain=[{q:'',a:''}]; $('#loadMsg').textContent='이미 올린 내용을 불러왔어요. 고쳐서 다시 저장할 수 있어요.' } } }catch(e){} }
+  if(dr){ try{ S=norm(JSON.parse(dr)); $('#loadMsg').textContent='쓰던 내용을 불러왔어요.' }catch(e){} }
+  if(!S){ try{ const r=await fetch(`data/${d}.json?nc=${Date.now()}`); if(r.ok){ const j=await r.json(); const s=j.story||(j.stories&&j.stories[0]); if(s){ S=norm(s); $('#loadMsg').textContent='이미 올린 내용을 불러왔어요. 고쳐서 다시 저장할 수 있어요.' } } }catch(e){} }
   if(!S) S=blank();
   draw();
 }
@@ -169,13 +179,14 @@ async function getIndex(){
 
 $('#save').onclick=async()=>{
   const d=$('#date').value, m=$('#msg');
-  const story={title:S.title.trim(),summary:S.summary.trim(),link:S.link.trim(),papers:ALL.filter(p=>S.papers.includes(p)),
+  const story={title:S.title.trim(),summary:S.summary.trim(),links:S.links.map(u=>u.trim()).filter(Boolean),papers:ALL.filter(p=>S.papers.includes(p)),
     explain:S.explain.map(x=>({q:x.q.trim(),a:x.a.trim()})).filter(x=>x.a)};
-  const err=t=>{m.className='msg err';m.textContent=t};
-  if(!story.title) return err('제목을 써 주세요.');
-  if(!story.papers.length) return err('1면에 실은 신문을 하나 이상 골라 주세요.');
-  if(story.link&&!/^https?:\/\//.test(story.link)) return err('링크는 https:// 로 시작해야 해요.');
-  if(!LOCAL&&!read('ghToken')){ $('#setup').open=true; return err('처음 한 번은 아래 "저장 설정"에서 토큰을 넣어 주세요.') }
+  const err=(t,el)=>{m.className='msg err';m.textContent=t; if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); if(el.focus) el.focus({preventScroll:true}) } };
+  if(!story.title) return err('제목을 써 주세요.',$('#title'));
+  if(!story.papers.length) return err('1면에 실은 신문을 하나 이상 골라 주세요.',$('#chipsD'));
+  const bi=S.links.findIndex(u=>u.trim()&&!/^https?:\/\/\S+$/.test(u.trim()));
+  if(bi>=0) return err(`링크 ${bi+1}이 이상해요. https:// 로 시작하는 주소를 붙여넣어 주세요.`,document.querySelector(`[data-li="${bi}"]`));
+  if(!LOCAL&&!read('ghToken')){ $('#setup').open=true; return err('처음 한 번은 아래 "저장 설정"에서 토큰을 넣어 주세요.',$('#token')) }
   $('#save').disabled=true; m.className='msg'; m.textContent='올리는 중...';
   try{
     await putFile(`news/data/${d}.json`, JSON.stringify({date:d,story},null,1), `1면 ${d}`);
@@ -185,12 +196,15 @@ $('#save').onclick=async()=>{
     await putFile('news/data/index.json', JSON.stringify(idx), `1면 목록 ${d}`);
     store('draft1:'+d);
     m.className='msg ok'; m.textContent = LOCAL ? '저장했어요. 미리보기를 눌러 보세요.' : '올렸어요! 1~2분 뒤 사이트에 보여요.';
-  }catch(e){ err('저장 실패 ('+e.message+'). 토큰이 맞는지 확인해 주세요.') }
+  }catch(e){ const c=e.message; err(/401/.test(c)?'저장 실패: 토큰이 틀렸거나 만료됐어요. 토큰을 다시 넣어 주세요.':/40[34]/.test(c)?'저장 실패: 토큰 권한이 부족해요. towardself 선택과 Contents: Read and write를 확인해 주세요.':'저장 실패 ('+c+'). 인터넷 연결을 확인하고 다시 눌러 주세요.') }
   $('#save').disabled=false;
 };
-$('#saveToken').onclick=()=>{const v=$('#token').value.trim(); if(!v) return; store('ghToken',v); $('#token').value=''; $('#msg').className='msg ok'; $('#msg').textContent='토큰을 이 기기에 저장했어요.'};
-$('#clearToken').onclick=()=>{store('ghToken'); $('#msg').className='msg'; $('#msg').textContent='토큰을 지웠어요.'};
+$('#saveToken').onclick=()=>{const v=$('#token').value.trim(); if(!v) return; store('ghToken',v); $('#token').value=''; tokenState(); $('#msg').className='msg ok'; $('#msg').textContent='토큰을 이 기기에 저장했어요.'};
+$('#clearToken').onclick=()=>{store('ghToken'); tokenState(); $('#msg').className='msg'; $('#msg').textContent='토큰을 지웠어요.'};
 
+function tokenState(){ $('#setupSum').textContent = LOCAL ? '저장 설정 (내 컴퓨터 테스트 중)' : read('ghToken') ? '저장 설정 (토큰 저장됨 ✅)' : '저장 설정 ⚠️ 토큰이 아직 없어요'; }
+$('#view').addEventListener('click',()=>saveDraft());
+tokenState();
 $('#date').value=todayKST(); loadDate();
 </script>
 </body>

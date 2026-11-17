@@ -59,7 +59,9 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--line)}
 .qa h3{font-size:1.02rem;margin:0 0 6px;line-height:1.45;word-break:keep-all}
 .qa h3::before{content:"Q. ";color:var(--accent)}
 .qa p{margin:0;line-height:1.8;font-size:.97rem;word-break:keep-all;white-space:pre-line}
-.src{display:inline-block;margin-top:16px;font-size:.85rem;color:var(--muted)}
+.srcs{margin-top:18px;display:flex;flex-direction:column;gap:6px;font-size:.85rem}
+.srcs b{font-family:var(--gothic);font-size:.85rem}
+.src{display:inline-block;color:var(--muted)}
 .share{display:flex;gap:8px;margin:24px 0 6px}
 .share[hidden]{display:none}
 .share button{flex:1;padding:13px;border-radius:12px;border:0;font-family:var(--gothic);font-weight:700;font-size:.95rem;cursor:pointer;background:#FEE500;color:#191600}
@@ -91,6 +93,7 @@ footer nav{display:flex;gap:12px;justify-content:center;margin-top:6px}
   <button id="next" aria-label="다음 날">▶</button>
 </div>
 
+<div id="pvBar" hidden style="margin-top:12px;padding:10px 12px;border-radius:10px;background:#FFF4D6;color:#5A4300;font-size:.85rem;text-align:center">👀 미리보기예요. 아직 사이트에 올라가지 않았어요.</div>
 <main id="main"></main>
 
 <div class="share" id="shareRow" hidden>
@@ -116,8 +119,12 @@ const $=s=>document.querySelector(s);
 const DAILY=new Set(PAPERS.daily), ECON=new Set(PAPERS.econ);
 const WD=['일','월','화','수','목','금','토'];
 let dates=[], titles={}, cur=null, story=null;
+const _sp=new URLSearchParams(location.search), PREVIEW=_sp.get('preview')?_sp.get('d'):null;
 
 function fmt(d){const [y,m,dd]=d.split('-').map(Number);const w=WD[new Date(y,m-1,dd).getDay()];return {long:`${m}월 ${dd}일 ${w}요일`,year:`${y}년`,short:`${m}월 ${dd}일`,dot:`${m}.${dd}`,wd:w}}
+function links(s){ return (s.links||(s.link?[s.link]:[])).map(u=>String(u||'').trim()).filter(u=>/^https?:\/\//.test(u)) }
+const HOSTS={'chosun.com':'조선일보','joongang.co.kr':'중앙일보','donga.com':'동아일보','hani.co.kr':'한겨레','khan.co.kr':'경향신문','kmib.co.kr':'국민일보','seoul.co.kr':'서울신문','segye.com':'세계일보','hankookilbo.com':'한국일보','dt.co.kr':'디지털타임스','mt.co.kr':'머니투데이','sedaily.com':'서울경제','ajunews.com':'아주경제','edaily.co.kr':'이데일리','etoday.co.kr':'이투데이','etnews.com':'전자신문','fnnews.com':'파이낸셜뉴스','hankyung.com':'한국경제','naver.com':'네이버 뉴스','daum.net':'다음 뉴스'};
+function host(u){ try{ const h=new URL(u).hostname.replace(/^(www|m|n|news|biz|v)\./,''); const k=Object.keys(HOSTS).find(k=>h===k||h.endsWith('.'+k)); return k?HOSTS[k]:h }catch(e){ return '원문' } }
 function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),1800)}
 function pick(j){ return j.story || (j.stories&&j.stories[0]) || null }
@@ -140,7 +147,7 @@ function render(){
         <div class="chips">${ps.map(p=>`<span class="chip ${DAILY.has(p)?'d':'e'}">${esc(SHORT[p]||p)}</span>`).join('')}</div>
       </div>
       ${qa.length?`<h2 class="sec">💡 쉽게 풀어보기</h2>${qa.map(x=>`<div class="qa">${x.q?`<h3>${esc(x.q)}</h3>`:''}<p>${esc(x.a)}</p></div>`).join('')}`:''}
-      ${story.link?`<a class="src" href="${esc(story.link)}" target="_blank" rel="noopener nofollow">원문 기사 보기 →</a>`:''}`;
+      ${links(story).length?`<div class="srcs"><b>원문 기사</b>${links(story).map(u=>`<a class="src" href="${esc(u)}" target="_blank" rel="noopener nofollow">${esc(host(u))} →</a>`).join('')}</div>`:''}`;
     $('#shareRow').hidden=false;
     document.title=`${f.short} 신문 1면: ${story.title} · 오늘의 1면`;
   }
@@ -149,7 +156,9 @@ function render(){
 
 async function load(d,push){
   cur=d;
-  try{ const r=await fetch(`/news/data/${d}.json?nc=${Date.now()}`); story=r.ok?pick(await r.json()):null }catch(e){ story=null }
+  story=null;
+  if(PREVIEW===d){ try{ const dr=localStorage.getItem('draft1:'+d); if(dr){ const s=JSON.parse(dr); s.papers=[...PAPERS.daily,...PAPERS.econ].filter(p=>(s.papers||[]).includes(p)); s.explain=(s.explain||[]).filter(x=>(x.a||'').trim()); story=s; $('#pvBar').hidden=false } }catch(e){} }
+  if(!story){ try{ const r=await fetch(`/news/data/${d}.json?nc=${Date.now()}`); story=r.ok?pick(await r.json()):null }catch(e){ story=null } }
   if(push) history.pushState({d},'',`?d=${d}`);
   render();
 }
@@ -158,6 +167,7 @@ async function init(){
   try{ const j=await (await fetch(`/news/data/index.json?nc=${Date.now()}`)).json(); dates=j.dates||[]; titles=j.titles||{} }catch(e){ dates=[] }
   dates.sort().reverse();
   const q=new URLSearchParams(location.search).get('d');
+  if(PREVIEW && !dates.includes(PREVIEW)){ dates.push(PREVIEW); dates.sort().reverse() }
   const d = (q && dates.includes(q)) ? q : dates[0];
   if(!d){ $('#date').textContent='아직 기록이 없어요'; $('#main').innerHTML='<div class="empty">곧 첫 1면이 올라와요.</div>'; return }
   load(d,false);
