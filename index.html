@@ -188,7 +188,7 @@ function render(){
         <div class="chips">${ps.map(p=>`<span class="chip ${DAILY.has(p)?'d':'e'}">${esc(SHORT[p]||p)}</span>`).join('')}</div>
       </div>
       </div>
-      ${qa.length?`<div class="side"><h2 class="sec">💡 쉽게 뜯어보기</h2>${qa.map(x=>`<div class="qa">${x.q?`<h3>${esc(x.q)}</h3>`:''}<p>${esc(x.a)}</p></div>`).join('')}</div>`:''}
+      ${qa.length?`<div class="side"><h2 class="sec">💡 뜯어보기</h2>${qa.map(x=>`<div class="qa">${x.q?`<h3>${esc(x.q)}</h3>`:''}<p>${esc(x.a)}</p></div>`).join('')}</div>`:''}
       </div>
       ${links(story).length?`<section class="rel"><h2 class="sec">📰 관련 기사</h2><div class="cards">${links(story).map(u=>{const c=(story.cards||[]).find(c=>c.url===u)||{}; const src=host(u);
           return `<a class="card" href="${esc(u)}" target="_blank" rel="noopener nofollow">${c.image&&/^https:\/\//.test(c.image)?`<img src="${esc(c.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:'<span class="noimg">📰</span>'}<span class="ct">${esc(c.title||src+' 기사 보기')}</span><span class="cs">${esc(src)} →</span></a>`}).join('')}</div></section>`:''}`;
