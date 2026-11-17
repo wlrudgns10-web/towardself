@@ -43,10 +43,14 @@ header.top{border-bottom:3px double var(--ink);padding:18px 0 10px;text-align:ce
 @media (min-width:900px){.mast img.logo{height:76px}}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .mast img.logo{filter:invert(1) hue-rotate(180deg)}}
 .tag{font-size:.82rem;color:var(--muted);margin-top:2px}
-.datebar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 0;border-bottom:1px solid var(--line)}
-.datebar button{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;width:36px;height:36px;font-size:1rem;cursor:pointer}
+.datebar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid var(--ink)}
+.datebar button{background:none;border:0;color:var(--ink);width:32px;height:30px;font-size:.8rem;cursor:pointer}
 .datebar button:disabled{opacity:.3;cursor:default}
-.date{font-weight:700;font-size:1.05rem;text-align:center}
+.date{font-weight:700;font-size:.86rem;text-align:center;letter-spacing:.01em}
+.date .no{color:var(--accent)}
+.date .sep{color:var(--muted);font-weight:400;margin:0 8px}
+.date .pc{display:none}
+@media (min-width:900px){.date{font-size:.92rem}.date .pc{display:inline}}
 .date small{display:block;font-family:var(--myeongjo);font-weight:400;font-size:.78rem;color:var(--muted)}
 .kicker{display:inline-block;margin:22px 0 8px;font-size:.8rem;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:99px;padding:3px 10px}
 h1.hl{font-size:2.05rem;line-height:1.3;margin:0;padding:24px 0 20px;font-weight:900;letter-spacing:-.025em;word-break:keep-all;text-align:center;border-bottom:1px solid var(--line)}
@@ -59,6 +63,9 @@ h1.hl{font-size:2.05rem;line-height:1.3;margin:0;padding:24px 0 20px;font-weight
  #main.has .cols{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:0 44px;align-items:start}
  #main.has .side{border-left:1px solid var(--line);padding-left:44px;padding-top:24px}
  #main.has .side h2.sec{margin-top:0}
+ #main.has .side .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 20px}
+ .qas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px}
+ .qas .qa{margin:0}
  #main.has .lead{padding-top:24px}
  h1.hl{font-size:2.6rem;line-height:1.25;padding:34px 40px 28px}
  .sum{font-size:1rem;margin-bottom:22px}
@@ -81,6 +88,7 @@ h2.sec{font-size:1.15rem;margin:30px 0 12px;font-weight:900;display:flex;align-i
 .qa h3::before{content:"Q. ";color:var(--accent)}
 .qa p{margin:0;line-height:1.8;font-size:.97rem;word-break:keep-all;white-space:pre-line}
 .rel{margin-top:10px}
+.qas{border-top:1px solid var(--line);margin-top:28px;padding-top:22px}
 .cards{display:grid;grid-auto-flow:column;grid-auto-columns:70%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
 .card{display:block;text-decoration:none;scroll-snap-align:start;min-width:0}
 .card img,.card .noimg{display:block;width:100%;aspect-ratio:1200/630;object-fit:cover;border-radius:6px;background:var(--soft);margin-bottom:8px}
@@ -89,7 +97,7 @@ h2.sec{font-size:1.15rem;margin:30px 0 12px;font-weight:900;display:flex;align-i
 .card .cs{display:block;font-size:.76rem;color:var(--muted);margin-top:4px}
 .card:hover .ct{text-decoration:underline}
 @media (min-width:900px){
- .cards{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;overflow:visible;padding-bottom:0}
+ .cards{grid-auto-flow:row;grid-auto-columns:auto;overflow:visible;padding-bottom:0}
  .card .ct{font-size:.9rem}
  #main.has .cols{align-items:stretch}
  #main.has .lead{display:flex;flex-direction:column}
@@ -124,7 +132,7 @@ footer nav{display:flex;gap:12px;justify-content:center;margin-top:6px}
 
 <div class="datebar">
   <button id="prev" aria-label="이전 날">◀</button>
-  <div class="date" id="date">불러오는 중</div>
+  <div class="date" id="date">&nbsp;</div>
   <button id="next" aria-label="다음 날">▶</button>
 </div>
 
@@ -172,8 +180,8 @@ function pick(j){ return j.story || (j.stories&&j.stories[0]) || null }
 
 function render(){
   const f=fmt(cur);
-  $('#date').innerHTML=`${f.long}<small>${f.year} 아침 신문</small>`;
   const i=dates.indexOf(cur);
+  $('#date').innerHTML=`${f.year} ${f.long}<span class="sep">·</span><span class="no">제 ${dates.length-i}호</span><span class="pc"><span class="sep">·</span>신문 18곳 1면 분석</span>`;
   $('#prev').disabled = i>=dates.length-1; $('#next').disabled = i<=0;
   if(!story){ $('#main').className=''; $('#main').innerHTML='<div class="empty">이 날은 기록이 없어요.</div>'; $('#shareRow').hidden=true; }
   else{
@@ -188,10 +196,10 @@ function render(){
         <div class="chips">${ps.map(p=>`<span class="chip ${DAILY.has(p)?'d':'e'}">${esc(SHORT[p]||p)}</span>`).join('')}</div>
       </div>
       </div>
-      ${qa.length?`<div class="side" aria-label="뜯어보기">${qa.map(x=>`<div class="qa">${x.q?`<h3>${esc(x.q)}</h3>`:''}<p>${esc(x.a)}</p></div>`).join('')}</div>`:''}
+      ${links(story).length?`<section class="side rel"><h2 class="sec">📰 관련 기사</h2><div class="cards">${links(story).slice(0,4).map(u=>{const c=(story.cards||[]).find(c=>c.url===u)||{}; const src=host(u);
+          return `<a class="card" href="${esc(u)}" target="_blank" rel="noopener nofollow">${c.image&&/^https:\/\//.test(c.image)?`<img src="${esc(c.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:'<span class="noimg">📰</span>'}<span class="ct">${esc(c.title||src+' 기사 보기')}</span><span class="cs">${esc(src)} →</span></a>`}).join('')}</div></section>`:''}
       </div>
-      ${links(story).length?`<section class="rel"><h2 class="sec">📰 관련 기사</h2><div class="cards">${links(story).map(u=>{const c=(story.cards||[]).find(c=>c.url===u)||{}; const src=host(u);
-          return `<a class="card" href="${esc(u)}" target="_blank" rel="noopener nofollow">${c.image&&/^https:\/\//.test(c.image)?`<img src="${esc(c.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:'<span class="noimg">📰</span>'}<span class="ct">${esc(c.title||src+' 기사 보기')}</span><span class="cs">${esc(src)} →</span></a>`}).join('')}</div></section>`:''}`;
+      ${qa.length?`<section class="qas" aria-label="뜯어보기">${qa.map(x=>`<div class="qa">${x.q?`<h3>${esc(x.q)}</h3>`:''}<p>${esc(x.a)}</p></div>`).join('')}</section>`:''}`;
     $('#shareRow').hidden=false;
     document.title=`${f.short} 신문 1면: ${story.title} · 오늘의 1면`;
   }
