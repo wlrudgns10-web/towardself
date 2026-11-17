@@ -79,6 +79,19 @@ h1.hl{font-size:2.05rem;line-height:1.3;margin:0;padding:24px 0 20px;font-weight
 .bar .d{background:var(--daily)}.bar .e{background:var(--econ)}
 .split{display:flex;gap:14px;font-size:.78rem;color:var(--muted);margin:8px 0 8px}
 .split span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px;background:var(--c)}
+.cntbox{padding:16px 16px 18px}
+.cnt .big{font-family:var(--gothic);font-weight:700;color:var(--ink);font-size:1rem;white-space:nowrap}
+.cnt .big b{font-size:2.4rem;line-height:1;letter-spacing:-.03em;margin-right:2px}
+.cnt .cl{font-size:.78rem;line-height:1.35;white-space:nowrap}
+.grp{margin-top:16px}
+.gh{font-family:var(--gothic);font-size:.85rem;font-weight:700;color:var(--muted);margin-bottom:7px}
+.gh b{color:var(--c);font-size:1rem}
+.grp.d{--c:var(--daily)}.grp.e{--c:var(--econ)}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.tile{font-family:var(--gothic);font-size:.82rem;text-align:center;padding:9px 4px;border-radius:8px;background:var(--soft);color:var(--muted);border:1px dashed var(--line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile.on{background:var(--c);color:#fff;border:1px solid var(--c);font-weight:700}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tile.on{color:#111}}
+@media (min-width:900px){.cntbox{padding:20px 22px 22px}.tiles{gap:8px}.tile{font-size:.88rem;padding:11px 4px}}
 .chips{display:flex;flex-wrap:wrap;gap:4px}
 .chip{font-size:.74rem;padding:3px 8px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
 .chip.d{color:var(--daily)}.chip.e{color:var(--econ)}
@@ -191,9 +204,8 @@ function render(){
     $('#main').innerHTML=`<h1 class="hl">${esc(story.title)}</h1><div class="cols"><div class="lead">
       ${story.summary?`<p class="sum">${esc(story.summary)}</p>`:''}
       <div class="cntbox">
-        <div class="cnt"><span><b>${ps.length}곳</b> / 18곳 1면</span><div class="bar"><i class="d" style="width:${d.length/18*100}%"></i><i class="e" style="width:${e.length/18*100}%"></i></div></div>
-        <div class="split"><span style="--c:var(--daily)">종합일간지 ${d.length}/9</span><span style="--c:var(--econ)">경제지 ${e.length}/9</span></div>
-        <div class="chips">${ps.map(p=>`<span class="chip ${DAILY.has(p)?'d':'e'}">${esc(SHORT[p]||p)}</span>`).join('')}</div>
+        <div class="cnt"><span class="big"><b>${ps.length}</b>/18곳</span><span class="cl">신문 1면에<br>실렸어요</span><div class="bar"><i class="d" style="width:${d.length/18*100}%"></i><i class="e" style="width:${e.length/18*100}%"></i></div></div>
+        ${[['d','종합일간지',PAPERS.daily,d.length],['e','경제지',PAPERS.econ,e.length]].map(([k,n,list,c])=>`<div class="grp ${k}"><div class="gh">${n} <b>${c}</b>/9</div><div class="tiles">${list.map(p=>`<span class="tile${ps.includes(p)?' on':''}">${ps.includes(p)?'✓ ':''}${esc(p)}</span>`).join('')}</div></div>`).join('')}
       </div>
       </div>
       ${links(story).length?`<section class="side rel"><h2 class="sec">📰 관련 기사</h2><div class="cards">${links(story).slice(0,4).map(u=>{const c=(story.cards||[]).find(c=>c.url===u)||{}; const src=host(u);
