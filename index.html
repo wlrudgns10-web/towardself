@@ -40,16 +40,18 @@ header.top{border-bottom:3px double var(--ink);padding:18px 0 10px;text-align:ce
 .date{font-weight:700;font-size:1.05rem;text-align:center}
 .date small{display:block;font-family:var(--myeongjo);font-weight:400;font-size:.78rem;color:var(--muted)}
 .kicker{display:inline-block;margin:22px 0 8px;font-size:.8rem;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:99px;padding:3px 10px}
-h1.hl{font-size:2.05rem;line-height:1.3;margin:22px 0 12px;font-weight:900;letter-spacing:-.025em;word-break:keep-all}
+h1.hl{font-size:2.05rem;line-height:1.3;margin:0;padding:24px 0 20px;font-weight:900;letter-spacing:-.025em;word-break:keep-all;text-align:center;border-bottom:1px solid var(--line)}
+.lead{padding-top:18px}
 .sum{font-size:.93rem;line-height:1.7;margin:0 0 18px;word-break:keep-all;color:var(--sumc)}
 :root{--sumc:#5A5A5A}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--sumc:#B3B3B3}}
 @media (min-width:900px){
  .wrap{max-width:1180px;padding:0 32px}
- #main.has{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:0 44px;align-items:start}
- #main.has .side{border-left:1px solid var(--line);padding-left:44px;margin-top:22px}
+ #main.has .cols{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:0 44px;align-items:start}
+ #main.has .side{border-left:1px solid var(--line);padding-left:44px;padding-top:24px}
  #main.has .side h2.sec{margin-top:0}
- h1.hl{font-size:2.5rem;line-height:1.25;margin-top:26px}
+ #main.has .lead{padding-top:24px}
+ h1.hl{font-size:2.6rem;line-height:1.25;padding:34px 40px 28px}
  .sum{font-size:1rem;margin-bottom:22px}
  .share{max-width:560px}
  .arch{columns:2;column-gap:44px}
@@ -157,8 +159,7 @@ function render(){
     const ps=story.papers||[], d=ps.filter(p=>DAILY.has(p)), e=ps.filter(p=>ECON.has(p));
     const qa=(story.explain||[]).filter(x=>x.q||x.a);
     $('#main').className='has';
-    $('#main').innerHTML=`<div class="lead">
-      <h1 class="hl">${esc(story.title)}</h1>
+    $('#main').innerHTML=`<h1 class="hl">${esc(story.title)}</h1><div class="cols"><div class="lead">
       ${story.summary?`<p class="sum">${esc(story.summary)}</p>`:''}
       <div class="cntbox">
         <div class="cnt"><span><b>${ps.length}곳</b> / 18곳 1면</span><div class="bar"><i class="d" style="width:${d.length/18*100}%"></i><i class="e" style="width:${e.length/18*100}%"></i></div></div>
@@ -170,7 +171,7 @@ function render(){
         ${qa.length?`<h2 class="sec">💡 쉽게 풀어보기</h2>${qa.map(x=>`<div class="qa">${x.q?`<h3>${esc(x.q)}</h3>`:''}<p>${esc(x.a)}</p></div>`).join('')}`:''}
         ${links(story).length?`<h2 class="sec">📰 관련 기사</h2><div class="cards${links(story).length>1?' multi':''}">${links(story).map(u=>{const c=(story.cards||[]).find(c=>c.url===u)||{}; const src=host(u);
           return `<a class="card" href="${esc(u)}" target="_blank" rel="noopener nofollow">${c.image&&/^https:\/\//.test(c.image)?`<img src="${esc(c.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:''}<span class="ct">${esc(c.title||src+' 기사 보기')}</span><span class="cs">${esc(src)} →</span></a>`}).join('')}</div>`:''}
-      </div>`:''}`;
+      </div>`:''}</div>`;
     $('#shareRow').hidden=false;
     document.title=`${f.short} 신문 1면: ${story.title} · 오늘의 1면`;
   }
