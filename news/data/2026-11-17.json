@@ -5,7 +5,10 @@
   "summary": "세무사 시험 수석 합격자의 AI 부정행위 자백으로 19일 수능을 앞두고 우려가 커지고 있지만, 교육부는 전파 차단 대신 공공 와이파이 차단 여부만 검토 중이다. 현행 탐지 장비로는 AI 안경을 가려내기 어려워 사실상 감독관 육안 점검에 의존해야 하는 상황이다.",
   "links": [
    "https://www.chosun.com/national/education/2026/11/17/C6GKPOVP5JGZLLNFP6VVYQYRNE/",
-   "https://www.hankyung.com/article/2026111706077"
+   "https://www.hankyung.com/article/2026111706077",
+   "https://www.mk.co.kr/news/economy/12210643",
+   "https://www.donga.com/news/NewsStand/article/all/20261117/135037502/1",
+   "https://www.segye.com/newsView/20261117504120"
   ],
   "papers": [
    "경향신문",
@@ -47,6 +50,21 @@
     "url": "https://www.hankyung.com/article/2026111706077",
     "title": "출근길 안경까지 벗긴다…산업기밀·국가안보도 '빨간불'",
     "image": "https://img.hankyung.com/photo/202611/02.46441265.1.jpg"
+   },
+   {
+    "url": "https://www.mk.co.kr/news/economy/12210643",
+    "title": "죽어라 공부해서 얻은 ‘사짜 직업’…“AI로 땄나?” 취급에 일자리도 전멸 - 매일경제",
+    "image": "https://pimg.mk.co.kr/news/cms/202611/17/news-p.v1.20261116.ecbb2bf0114e4d60ac20c52391cbade2_R.jpg"
+   },
+   {
+    "url": "https://www.donga.com/news/NewsStand/article/all/20261117/135037502/1",
+    "title": "[속보]韓총리 “수험생 가방 복도에 보관하고 기기 작동여부 점검”",
+    "image": "https://dimg.donga.com/wps/NEWS/IMAGE/2026/11/17/135037648.1.jpg"
+   },
+   {
+    "url": "https://www.segye.com/newsView/20261117504120",
+    "title": "‘AI 부정행위’ 세무사 수석 경찰 출석…“잘못에 책임질 것”",
+    "image": "https://www.segye.com/content/image/2026/11/17/20261117504249.jpg"
    }
   ]
  }
