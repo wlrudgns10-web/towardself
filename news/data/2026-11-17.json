@@ -36,6 +36,18 @@
     "q": "정부는 대안으로 뭘 제시했어?",
     "a": "한성숙 국무총리는 시험장의 공공 와이파이 차단을 주문했지만, AI기기 블루투스 연결 차단은 어려워."
    }
+  ],
+  "cards": [
+   {
+    "url": "https://www.chosun.com/national/education/2026/11/17/C6GKPOVP5JGZLLNFP6VVYQYRNE/",
+    "title": "수능 이틀앞, AI 커닝 답 없는 정부",
+    "image": "https://www.chosun.com/resizer/v2/67X4Z7VL5VMNJOGU6WQTGWZ4OY.JPG?auth=f0beeb74fbda8efa43c56c0fed691bf53a1afbf5948a3cce17a4bf12f081279f&width=1200&height=630&focal=2649,1431"
+   },
+   {
+    "url": "https://www.hankyung.com/article/2026111706077",
+    "title": "출근길 안경까지 벗긴다…산업기밀·국가안보도 '빨간불'",
+    "image": "https://img.hankyung.com/photo/202611/02.46441265.1.jpg"
+   }
   ]
  }
 }

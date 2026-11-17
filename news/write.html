@@ -157,6 +157,21 @@ async function loadDate(){
 }
 $('#date').onchange=loadDate;
 
+// ---- 기사 미리보기(제목·사진) 가져오기: 기사 페이지의 공유용 정보(og 태그)를 읽어요 ----
+async function fetchCard(url){
+  const card={url,title:'',image:''};
+  try{
+    const ac=new AbortController(); const t=setTimeout(()=>ac.abort(),20000);
+    const r=await fetch('https://r.jina.ai/'+url,{headers:{'X-Return-Format':'html','X-Target-Selector':'head'},signal:ac.signal});
+    clearTimeout(t); if(!r.ok) return card;
+    const doc=new DOMParser().parseFromString(await r.text(),'text/html');
+    const og=k=>(doc.querySelector(`meta[property="og:${k}"],meta[name="og:${k}"],meta[name="twitter:${k}"]`)||{}).content||'';
+    card.title=(og('title')||doc.title||'').trim().slice(0,120);
+    const img=og('image').trim(); if(/^https:\/\//.test(img)) card.image=img;
+  }catch(e){}
+  return card;
+}
+
 // ---- 저장 ----
 function b64(str){const by=new TextEncoder().encode(str);let s='';for(let i=0;i<by.length;i+=8192)s+=String.fromCharCode.apply(null,by.subarray(i,i+8192));return btoa(s)}
 function unb64(b){const s=atob(b.replace(/\n/g,''));return new TextDecoder().decode(Uint8Array.from(s,c=>c.charCodeAt(0)))}
@@ -187,7 +202,11 @@ $('#save').onclick=async()=>{
   const bi=S.links.findIndex(u=>u.trim()&&!/^https?:\/\/\S+$/.test(u.trim()));
   if(bi>=0) return err(`링크 ${bi+1}이 이상해요. https:// 로 시작하는 주소를 붙여넣어 주세요.`,document.querySelector(`[data-li="${bi}"]`));
   if(!LOCAL&&!read('ghToken')){ $('#setup').open=true; return err('처음 한 번은 아래 "저장 설정"에서 토큰을 넣어 주세요.',$('#token')) }
-  $('#save').disabled=true; m.className='msg'; m.textContent='올리는 중...';
+  $('#save').disabled=true; m.className='msg';
+  if(story.links.length){ m.textContent='기사 사진 가져오는 중... (최대 20초)';
+    story.cards=await Promise.all(story.links.map(u=>{ const old=(S.cards||[]).find(c=>c.url===u&&c.image); return old?Promise.resolve(old):fetchCard(u) }));
+    S.cards=story.cards; }
+  m.textContent='올리는 중...';
   try{
     await putFile(`news/data/${d}.json`, JSON.stringify({date:d,story},null,1), `1면 ${d}`);
     const idx=await getIndex();
