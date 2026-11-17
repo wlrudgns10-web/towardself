@@ -40,8 +40,21 @@ header.top{border-bottom:3px double var(--ink);padding:18px 0 10px;text-align:ce
 .date{font-weight:700;font-size:1.05rem;text-align:center}
 .date small{display:block;font-family:var(--myeongjo);font-weight:400;font-size:.78rem;color:var(--muted)}
 .kicker{display:inline-block;margin:22px 0 8px;font-size:.8rem;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:99px;padding:3px 10px}
-h1.hl{font-size:1.65rem;line-height:1.35;margin:22px 0 10px;font-weight:900;letter-spacing:-.02em;word-break:keep-all}
-.sum{font-size:1rem;line-height:1.75;margin:0 0 16px;word-break:keep-all;color:var(--ink)}
+h1.hl{font-size:2.05rem;line-height:1.3;margin:22px 0 12px;font-weight:900;letter-spacing:-.025em;word-break:keep-all}
+.sum{font-size:.93rem;line-height:1.7;margin:0 0 18px;word-break:keep-all;color:var(--sumc)}
+:root{--sumc:#5A5A5A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--sumc:#B3B3B3}}
+@media (min-width:900px){
+ .wrap{max-width:1180px;padding:0 32px}
+ #main.has{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:0 44px;align-items:start}
+ #main.has .side{border-left:1px solid var(--line);padding-left:44px;margin-top:22px}
+ #main.has .side h2.sec{margin-top:0}
+ h1.hl{font-size:3rem;line-height:1.22;margin-top:26px}
+ .sum{font-size:1rem;margin-bottom:22px}
+ .share{max-width:560px}
+ .arch{columns:2;column-gap:44px}
+ .arch li{break-inside:avoid}
+}
 .cntbox{border:1px solid var(--line);border-radius:14px;padding:12px 14px}
 .cnt{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--muted)}
 .cnt b{color:var(--ink);font-size:1.15rem}
@@ -134,11 +147,12 @@ function render(){
   $('#date').innerHTML=`${f.long}<small>${f.year} 아침 신문</small>`;
   const i=dates.indexOf(cur);
   $('#prev').disabled = i>=dates.length-1; $('#next').disabled = i<=0;
-  if(!story){ $('#main').innerHTML='<div class="empty">이 날은 기록이 없어요.</div>'; $('#shareRow').hidden=true; }
+  if(!story){ $('#main').className=''; $('#main').innerHTML='<div class="empty">이 날은 기록이 없어요.</div>'; $('#shareRow').hidden=true; }
   else{
     const ps=story.papers||[], d=ps.filter(p=>DAILY.has(p)), e=ps.filter(p=>ECON.has(p));
     const qa=(story.explain||[]).filter(x=>x.q||x.a);
-    $('#main').innerHTML=`
+    $('#main').className='has';
+    $('#main').innerHTML=`<div class="lead">
       <h1 class="hl">${esc(story.title)}</h1>
       ${story.summary?`<p class="sum">${esc(story.summary)}</p>`:''}
       <div class="cntbox">
@@ -146,8 +160,9 @@ function render(){
         <div class="split"><span style="--c:var(--daily)">종합일간지 ${d.length}/9</span><span style="--c:var(--econ)">경제지 ${e.length}/9</span></div>
         <div class="chips">${ps.map(p=>`<span class="chip ${DAILY.has(p)?'d':'e'}">${esc(SHORT[p]||p)}</span>`).join('')}</div>
       </div>
-      ${qa.length?`<h2 class="sec">💡 쉽게 풀어보기</h2>${qa.map(x=>`<div class="qa">${x.q?`<h3>${esc(x.q)}</h3>`:''}<p>${esc(x.a)}</p></div>`).join('')}`:''}
-      ${links(story).length?`<div class="srcs"><b>원문 기사</b>${links(story).map(u=>`<a class="src" href="${esc(u)}" target="_blank" rel="noopener nofollow">${esc(host(u))} →</a>`).join('')}</div>`:''}`;
+      ${links(story).length?`<div class="srcs"><b>원문 기사</b>${links(story).map(u=>`<a class="src" href="${esc(u)}" target="_blank" rel="noopener nofollow">${esc(host(u))} →</a>`).join('')}</div>`:''}
+      </div>
+      ${qa.length?`<div class="side"><h2 class="sec">💡 쉽게 풀어보기</h2>${qa.map(x=>`<div class="qa">${x.q?`<h3>${esc(x.q)}</h3>`:''}<p>${esc(x.a)}</p></div>`).join('')}</div>`:''}`;
     $('#shareRow').hidden=false;
     document.title=`${f.short} 신문 1면: ${story.title} · 오늘의 1면`;
   }
