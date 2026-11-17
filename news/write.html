@@ -89,7 +89,7 @@ details p{line-height:1.6}
 </div>
 
 <div class="bottom"><div class="in">
-  <a id="view" href="./" target="_blank">미리보기</a>
+  <a id="view" href="/" target="_blank">미리보기</a>
   <button id="save">저장하고 올리기</button>
 </div></div>
 
@@ -138,7 +138,7 @@ $('#qaList').addEventListener('click',e=>{const b=e.target.closest('[data-del]')
 $('#addQa').onclick=()=>{S.explain.push({q:'',a:''}); drawQa(); saveDraft(); const q=document.querySelectorAll('.qa'); q[q.length-1].querySelector('input').focus()};
 
 async function loadDate(){
-  const d=$('#date').value; $('#view').href=`./?d=${d}`; $('#loadMsg').textContent=''; S=null;
+  const d=$('#date').value; $("#view").href=`/?d=${d}`; $('#loadMsg').textContent=''; S=null;
   const dr=read('draft1:'+d);
   if(dr){ try{ S=JSON.parse(dr); $('#loadMsg').textContent='쓰던 내용을 불러왔어요.' }catch(e){} }
   if(!S){ try{ const r=await fetch(`data/${d}.json?nc=${Date.now()}`); if(r.ok){ const j=await r.json(); const s=j.story||(j.stories&&j.stories[0]); if(s){ S={...blank(),...s}; if(!S.explain.length) S.explain=[{q:'',a:''}]; $('#loadMsg').textContent='이미 올린 내용을 불러왔어요. 고쳐서 다시 저장할 수 있어요.' } } }catch(e){} }

@@ -3,362 +3,184 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>가죽재킷 아저씨의 모험 · 1분 점프 게임</title>
-<meta name="description" content="사원증 단 사내 여성은 가만히, 외부 여성은 점프로 피하는 1분 풍자 점프 게임. 칩을 먹으면 목숨 +1. 친구와 몇 명 피했는지 겨뤄 보세요.">
+<title>오늘의 1면 · 신문 1면 뉴스, 쉽게 풀어보기</title>
+<meta name="description" content="중앙일간지 9곳과 경제지 9곳 1면에 가장 많이 실린 오늘의 뉴스 하나를 골라, 어려운 부분을 쉽게 풀어 드려요. 매일 아침 업데이트.">
 <link rel="canonical" href="https://towardself.co.kr/">
-<meta property="og:title" content="가죽재킷 아저씨의 모험">
-<meta property="og:description" content="사내 여성은 가만히, 외부 여성은 점프! 너는 몇 명 피할 수 있어?">
+<meta property="og:title" content="오늘의 1면 · 오늘 신문 1면 뉴스, 쉽게 풀어보기">
+<meta property="og:description" content="신문 18곳 1면에 가장 많이 실린 뉴스 하나, 1분 만에 이해하기">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://towardself.co.kr/">
-<meta property="og:site_name" content="가죽재킷 아저씨의 모험">
-<meta property="og:image" content="https://towardself.co.kr/img/og-game.png?v=2">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="오늘의 1면">
 <meta property="og:locale" content="ko_KR">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#26222F">
+<link rel="icon" href="/news/icon.svg" type="image/svg+xml"><link rel="icon" href="/news/icon-48.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="/news/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#FFFFFF">
 <meta name="google-adsense-account" content="ca-pub-9743896158161620">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9743896158161620" crossorigin="anonymous"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NL1EPS71XC"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NL1EPS71XC');</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9743896158161620" crossorigin="anonymous"></script>
 <style>
-:root{--bg:#F6F1E7;--ink:#26222F;--muted:#6B6578;--accent:#E0476A;--green:#8BD448}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17151F;--ink:#F2EEF8;--muted:#A49DB3}}
+:root{--bg:#FFFFFF;--paper:#FFFFFF;--ink:#111111;--muted:#666666;--line:#E3E3E3;--accent:#C8321E;--daily:#2F4F7A;--econ:#2E7A5B;--bar:#EEEEEE;--soft:#F6F6F6}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121212;--paper:#1A1A1A;--ink:#F2F2F2;--muted:#A6A6A6;--line:#333333;--accent:#F06A52;--daily:#8FB0DC;--econ:#79C9A3;--bar:#2A2A2A;--soft:#1E1E1E}}
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-tap-highlight-color:transparent}
+:root{--gothic:"Noto Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;--myeongjo:"Nanum Myeongjo","AppleMyungjo","Batang",serif}
+button,input,textarea{font-family:inherit}
+h1,h2,h3,.mast,.date,.qa h3,.cnt b{font-family:var(--gothic)}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--myeongjo);-webkit-tap-highlight-color:transparent}
 a{color:inherit}
-.head{max-width:1080px;margin:0 auto;padding:14px 16px 0;display:flex;align-items:center;justify-content:flex-end;gap:12px}
-.logo{font-weight:900;font-size:1.05rem;text-decoration:none;letter-spacing:-.01em}
-.head nav{display:flex;gap:14px;font-size:.9rem;font-weight:700}
-.head nav a{text-decoration:none;color:var(--muted)}
-.layout{max-width:1080px;margin:0 auto;padding:8px 16px 16px;display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:20px;align-items:start}
-@media (max-width:900px){.layout{grid-template-columns:1fr}}
-main{min-width:0}
-h1{font-size:1.35rem;margin:6px 0 2px}
-.side{display:flex;flex-direction:column;gap:12px;position:sticky;top:16px;grid-column:2;grid-row:1 / span 2}
-.below{grid-column:1;min-width:0}
-.mini{display:block;text-decoration:none;color:var(--muted);font-size:.82rem;line-height:1.5;padding-top:10px}
-.mini img,.mini span,.mini br{display:none}
-.mini b{font-weight:700}
-.mini em{font-style:normal;font-weight:700;color:var(--muted);margin-left:2px}
-.mini:hover b,.mini:hover em{color:var(--ink);text-decoration:underline}
-@media (max-width:900px){.side{position:static;grid-column:auto;grid-row:auto}.below{grid-column:auto}
- .mini{display:flex;flex-direction:row;align-items:center;gap:12px;background:#fff;border:2px solid #26222F;border-radius:14px;padding:12px;color:#26222F}
- .mini img{display:block;width:64px;height:auto;flex:none;border-radius:8px;background:#EEEDF3}
- .mini span{display:inline;font-size:.8rem;color:#6B6578;line-height:1.45}.mini br{display:inline}
- .mini b{font-size:.95rem}.mini em{color:#3F5E8C;font-weight:800;font-size:.82rem;margin:0}}
-.info{margin-top:22px;line-height:1.7;font-size:.95rem}
-.info h2{font-size:1.1rem;margin:20px 0 6px}
-.info ul{margin:0;padding-left:20px}
-.foot{max-width:1080px;margin:0 auto;padding:10px 16px 36px;font-size:.8rem;color:var(--muted);text-align:center;display:flex;flex-direction:column;gap:6px}
-.foot nav{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.sub{color:var(--muted);margin:0 0 12px;font-size:.92rem}
-.stage{position:relative;width:100%;aspect-ratio:8/4.6;background:#FFFDF7;border-radius:18px;overflow:hidden;border:3px solid #26222F;touch-action:manipulation;user-select:none;-webkit-user-select:none}
-canvas#cv{display:block;width:100%;height:100%}
-@media (max-width:600px){.stage{aspect-ratio:4/4.9}}
-.ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:18px;padding:14px;background:rgba(255,253,247,.94);color:#26222F;text-align:center}
-.ov.hide{display:none}
-.ov .pic{height:min(78%,230px);width:auto;flex:none}
-.ov .txt{display:flex;flex-direction:column;align-items:center;gap:8px;max-width:420px}
-.ov h2{margin:0;font-size:1.45rem}
-.ov p{margin:0;line-height:1.5}
-.ov .big{font-size:2.1rem;font-weight:900;color:var(--accent)}
-@media (max-width:600px){.ov{flex-direction:column;gap:6px}.ov .pic{height:34%}.ov h2{font-size:1.15rem}.ov .big{font-size:1.6rem}.ov p{font-size:.88rem}}
-.btn{border:0;border-radius:12px;padding:11px 20px;font-weight:800;font-size:1rem;cursor:pointer;background:#26222F;color:#fff}
-.btn.alt{background:var(--accent)}
-.row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-.help{color:var(--muted);font-size:.85rem;margin-top:10px}
-.fine{color:var(--muted);font-size:.75rem;margin-top:14px}
+.wrap{max-width:680px;margin:0 auto;padding:0 16px}
+header.top{border-bottom:3px double var(--ink);padding:18px 0 10px;text-align:center}
+.mast{font-weight:900;font-size:2rem;letter-spacing:-.02em;margin:0;text-decoration:none;display:inline-block}
+.mast b{color:var(--accent)}
+.mast img{vertical-align:-5px;margin-right:8px}
+.tag{font-size:.82rem;color:var(--muted);margin-top:2px}
+.datebar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 0;border-bottom:1px solid var(--line)}
+.datebar button{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;width:36px;height:36px;font-size:1rem;cursor:pointer}
+.datebar button:disabled{opacity:.3;cursor:default}
+.date{font-weight:700;font-size:1.05rem;text-align:center}
+.date small{display:block;font-family:var(--myeongjo);font-weight:400;font-size:.78rem;color:var(--muted)}
+.kicker{display:inline-block;margin:22px 0 8px;font-size:.8rem;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:99px;padding:3px 10px}
+h1.hl{font-size:1.65rem;line-height:1.35;margin:22px 0 10px;font-weight:900;letter-spacing:-.02em;word-break:keep-all}
+.sum{font-size:1rem;line-height:1.75;margin:0 0 16px;word-break:keep-all;color:var(--ink)}
+.cntbox{border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.cnt{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--muted)}
+.cnt b{color:var(--ink);font-size:1.15rem}
+.bar{flex:1;height:9px;background:var(--bar);border-radius:99px;overflow:hidden;display:flex}
+.bar i{display:block;height:100%}
+.bar .d{background:var(--daily)}.bar .e{background:var(--econ)}
+.split{display:flex;gap:14px;font-size:.78rem;color:var(--muted);margin:8px 0 8px}
+.split span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px;background:var(--c)}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-size:.74rem;padding:3px 8px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.chip.d{color:var(--daily)}.chip.e{color:var(--econ)}
+h2.sec{font-size:1.15rem;margin:30px 0 12px;font-weight:900;display:flex;align-items:center;gap:8px}
+h2.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+.qa{background:var(--soft);border-radius:14px;padding:14px 16px;margin:10px 0}
+.qa h3{font-size:1.02rem;margin:0 0 6px;line-height:1.45;word-break:keep-all}
+.qa h3::before{content:"Q. ";color:var(--accent)}
+.qa p{margin:0;line-height:1.8;font-size:.97rem;word-break:keep-all;white-space:pre-line}
+.src{display:inline-block;margin-top:16px;font-size:.85rem;color:var(--muted)}
+.share{display:flex;gap:8px;margin:24px 0 6px}
+.share[hidden]{display:none}
+.share button{flex:1;padding:13px;border-radius:12px;border:0;font-family:var(--gothic);font-weight:700;font-size:.95rem;cursor:pointer;background:#FEE500;color:#191600}
+.share button.alt{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:99px;font-size:.88rem;opacity:0;transition:.2s;pointer-events:none}
+.toast.on{opacity:1}
+.empty{padding:40px 0;text-align:center;color:var(--muted)}
+.arch{list-style:none;margin:0;padding:0}
+.arch li{border-bottom:1px solid var(--line)}
+.arch a{display:flex;gap:12px;padding:10px 2px;text-decoration:none;font-size:.9rem;line-height:1.45}
+.arch a span{flex:none;color:var(--muted);width:62px}
+.arch a.on{font-weight:700}
+footer{margin:30px 0 40px;font-size:.76rem;color:var(--muted);line-height:1.7;text-align:center}
+footer nav{display:flex;gap:12px;justify-content:center;margin-top:6px}
+.extra{margin-top:14px;font-size:.7rem;opacity:.45}
+.extra a{text-decoration:none}
 </style>
 </head>
 <body>
-<header class="head">
-  <nav aria-label="주 메뉴"><a href="./">게임</a><a href="test.html">속닥이 테스트</a><a href="about.html">소개</a></nav>
+<div class="wrap">
+<header class="top">
+  <a class="mast" href="/"><img src="/news/icon.svg" alt="" width="34" height="34">오늘의 <b>1면</b></a>
+  <div class="tag">신문 1면에 가장 많이 실린 뉴스, 쉽게 풀어보기</div>
 </header>
-<div class="layout">
-<main>
-  <h1>가죽재킷 아저씨의 모험</h1>
-  <p class="sub">사원증 단 <b>사내 여성</b>은 덮쳐 오니 <b>가만히</b>, <b>외부 여성</b>은 <b>점프</b>로 피하세요. 칩을 먹으면 목숨 +1.</p>
-  <div class="stage" id="stage">
-    <canvas id="cv" width="800" height="360"></canvas>
-    <div class="ov" id="start">
-      <canvas class="pic" id="picStart" width="300" height="358"></canvas>
-      <div class="txt">
-        <h2>철벽 모드 ON</h2>
-        <p>🪪 사원증 = 사내 여성 → <b>가만히</b><br>👗 외부 여성 → <b>점프</b><br>🟩 칩을 먹으면 목숨 +1</p>
-        <button class="btn" id="go">시작하기</button>
-      </div>
-    </div>
-    <div class="ov hide" id="over">
-      <canvas class="pic" id="picOver" width="300" height="342"></canvas>
-      <div class="txt">
-        <h2>📸 찰칵! 결국 걸렸습니다</h2>
-        <div class="big" id="ovScore">0명</div>
-        <p id="ovLine"></p>
-        <div class="row">
-          <button class="btn" id="again">다시 하기</button>
-          <button class="btn alt" id="share">결과 공유하기</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <p class="help">PC: 스페이스바 / ↑ · 모바일: 화면 터치</p>
-</main>
-<aside class="side" aria-label="다른 콘텐츠">
-  <a class="mini" href="test.html" onclick="if(window.gtag)gtag('event','side_test_click')">
-    <img src="sokdagi.png" width="900" height="600" alt="">
-    <div><b>속닥이 테스트</b><br><span>남의 말을 비틀어 속닥이는 내 안의 작은 악마. 5분 자기이해 테스트</span><br><em>해 보기 →</em></div>
-  </a>
-</aside>
-<div class="below">
-  <section class="info">
-    <h2>게임 방법</h2>
-    <ul>
-      <li><b>외부 여성</b>(원피스)은 땅으로 걸어와요. 스페이스바나 화면 터치로 <b>점프</b>해서 넘어가세요.</li>
-      <li><b>사내 여성</b>(사원증)은 가까이 오면 머리 위로 덮쳐 와요. 이때는 <b>가만히</b> 있어야 피할 수 있어요. 점프하면 공중에서 부딪혀요.</li>
-      <li>공중에 뜬 <b>칩</b>을 먹으면 목숨이 하나 늘어요. 최대 5개까지 모을 수 있어요.</li>
-      <li>목숨은 3개로 시작해요.</li>
-    </ul>
-  </section>
-  <p class="fine">이 게임은 화제가 된 뉴스를 소재로 한 풍자 창작물이며, 등장인물은 실제 인물의 사진이 아닌 캐리커처입니다. 특정인이나 회사와 관련이 없습니다.</p>
+
+<div class="datebar">
+  <button id="prev" aria-label="이전 날">◀</button>
+  <div class="date" id="date">불러오는 중</div>
+  <button id="next" aria-label="다음 날">▶</button>
 </div>
+
+<main id="main"></main>
+
+<div class="share" id="shareRow" hidden>
+  <button id="shareBtn">카톡으로 공유</button>
+  <button id="copyBtn" class="alt">링크 복사</button>
 </div>
-<footer class="foot">
-  <nav aria-label="사이트 정보"><a href="about.html">소개</a><a href="contact.html">문의</a><a href="privacy.html">개인정보처리방침</a><a href="/en/" hreflang="en" lang="en">English</a></nav>
+
+<h2 class="sec">지난 1면</h2>
+<ul class="arch" id="arch"></ul>
+
+<footer>
+  요약과 풀이는 운영자가 신문 1면을 직접 보고 쓴 것이에요. 기사 원문과 저작권은 각 언론사에 있어요.<br>
+  기준 신문: 스크랩마스터 중앙일간지 9곳 · 중앙경제지 9곳
+  <nav><a href="/about.html">소개</a><a href="/contact.html">문의</a><a href="/privacy.html">개인정보처리방침</a></nav>
+  <div class="extra"><a href="/game.html">미니게임</a> · <a href="/test.html">속닥이 테스트</a></div>
 </footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="/news/papers.js"></script>
 <script>
-const cv=document.getElementById('cv'), g=cv.getContext('2d');
-const $=id=>document.getElementById(id);
-const W=800; let H=360, GROUND=305;
+const $=s=>document.querySelector(s);
+const DAILY=new Set(PAPERS.daily), ECON=new Set(PAPERS.econ);
+const WD=['일','월','화','수','목','금','토'];
+let dates=[], titles={}, cur=null, story=null;
 
-/* sprite sheet: [x,y,w,h] in uncle.webp */
-const SH=new Image(); SH.src='/img/uncle.webp';
-const SP={main:[65,137,600,716],cheer:[751,87,348,406],think:[1164,98,331,416],run:[717,549,372,402],dizzy:[1167,557,351,400]};
-const POSE_BY_LIVES={5:'run',4:'run',3:'run',2:'think',1:'cheer',0:'dizzy'};
-const HIT_WORD={2:'어...?',1:'아야!!',0:'📸 찰칵!'};
-function sprite(name,cx,bottom,h,alpha=1,tilt=0){
-  const s=SP[name]; if(!SH.complete) return; const w=h*s[2]/s[3];
-  g.save(); g.globalAlpha=alpha; g.translate(cx,bottom); g.rotate(tilt);
-  g.drawImage(SH,s[0],s[1],s[2],s[3],-w/2,-h,w,h); g.restore();
-}
-function paintPic(id,name){const c=$(id),x=c.getContext('2d'),s=SP[name];x.clearRect(0,0,c.width,c.height);x.drawImage(SH,s[0],s[1],s[2],s[3],0,0,c.width,c.height)}
+function fmt(d){const [y,m,dd]=d.split('-').map(Number);const w=WD[new Date(y,m-1,dd).getDay()];return {long:`${m}월 ${dd}일 ${w}요일`,year:`${y}년`,short:`${m}월 ${dd}일`,dot:`${m}.${dd}`,wd:w}}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),1800)}
+function pick(j){ return j.story || (j.stories&&j.stories[0]) || null }
 
-let state='ready', t=0, speed, dodged, dist, obs, nextGap, flash=0, best=0, lives, inv, react, reactWord, shake=0;
-let chip=null, chipDelay=0, sinceChip=0, chipEvery=14, gain=0;
-const P={x:120,y:0,vy:0,onG:true,hold:false,holdT:0};
-try{best=+localStorage.getItem('jacketBest')||0}catch(e){}
-
-const LINES=[
-  [0,"첫 번째 여자분부터 피하지 못했습니다. 기자회견을 준비하세요."],
-  [3,"몇 명은 피했지만, 결국 사진이 찍혔습니다."],
-  [8,"이 정도면 사과문은 한 장으로 끝납니다."],
-  [15,"GPU보다 빠른 회피 반응속도. 진작 이렇게 하시지."],
-  [25,"철벽 인증. 주가가 소폭 반등했습니다."],
-  [40,"전설의 철벽. 가죽재킷이 아니라 방탄재킷이었습니다."]
-];
-const BUBBLES=["오빠~","자기야~","LOVE~","사진 한 장만~","♥"];
-const HAIRS=['#4A3328','#8A5631','#2B2633','#C77A3A'], DRESSES=['#FF9EBB','#C3A3FF','#FFB45E','#6FD3BC'];
-
-function fit(){const r=cv.getBoundingClientRect(); if(!r.width) return; H=Math.round(W*r.height/r.width); cv.height=H; GROUND=H-55; if(P.onG) P.y=GROUND; draw()}
-function reset(){chip=null;chipDelay=0;sinceChip=0;chipEvery=10+Math.floor(Math.random()*6);gain=0;speed=6;dodged=0;dist=0;obs=[];nextGap=70;flash=0;lives=3;inv=0;react=0;shake=0;P.y=GROUND;P.vy=0;P.onG=true;P.hold=false;t=0}
-function jump(){ if(state!=='play') return; if(P.onG){P.vy=-15;P.onG=false;P.holdT=0} P.hold=true }
-function release(){ P.hold=false }
-
-const OFFICE_BUB=["팀장님~","회식 가요~","커피 한 잔?","보고드릴게요~"], OUT_BUB=["오빠~","사진 한 장만~","LOVE~","자기야~"];
-const pick=a=>a[Math.floor(Math.random()*a.length)];
-const JT=42, JH=175; // office woman's leap: frames, height
-function spawn(){
-  const look=Math.floor(Math.random()*4);
-  const office = dodged>=2 && Math.random()<0.45;
-  if(office) obs.push({x:W+30,kind:'office',w:44,bub:pick(OFFICE_BUB),v:0.6,look,jt:-1,jy:0});
-  else obs.push({x:W+30,kind:'out',w:44,bub:pick(OUT_BUB),v:0.8,look,jy:0});
-  sinceChip++;
-  if(sinceChip>=chipEvery && !chip){ sinceChip=0; chipEvery=12+Math.floor(Math.random()*10); chipDelay=Math.floor(nextGapCalc()/2) }
-  nextGap=nextGapCalc();
-}
-function nextGapCalc(){ return Math.max(44,110-speed*4.2)+Math.random()*50 }
-
-function update(){
-  t++; dist+=speed/10; speed=Math.min(17,6+dist/170);
-  if(inv>0) inv--; if(react>0) react--; if(shake>0) shake--; if(gain>0) gain--;
-  const holding=P.hold && P.vy<0 && P.holdT++<14;
-  P.vy+=holding?0.62:0.95; P.y+=P.vy;
-  if(P.y>=GROUND){P.y=GROUND;P.vy=0;P.onG=true}
-  if(--nextGap<=0) spawn();
-  if(chipDelay>0 && --chipDelay===0) chip={x:W+30,y:GROUND-128};
-  const px1=P.x-20,px2=P.x+22,py1=P.y-104,py2=P.y-6;
-  if(chip){
-    chip.x-=speed;
-    if(px2>chip.x-26 && px1<chip.x+26 && py1<chip.y+14 && py2>chip.y-14){ lives=Math.min(5,lives+1); gain=50; chip=null; }
-    else if(chip.x<-60) chip=null;
+function render(){
+  const f=fmt(cur);
+  $('#date').innerHTML=`${f.long}<small>${f.year} 아침 신문</small>`;
+  const i=dates.indexOf(cur);
+  $('#prev').disabled = i>=dates.length-1; $('#next').disabled = i<=0;
+  if(!story){ $('#main').innerHTML='<div class="empty">이 날은 기록이 없어요.</div>'; $('#shareRow').hidden=true; }
+  else{
+    const ps=story.papers||[], d=ps.filter(p=>DAILY.has(p)), e=ps.filter(p=>ECON.has(p));
+    const qa=(story.explain||[]).filter(x=>x.q||x.a);
+    $('#main').innerHTML=`
+      <h1 class="hl">${esc(story.title)}</h1>
+      ${story.summary?`<p class="sum">${esc(story.summary)}</p>`:''}
+      <div class="cntbox">
+        <div class="cnt"><span><b>${ps.length}곳</b> / 18곳 1면</span><div class="bar"><i class="d" style="width:${d.length/18*100}%"></i><i class="e" style="width:${e.length/18*100}%"></i></div></div>
+        <div class="split"><span style="--c:var(--daily)">종합일간지 ${d.length}/9</span><span style="--c:var(--econ)">경제지 ${e.length}/9</span></div>
+        <div class="chips">${ps.map(p=>`<span class="chip ${DAILY.has(p)?'d':'e'}">${esc(SHORT[p]||p)}</span>`).join('')}</div>
+      </div>
+      ${qa.length?`<h2 class="sec">💡 쉽게 풀어보기</h2>${qa.map(x=>`<div class="qa">${x.q?`<h3>${esc(x.q)}</h3>`:''}<p>${esc(x.a)}</p></div>`).join('')}`:''}
+      ${story.link?`<a class="src" href="${esc(story.link)}" target="_blank" rel="noopener nofollow">원문 기사 보기 →</a>`:''}`;
+    $('#shareRow').hidden=false;
+    document.title=`${f.short} 신문 1면: ${story.title} · 오늘의 1면`;
   }
-  for(const o of obs){
-    const vx=speed+o.v; o.x-=vx;
-    if(o.kind==='office'){
-      // leap so the top of the arc is right above the uncle
-      if(o.jt<0 && o.x+o.w/2-P.x < vx*JT/2) o.jt=0;
-      if(o.jt>=0 && o.jt<=JT){ const s=o.jt/JT; o.jy=4*JH*s*(1-s); o.jt++ } else o.jy=0;
-    }
-    if(!o.passed && o.x+o.w<P.x-20){o.passed=true; if(!o.hit) dodged++}
-    if(inv>0 || o.hit) continue;
-    const ox1=o.x+8,ox2=o.x+o.w-8,oy2=GROUND-o.jy,oy1=oy2-82;
-    if(px2>ox1 && px1<ox2 && py2>oy1 && py1<oy2){ hit(o); if(state!=='play') return }
-  }
-  obs=obs.filter(o=>o.x>-160);
-}
-function hit(o){
-  o.hit=true; lives--; flash=0.85; shake=14; reactWord=HIT_WORD[lives]; react=60;
-  if(lives<=0) return gameOver(o);
-  inv=95;
-}
-function gameOver(o){
-  state='over';
-  if(dodged>best){best=dodged;try{localStorage.setItem('jacketBest',best)}catch(e){}}
-  let line=LINES[0][1]; for(const [n,s] of LINES) if(dodged>=n) line=s;
-  $('ovScore').textContent=`${dodged}명 피함`;
-  $('ovLine').innerHTML=line+`<br><small>최고 기록 ${best}명</small>`;
-  paintPic('picOver','dizzy'); if(window.gtag)gtag('event','game_over',{score:dodged});
-  requestAnimationFrame(loop);
-  setTimeout(()=>$('over').classList.remove('hide'),700);
+  $('#arch').innerHTML=dates.slice(0,30).map(d=>`<li><a href="?d=${d}" data-d="${d}" class="${d===cur?'on':''}"><span>${fmt(d).dot} ${fmt(d).wd}</span>${esc(titles[d]||'')}</a></li>`).join('');
 }
 
-/* ---------- drawing ---------- */
-function rr(x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()}
-function heart(x,y,s,c){g.fillStyle=c;g.beginPath();g.moveTo(x,y+s*0.9);g.bezierCurveTo(x-s*1.4,y-s*0.2,x-s*0.7,y-s*1.3,x,y-s*0.45);g.bezierCurveTo(x+s*0.7,y-s*1.3,x+s*1.4,y-s*0.2,x,y+s*0.9);g.fill()}
-function bubble(text,cx,by,color){
-  g.font='800 15px system-ui,sans-serif'; const tw=g.measureText(text).width, bx=cx-tw/2-10;
-  g.fillStyle='#fff'; g.strokeStyle='#26222F'; g.lineWidth=2.5; rr(bx,by,tw+20,27,12); g.fill(); g.stroke();
-  g.beginPath(); g.moveTo(cx-5,by+27); g.lineTo(cx,by+35); g.lineTo(cx+5,by+27); g.fill();
-  g.fillStyle=color; g.fillText(text,bx+10,by+19);
+async function load(d,push){
+  cur=d;
+  try{ const r=await fetch(`/news/data/${d}.json?nc=${Date.now()}`); story=r.ok?pick(await r.json()):null }catch(e){ story=null }
+  if(push) history.pushState({d},'',`?d=${d}`);
+  render();
 }
-/* chibi woman, same outline style as the uncle sprite */
-function woman(cx,phase,look,bub,showBub,office,jy){
-  const y=GROUND-jy, O='#2B2633', hair=HAIRS[look], dress=office?'#3D4A6B':DRESSES[(look+1)%4], step=jy>0?4:Math.sin(phase)*7;
-  g.lineJoin='round'; g.lineCap='round';
-  g.fillStyle=`rgba(0,0,0,${jy>0?.06:.10})`; g.beginPath(); g.ellipse(cx,GROUND+2,22-jy/14,5,0,0,7); g.fill();
-  // legs
-  g.strokeStyle=O; g.lineWidth=7;
-  g.beginPath(); g.moveTo(cx-6,y-22); g.lineTo(cx-6+step,y-3); g.moveTo(cx+6,y-22); g.lineTo(cx+6-step,y-3); g.stroke();
-  g.strokeStyle='#F7D7BE'; g.lineWidth=4;
-  g.beginPath(); g.moveTo(cx-6,y-22); g.lineTo(cx-6+step,y-3); g.moveTo(cx+6,y-22); g.lineTo(cx+6-step,y-3); g.stroke();
-  // dress
-  g.fillStyle=dress; g.strokeStyle=O; g.lineWidth=3;
-  if(office){ // blazer + white collar + skirt
-    g.beginPath(); g.moveTo(cx-11,y-50); g.lineTo(cx+11,y-50); g.lineTo(cx+14,y-26); g.lineTo(cx-14,y-26); g.closePath(); g.fill(); g.stroke();
-    g.fillStyle='#2B2633'; g.beginPath(); g.moveTo(cx-14,y-27); g.lineTo(cx+14,y-27); g.lineTo(cx+12,y-18); g.lineTo(cx-12,y-18); g.closePath(); g.fill();
-    g.fillStyle='#fff'; g.beginPath(); g.moveTo(cx-6,y-50); g.lineTo(cx,y-40); g.lineTo(cx+6,y-50); g.closePath(); g.fill();
-  } else {
-    g.beginPath(); g.moveTo(cx-9,y-50); g.lineTo(cx+9,y-50); g.lineTo(cx+18,y-20); g.quadraticCurveTo(cx,y-15,cx-18,y-20); g.closePath(); g.fill(); g.stroke();
-  }
-  // arms: reaching left, or both up while leaping
-  const r=Math.sin(phase*0.8)*3, ax=jy>0?-14:-24, ay=jy>0?-76:-48+r;
-  g.strokeStyle=O; g.lineWidth=7; g.beginPath(); g.moveTo(cx-6,y-44); g.lineTo(cx+ax,y+ay); if(jy>0){g.moveTo(cx+6,y-44); g.lineTo(cx+16,y-76)} g.stroke();
-  g.strokeStyle='#F7D7BE'; g.lineWidth=4; g.beginPath(); g.moveTo(cx-6,y-44); g.lineTo(cx+ax,y+ay); if(jy>0){g.moveTo(cx+6,y-44); g.lineTo(cx+16,y-76)} g.stroke();
-  if(office){ // lanyard + ID card
-    g.strokeStyle='#E0476A'; g.lineWidth=2; g.beginPath(); g.moveTo(cx-6,y-50); g.lineTo(cx,y-36); g.lineTo(cx+6,y-50); g.stroke();
-    g.fillStyle='#fff'; g.strokeStyle=O; g.lineWidth=1.8; g.fillRect(cx-6,y-37,12,14); g.strokeRect(cx-6,y-37,12,14);
-    g.fillStyle='#8BD448'; g.fillRect(cx-4,y-35,8,4);
-  }
-  // hair back
-  g.fillStyle=hair; g.strokeStyle=O; g.lineWidth=3;
-  g.beginPath(); g.ellipse(cx+3,y-70,25,26,0,0,7); g.fill(); g.stroke();
-  g.beginPath(); g.moveTo(cx+14,y-60); g.quadraticCurveTo(cx+30,y-40,cx+22,y-36); g.quadraticCurveTo(cx+14,y-44,cx+14,y-60); g.fill(); g.stroke();
-  // face
-  g.fillStyle='#FCE3D0'; g.beginPath(); g.ellipse(cx-2,y-67,20,19,0,0,7); g.fill(); g.stroke();
-  // bangs
-  g.fillStyle=hair; g.beginPath(); g.moveTo(cx-23,y-70); g.quadraticCurveTo(cx-20,y-96,cx+4,y-93); g.quadraticCurveTo(cx+26,y-90,cx+22,y-68);
-  g.quadraticCurveTo(cx+12,y-80,cx+2,y-76); g.quadraticCurveTo(cx-8,y-84,cx-23,y-70); g.fill(); g.stroke();
-  // blush + heart eyes + smile
-  g.fillStyle='rgba(255,120,140,.45)'; g.beginPath(); g.ellipse(cx-15,y-60,5,3,0,0,7); g.ellipse(cx+9,y-60,5,3,0,0,7); g.fill();
-  heart(cx-9,y-68,5,'#E0476A'); heart(cx+4,y-68,5,'#E0476A');
-  g.strokeStyle=O; g.lineWidth=2.2; g.beginPath(); g.arc(cx-2,y-60,4,0.15,Math.PI-0.15); g.stroke();
-  // floating heart
-  heart(cx+16,y-104+Math.sin(t*0.15+cx*0.05)*3,8,'#FF7DA0');
-  if(showBub) bubble(bub,cx,y-146,'#E0476A');
-}
-function drawUncle(){
-  const pose=state==='over'?'dizzy':POSE_BY_LIVES[lives];
-  const blink=inv>0 && Math.floor(inv/5)%2===0;
-  const bob=P.onG? Math.sin(t*0.5)*2 : 0;
-  // shadow under board
-  const air=GROUND-P.y; g.fillStyle=`rgba(0,0,0,${Math.max(.04,.13-air/1500)})`;
-  g.beginPath(); g.ellipse(P.x,GROUND+3,Math.max(18,46-air/12),7,0,0,7); g.fill();
-  // speed lines (green, like the drawing)
-  g.strokeStyle='rgba(139,212,72,.7)'; g.lineWidth=4; g.lineCap='round';
-  for(let i=0;i<3;i++){const ly=P.y-8-i*9, lx=P.x-58-((t*6+i*23)%30); g.beginPath(); g.moveTo(lx,ly); g.lineTo(lx-22-i*6,ly); g.stroke()}
-  const h= pose==='run'?132 : pose==='dizzy'?120 : 138;
-  sprite(pose,P.x+(pose==='run'?-4:0),P.y+6+bob,h,blink?0.35:1, P.onG?0:-0.08);
-  if(react>0 && reactWord) bubble(reactWord,P.x+8,P.y-h-38,'#26222F');
-}
-function drawLives(){
-  const n=Math.max(3,lives), x0=W-18-n*28;
-  g.font='800 15px system-ui,sans-serif'; g.fillStyle='#26222F'; g.textAlign='right';
-  g.fillText('목숨',x0-4,33); g.textAlign='left';
-  for(let i=0;i<n;i++){heart(x0+14+i*28,26,11,i<lives?'#8BD448':'#D9D3CC')}
-}
-/* the GPU chip board he rides on: grab it for +1 life */
-function drawChip(x,y){
-  const b=Math.sin(t*0.12)*5; y+=b;
-  g.save(); g.translate(x,y); g.rotate(-0.18);
-  g.fillStyle='rgba(139,212,72,.35)'; g.beginPath(); g.ellipse(0,0,40,22,0,0,7); g.fill();
-  g.fillStyle='#24331F'; g.strokeStyle='#1A1A1A'; g.lineWidth=3; rr(-28,-14,56,28,5); g.fill(); g.stroke();
-  g.strokeStyle='#8BD448'; g.lineWidth=1.5; rr(-24,-10,48,20,3); g.stroke();
-  g.fillStyle='#D8B24A'; for(let i=0;i<6;i++){g.fillRect(-21+i*8,9,4,3); g.fillRect(-21+i*8,-12,4,3)}
-  g.fillStyle='#B9BEC6'; g.strokeStyle='#4A4F57'; g.lineWidth=1.5; rr(-10,-8,20,15,2); g.fill(); g.stroke();
-  g.restore();
-  g.font='900 13px system-ui,sans-serif'; g.fillStyle='#4E9A1E'; g.fillText('+1',x+24,y-14);
-}
-function draw(){
-  g.save();
-  if(shake>0) g.translate((Math.random()-.5)*shake*0.8,(Math.random()-.5)*shake*0.5);
-  g.fillStyle='#FFFDF7'; g.fillRect(-20,-20,W+40,H+40);
-  // soft background shapes
-  g.fillStyle='#F3EEE3';
-  for(let i=0;i<9;i++){const bx=((i*115-dist*2)%1035+1035)%1035-110, bh=70+((i*41)%80); rr(bx,GROUND-bh,76,bh+4,10); g.fill()}
-  g.fillStyle='#EAF6DD'; g.fillRect(-20,GROUND,W+40,H-GROUND+20);
-  g.fillStyle='#26222F'; g.fillRect(-20,GROUND,W+40,3);
-  g.fillStyle='#BFE3A0'; for(let i=0;i<18;i++){const gx=((i*61-dist*10)%1100+1100)%1100-40; g.fillRect(gx,GROUND+16+(i%3)*11,18,3)}
-  if(chip) drawChip(chip.x,chip.y);
-  for(const o of obs) woman(o.x+22,t*0.32,o.look,o.bub,!o.hit && o.jy===0 && o.x<W-70 && o.x>P.x+60,o.kind==='office',o.jy);
-  drawUncle();
-  if(gain>0){g.font='900 26px system-ui,sans-serif'; g.fillStyle=`rgba(90,170,40,${Math.min(1,gain/20)})`; g.fillText('목숨 +1 💚',P.x-40,P.y-170+gain/2)}
-  // HUD
-  g.fillStyle='#26222F'; g.font='900 21px system-ui,sans-serif'; g.fillText(`피한 여자 ${dodged}명`,18,34);
-  g.font='14px system-ui,sans-serif'; g.fillStyle='#6B6578'; g.fillText(`최고 ${best}명`,18,55);
-  drawLives();
-  g.restore();
-  if(flash>0){g.fillStyle=`rgba(255,255,255,${flash})`; g.fillRect(0,0,W,H); flash=Math.max(0,flash-0.07)}
-}
-function loop(){
-  if(state==='play') update();
-  draw();
-  if(state==='play'||flash>0||shake>0){ if(state!=='play'){shake=Math.max(0,shake-1)} requestAnimationFrame(loop) }
-}
-function start(){if(window.gtag)gtag('event','game_start');reset();state='play';$('start').classList.add('hide');$('over').classList.add('hide');requestAnimationFrame(loop)}
 
-$('go').onclick=e=>{e.stopPropagation();start()};
-$('again').onclick=e=>{e.stopPropagation();start()};
-$('share').onclick=async e=>{
-  e.stopPropagation();
-  if(window.gtag)gtag('event','game_share',{score:dodged});
-  const text=`가죽재킷 아저씨로 여자 ${dodged}명 피함 🧥💨 너는 몇 명 피할 수 있어?`;
-  try{ if(navigator.share){await navigator.share({title:'가죽재킷 아저씨의 모험',text,url:location.href});return} }catch(err){ if(err.name==='AbortError') return }
-  try{await navigator.clipboard.writeText(text+' '+location.href);$('share').textContent='복사했어요!'}catch(err){prompt('복사해서 공유하세요',text+' '+location.href)}
+async function init(){
+  try{ const j=await (await fetch(`/news/data/index.json?nc=${Date.now()}`)).json(); dates=j.dates||[]; titles=j.titles||{} }catch(e){ dates=[] }
+  dates.sort().reverse();
+  const q=new URLSearchParams(location.search).get('d');
+  const d = (q && dates.includes(q)) ? q : dates[0];
+  if(!d){ $('#date').textContent='아직 기록이 없어요'; $('#main').innerHTML='<div class="empty">곧 첫 1면이 올라와요.</div>'; return }
+  load(d,false);
+}
+
+$('#prev').onclick=()=>{const i=dates.indexOf(cur); if(i<dates.length-1) load(dates[i+1],true)};
+$('#next').onclick=()=>{const i=dates.indexOf(cur); if(i>0) load(dates[i-1],true)};
+$('#arch').addEventListener('click',e=>{const a=e.target.closest('a[data-d]'); if(!a) return; e.preventDefault(); load(a.dataset.d,true); window.scrollTo({top:0,behavior:'smooth'})});
+window.onpopstate=()=>{const q=new URLSearchParams(location.search).get('d'); if(q&&dates.includes(q)) load(q,false)};
+
+function shareText(){
+  const qa=(story.explain||[]).filter(x=>x.q);
+  return `📰 ${fmt(cur).short} 신문 1면\n${story.title} (18곳 중 ${(story.papers||[]).length}곳)`+(qa.length?`\n\n💡 ${qa.map(x=>x.q).join('\n💡 ')}`:'');
+}
+function pageUrl(){return `https://towardself.co.kr/?d=${cur}`}
+$('#shareBtn').onclick=async()=>{
+  const text=shareText(), url=pageUrl();
+  try{ gtag('event','news_share',{date:cur}) }catch(e){}
+  if(navigator.share){ try{ await navigator.share({title:'오늘의 1면',text,url}); return }catch(e){ if(e.name==='AbortError') return } }
+  try{ await navigator.clipboard.writeText(text+'\n\n'+url); toast('복사했어요. 카톡에 붙여넣기 하세요') }catch(e){ toast('복사가 안 돼요') }
 };
-addEventListener('keydown',e=>{
-  if(e.code!=='Space'&&e.code!=='ArrowUp') return;
-  e.preventDefault();
-  if(state==='play') jump();
-  else if(!e.repeat && (state==='ready' || !$('over').classList.contains('hide'))) start();
-});
-addEventListener('keyup',e=>{if(e.code==='Space'||e.code==='ArrowUp') release()});
-$('stage').addEventListener('pointerdown',e=>{ if(e.target.closest('button')) return; if(state==='play'){e.preventDefault();jump()} });
-addEventListener('pointerup',release); addEventListener('pointercancel',release);
-SH.onload=()=>{paintPic('picStart','main'); fit()};
-reset(); addEventListener('resize',fit); fit();
+$('#copyBtn').onclick=async()=>{ try{ await navigator.clipboard.writeText(pageUrl()); toast('링크를 복사했어요') }catch(e){ toast('복사가 안 돼요') } };
+init();
 </script>
 </body>
 </html>
