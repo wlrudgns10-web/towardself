@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>1면 입력</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="icon" href="/news/icon.svg" type="image/svg+xml"><link rel="icon" href="/news/icon-48.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="/news/apple-touch-icon.png">
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{--bg:#FFFFFF;--paper:#FFFFFF;--ink:#111111;--muted:#666666;--line:#E3E3E3;--accent:#C8321E;--daily:#2F4F7A;--econ:#2E7A5B;--soft:#F6F6F6}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121212;--paper:#1A1A1A;--ink:#F2F2F2;--muted:#A6A6A6;--line:#333333;--accent:#F06A52;--daily:#8FB0DC;--econ:#79C9A3;--soft:#1E1E1E}}
+*{box-sizing:border-box}
+:root{--gothic:"Noto Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;--myeongjo:"Nanum Myeongjo","AppleMyungjo","Batang",serif}
+button,input,textarea{font-family:inherit}
+h1,h2{font-family:var(--gothic)}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--myeongjo)}
+.wrap{max-width:720px;margin:0 auto;padding:16px 16px 120px}
+h1{font-size:1.2rem;margin:4px 0 12px}
+h2{font-size:1rem;margin:26px 0 4px}
+.hint{font-size:.82rem;color:var(--muted);margin:0 0 6px;line-height:1.5}
+label.f{display:block;font-size:.8rem;font-weight:700;color:var(--muted);margin:12px 0 4px}
+input[type=text],input[type=url],input[type=date],input[type=password],textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);font:inherit;font-size:16px}
+textarea{resize:vertical;min-height:70px;line-height:1.6}
+.grp{font-size:.75rem;font-weight:700;margin:10px 0 4px}
+.grp.d{color:var(--daily)}.grp.e{color:var(--econ)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{padding:8px 10px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:.85rem;font-weight:700;cursor:pointer}
+.chips.d button[aria-pressed="true"]{background:var(--daily);border-color:var(--daily);color:#fff}
+.chips.e button[aria-pressed="true"]{background:var(--econ);border-color:var(--econ);color:#fff}
+.pc{font-size:.85rem;margin-top:8px;font-weight:700}
+.cnt{font-size:.78rem;color:var(--muted);text-align:right;margin-top:2px}
+.qa{background:var(--soft);border-radius:14px;padding:4px 14px 12px;margin:10px 0}
+.qa .hd{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.qa .hd b{font-family:var(--gothic);font-size:.9rem;color:var(--accent)}
+.del{background:none;border:0;color:var(--muted);font-size:.85rem;cursor:pointer;padding:6px}
+.add{width:100%;padding:13px;border:2px dashed var(--line);background:none;border-radius:14px;color:var(--muted);font-weight:700;font-size:.95rem;cursor:pointer;margin-top:4px}
+.bottom{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+.bottom .in{max-width:720px;margin:0 auto;display:flex;gap:8px}
+.bottom button,.bottom a{flex:1;padding:14px;border-radius:12px;border:0;font-family:var(--gothic);font-weight:700;font-size:1rem;cursor:pointer;text-align:center;text-decoration:none}
+#save{background:var(--accent);color:#fff}
+#view{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+#save:disabled{opacity:.5}
+details{margin-top:28px;font-size:.85rem;color:var(--muted)}
+details p{line-height:1.6}
+.msg{font-size:.88rem;margin:10px 0;min-height:1.3em}
+.ok{color:var(--econ)}.err{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1><img src="icon.svg" alt="" width="26" height="26" style="vertical-align:-6px;margin-right:6px">오늘의 1면 입력</h1>
+
+<label class="f" for="date">날짜</label>
+<input type="date" id="date">
+<div class="msg" id="loadMsg"></div>
+
+<h2>① 오늘의 기사</h2>
+<p class="hint">1면에 가장 많이 실린 기사 하나만 골라요.</p>
+<label class="f" for="title">제목 (짧게)</label>
+<input type="text" id="title" maxlength="60" placeholder="예: 기준금리 3회 연속 동결">
+<label class="f" for="summary">한두 줄 요약 (직접 쓰기)</label>
+<textarea id="summary" maxlength="160" placeholder="기사 문장을 옮기지 말고 내 말로 써 주세요"></textarea>
+<div class="cnt" id="sumCnt">0/160</div>
+<label class="f" for="link">원문 기사 링크 (선택)</label>
+<input type="url" id="link" placeholder="https://">
+
+<label class="f">1면에 실은 신문</label>
+<div class="grp d">종합일간지</div>
+<div class="chips d" id="chipsD"></div>
+<div class="grp e">경제지</div>
+<div class="chips e" id="chipsE"></div>
+<div class="pc" id="pc"></div>
+
+<h2>② 쉽게 풀어보기</h2>
+<p class="hint">알기 어려운 말이나 부분을 질문으로 적고, 쉽게 풀어서 답해 주세요.</p>
+<div id="qaList"></div>
+<button class="add" id="addQa">+ 풀이 추가</button>
+
+<div class="msg" id="msg"></div>
+
+<details id="setup">
+  <summary>저장 설정 (처음 한 번만)</summary>
+  <p>저장 버튼을 누르면 이 기기에서 바로 사이트에 올라가요. 그러려면 GitHub에서 만든 "열쇠(토큰)"가 한 번 필요해요. 열쇠는 이 기기 브라우저에만 저장되고, 다른 곳으로 보내지 않아요.</p>
+  <label class="f" for="token">GitHub 토큰</label>
+  <input type="password" id="token" autocomplete="off" placeholder="github_pat_로 시작">
+  <p><button id="saveToken" type="button">토큰 저장</button> <button id="clearToken" type="button">토큰 지우기</button></p>
+</details>
+</div>
+
+<div class="bottom"><div class="in">
+  <a id="view" href="./" target="_blank">미리보기</a>
+  <button id="save">저장하고 올리기</button>
+</div></div>
+
+<script src="papers.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const REPO='wlrudgns10-web/towardself';
+const LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+const ALL=[...PAPERS.daily,...PAPERS.econ];
+let S=null;
+
+function store(k,v){try{ v===undefined?localStorage.removeItem(k):localStorage.setItem(k,v) }catch(e){}}
+function read(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function todayKST(){return new Date(Date.now()+9*3600e3).toISOString().slice(0,10)}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function blank(){return {title:'',summary:'',link:'',papers:[],explain:[{q:'',a:''},{q:'',a:''}]}}
+
+function draw(){
+  $('#title').value=S.title; $('#summary').value=S.summary; $('#link').value=S.link;
+  $('#sumCnt').textContent=`${S.summary.length}/160`;
+  $('#chipsD').innerHTML=PAPERS.daily.map(p=>`<button type="button" data-p="${p}" aria-pressed="${S.papers.includes(p)}">${SHORT[p]}</button>`).join('');
+  $('#chipsE').innerHTML=PAPERS.econ.map(p=>`<button type="button" data-p="${p}" aria-pressed="${S.papers.includes(p)}">${SHORT[p]}</button>`).join('');
+  drawPc(); drawQa();
+}
+function drawPc(){ $('#pc').textContent=`18곳 중 ${S.papers.length}곳 선택`; }
+function drawQa(){
+  $('#qaList').innerHTML=S.explain.map((x,i)=>`
+  <div class="qa" data-i="${i}">
+    <div class="hd"><b>풀이 ${i+1}</b>${S.explain.length>1?`<button class="del" data-del="${i}">삭제</button>`:''}</div>
+    <label class="f">어려운 부분 (질문으로)</label>
+    <input type="text" data-k="q" value="${esc(x.q)}" maxlength="60" placeholder="예: 기준금리가 뭐길래 다들 신경 써?">
+    <label class="f">쉽게 풀면</label>
+    <textarea data-k="a" maxlength="400" placeholder="친구한테 설명하듯 써 주세요">${esc(x.a)}</textarea>
+  </div>`).join('');
+}
+function saveDraft(){store('draft1:'+$('#date').value, JSON.stringify(S))}
+
+['title','summary','link'].forEach(k=>$('#'+k).addEventListener('input',e=>{S[k]=e.target.value; if(k==='summary') $('#sumCnt').textContent=`${S.summary.length}/160`; saveDraft()}));
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.chips button'); if(!b) return; const p=b.dataset.p;
+  S.papers = S.papers.includes(p) ? S.papers.filter(x=>x!==p) : [...S.papers,p];
+  b.setAttribute('aria-pressed', S.papers.includes(p)); drawPc(); saveDraft();
+});
+$('#qaList').addEventListener('input',e=>{const c=e.target.closest('.qa'); if(!c||!e.target.dataset.k) return; S.explain[+c.dataset.i][e.target.dataset.k]=e.target.value; saveDraft()});
+$('#qaList').addEventListener('click',e=>{const b=e.target.closest('[data-del]'); if(!b) return; if(confirm('이 풀이를 지울까요?')){ S.explain.splice(+b.dataset.del,1); drawQa(); saveDraft() }});
+$('#addQa').onclick=()=>{S.explain.push({q:'',a:''}); drawQa(); saveDraft(); const q=document.querySelectorAll('.qa'); q[q.length-1].querySelector('input').focus()};
+
+async function loadDate(){
+  const d=$('#date').value; $('#view').href=`./?d=${d}`; $('#loadMsg').textContent=''; S=null;
+  const dr=read('draft1:'+d);
+  if(dr){ try{ S=JSON.parse(dr); $('#loadMsg').textContent='쓰던 내용을 불러왔어요.' }catch(e){} }
+  if(!S){ try{ const r=await fetch(`data/${d}.json?nc=${Date.now()}`); if(r.ok){ const j=await r.json(); const s=j.story||(j.stories&&j.stories[0]); if(s){ S={...blank(),...s}; if(!S.explain.length) S.explain=[{q:'',a:''}]; $('#loadMsg').textContent='이미 올린 내용을 불러왔어요. 고쳐서 다시 저장할 수 있어요.' } } }catch(e){} }
+  if(!S) S=blank();
+  draw();
+}
+$('#date').onchange=loadDate;
+
+// ---- 저장 ----
+function b64(str){const by=new TextEncoder().encode(str);let s='';for(let i=0;i<by.length;i+=8192)s+=String.fromCharCode.apply(null,by.subarray(i,i+8192));return btoa(s)}
+function unb64(b){const s=atob(b.replace(/\n/g,''));return new TextDecoder().decode(Uint8Array.from(s,c=>c.charCodeAt(0)))}
+async function gh(path,method,body){
+  const r=await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`,{method:method||'GET',headers:{'Authorization':'Bearer '+read('ghToken'),'Accept':'application/vnd.github+json'},body:body?JSON.stringify(body):undefined});
+  if(method&&!r.ok) throw new Error('GitHub '+r.status);
+  return r;
+}
+async function putFile(path,text,msg){
+  if(LOCAL){ const r=await fetch('/'+path,{method:'PUT',body:text}); if(!r.ok) throw new Error('local '+r.status); return }
+  const g=await gh(path); const sha=g.ok?(await g.json()).sha:undefined;
+  await gh(path,'PUT',{message:msg,content:b64(text),sha});
+}
+async function getIndex(){
+  let j={dates:[]};
+  if(LOCAL){ const r=await fetch('data/index.json?nc='+Date.now()); if(r.ok) j=await r.json() }
+  else{ const g=await gh('news/data/index.json'); if(g.ok) j=JSON.parse(unb64((await g.json()).content)) }
+  j.dates=j.dates||[]; j.titles=j.titles||{}; return j;
+}
+
+$('#save').onclick=async()=>{
+  const d=$('#date').value, m=$('#msg');
+  const story={title:S.title.trim(),summary:S.summary.trim(),link:S.link.trim(),papers:ALL.filter(p=>S.papers.includes(p)),
+    explain:S.explain.map(x=>({q:x.q.trim(),a:x.a.trim()})).filter(x=>x.a)};
+  const err=t=>{m.className='msg err';m.textContent=t};
+  if(!story.title) return err('제목을 써 주세요.');
+  if(!story.papers.length) return err('1면에 실은 신문을 하나 이상 골라 주세요.');
+  if(story.link&&!/^https?:\/\//.test(story.link)) return err('링크는 https:// 로 시작해야 해요.');
+  if(!LOCAL&&!read('ghToken')){ $('#setup').open=true; return err('처음 한 번은 아래 "저장 설정"에서 토큰을 넣어 주세요.') }
+  $('#save').disabled=true; m.className='msg'; m.textContent='올리는 중...';
+  try{
+    await putFile(`news/data/${d}.json`, JSON.stringify({date:d,story},null,1), `1면 ${d}`);
+    const idx=await getIndex();
+    if(!idx.dates.includes(d)) idx.dates.push(d);
+    idx.dates.sort().reverse(); idx.titles[d]=story.title;
+    await putFile('news/data/index.json', JSON.stringify(idx), `1면 목록 ${d}`);
+    store('draft1:'+d);
+    m.className='msg ok'; m.textContent = LOCAL ? '저장했어요. 미리보기를 눌러 보세요.' : '올렸어요! 1~2분 뒤 사이트에 보여요.';
+  }catch(e){ err('저장 실패 ('+e.message+'). 토큰이 맞는지 확인해 주세요.') }
+  $('#save').disabled=false;
+};
+$('#saveToken').onclick=()=>{const v=$('#token').value.trim(); if(!v) return; store('ghToken',v); $('#token').value=''; $('#msg').className='msg ok'; $('#msg').textContent='토큰을 이 기기에 저장했어요.'};
+$('#clearToken').onclick=()=>{store('ghToken'); $('#msg').className='msg'; $('#msg').textContent='토큰을 지웠어요.'};
+
+$('#date').value=todayKST(); loadDate();
+</script>
+</body>
+</html>

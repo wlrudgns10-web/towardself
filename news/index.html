@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>오늘의 1면 · 신문 1면 뉴스, 쉽게 풀어보기</title>
+<meta name="description" content="중앙일간지 9곳과 경제지 9곳 1면에 가장 많이 실린 오늘의 뉴스 하나를 골라, 어려운 부분을 쉽게 풀어 드려요. 매일 아침 업데이트.">
+<link rel="canonical" href="https://towardself.co.kr/news/">
+<meta property="og:title" content="오늘의 1면 · 오늘 신문 1면 뉴스, 쉽게 풀어보기">
+<meta property="og:description" content="신문 18곳 1면에 가장 많이 실린 뉴스 하나, 1분 만에 이해하기">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://towardself.co.kr/news/">
+<meta property="og:site_name" content="오늘의 1면">
+<meta property="og:locale" content="ko_KR">
+<link rel="icon" href="/news/icon.svg" type="image/svg+xml"><link rel="icon" href="/news/icon-48.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="/news/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="google-adsense-account" content="ca-pub-9743896158161620">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NL1EPS71XC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NL1EPS71XC');</script>
+<style>
+:root{--bg:#FFFFFF;--paper:#FFFFFF;--ink:#111111;--muted:#666666;--line:#E3E3E3;--accent:#C8321E;--daily:#2F4F7A;--econ:#2E7A5B;--bar:#EEEEEE;--soft:#F6F6F6}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121212;--paper:#1A1A1A;--ink:#F2F2F2;--muted:#A6A6A6;--line:#333333;--accent:#F06A52;--daily:#8FB0DC;--econ:#79C9A3;--bar:#2A2A2A;--soft:#1E1E1E}}
+*{box-sizing:border-box}
+:root{--gothic:"Noto Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;--myeongjo:"Nanum Myeongjo","AppleMyungjo","Batang",serif}
+button,input,textarea{font-family:inherit}
+h1,h2,h3,.mast,.date,.qa h3,.cnt b{font-family:var(--gothic)}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--myeongjo);-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+.wrap{max-width:680px;margin:0 auto;padding:0 16px}
+header.top{border-bottom:3px double var(--ink);padding:18px 0 10px;text-align:center}
+.mast{font-weight:900;font-size:2rem;letter-spacing:-.02em;margin:0;text-decoration:none;display:inline-block}
+.mast b{color:var(--accent)}
+.mast img{vertical-align:-5px;margin-right:8px}
+.tag{font-size:.82rem;color:var(--muted);margin-top:2px}
+.datebar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 0;border-bottom:1px solid var(--line)}
+.datebar button{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;width:36px;height:36px;font-size:1rem;cursor:pointer}
+.datebar button:disabled{opacity:.3;cursor:default}
+.date{font-weight:700;font-size:1.05rem;text-align:center}
+.date small{display:block;font-family:var(--myeongjo);font-weight:400;font-size:.78rem;color:var(--muted)}
+.kicker{display:inline-block;margin:22px 0 8px;font-size:.8rem;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:99px;padding:3px 10px}
+h1.hl{font-size:1.65rem;line-height:1.35;margin:22px 0 10px;font-weight:900;letter-spacing:-.02em;word-break:keep-all}
+.sum{font-size:1rem;line-height:1.75;margin:0 0 16px;word-break:keep-all;color:var(--ink)}
+.cntbox{border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.cnt{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--muted)}
+.cnt b{color:var(--ink);font-size:1.15rem}
+.bar{flex:1;height:9px;background:var(--bar);border-radius:99px;overflow:hidden;display:flex}
+.bar i{display:block;height:100%}
+.bar .d{background:var(--daily)}.bar .e{background:var(--econ)}
+.split{display:flex;gap:14px;font-size:.78rem;color:var(--muted);margin:8px 0 8px}
+.split span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px;background:var(--c)}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-size:.74rem;padding:3px 8px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.chip.d{color:var(--daily)}.chip.e{color:var(--econ)}
+h2.sec{font-size:1.15rem;margin:30px 0 12px;font-weight:900;display:flex;align-items:center;gap:8px}
+h2.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+.qa{background:var(--soft);border-radius:14px;padding:14px 16px;margin:10px 0}
+.qa h3{font-size:1.02rem;margin:0 0 6px;line-height:1.45;word-break:keep-all}
+.qa h3::before{content:"Q. ";color:var(--accent)}
+.qa p{margin:0;line-height:1.8;font-size:.97rem;word-break:keep-all;white-space:pre-line}
+.src{display:inline-block;margin-top:16px;font-size:.85rem;color:var(--muted)}
+.share{display:flex;gap:8px;margin:24px 0 6px}
+.share button{flex:1;padding:13px;border-radius:12px;border:0;font-family:var(--gothic);font-weight:700;font-size:.95rem;cursor:pointer;background:#FEE500;color:#191600}
+.share button.alt{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:99px;font-size:.88rem;opacity:0;transition:.2s;pointer-events:none}
+.toast.on{opacity:1}
+.empty{padding:40px 0;text-align:center;color:var(--muted)}
+.arch{list-style:none;margin:0;padding:0}
+.arch li{border-bottom:1px solid var(--line)}
+.arch a{display:flex;gap:12px;padding:10px 2px;text-decoration:none;font-size:.9rem;line-height:1.45}
+.arch a span{flex:none;color:var(--muted);width:62px}
+.arch a.on{font-weight:700}
+footer{margin:30px 0 40px;font-size:.76rem;color:var(--muted);line-height:1.7;text-align:center}
+footer nav{display:flex;gap:12px;justify-content:center;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a class="mast" href="./"><img src="icon.svg" alt="" width="34" height="34">오늘의 <b>1면</b></a>
+  <div class="tag">신문 1면에 가장 많이 실린 뉴스, 쉽게 풀어보기</div>
+</header>
+
+<div class="datebar">
+  <button id="prev" aria-label="이전 날">◀</button>
+  <div class="date" id="date">불러오는 중</div>
+  <button id="next" aria-label="다음 날">▶</button>
+</div>
+
+<main id="main"></main>
+
+<div class="share" id="shareRow" hidden>
+  <button id="shareBtn">카톡으로 공유</button>
+  <button id="copyBtn" class="alt">링크 복사</button>
+</div>
+
+<h2 class="sec">지난 1면</h2>
+<ul class="arch" id="arch"></ul>
+
+<footer>
+  요약과 풀이는 운영자가 신문 1면을 직접 보고 쓴 것이에요. 기사 원문과 저작권은 각 언론사에 있어요.<br>
+  기준 신문: 스크랩마스터 중앙일간지 9곳 · 중앙경제지 9곳
+  <nav><a href="/">게임</a><a href="/test.html">속닥이 테스트</a><a href="/about.html">소개</a><a href="/privacy.html">개인정보처리방침</a></nav>
+</footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="papers.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const DAILY=new Set(PAPERS.daily), ECON=new Set(PAPERS.econ);
+const WD=['일','월','화','수','목','금','토'];
+let dates=[], titles={}, cur=null, story=null;
+
+function fmt(d){const [y,m,dd]=d.split('-').map(Number);const w=WD[new Date(y,m-1,dd).getDay()];return {long:`${m}월 ${dd}일 ${w}요일`,year:`${y}년`,short:`${m}월 ${dd}일`,dot:`${m}.${dd}`,wd:w}}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),1800)}
+function pick(j){ return j.story || (j.stories&&j.stories[0]) || null }
+
+function render(){
+  const f=fmt(cur);
+  $('#date').innerHTML=`${f.long}<small>${f.year} 아침 신문</small>`;
+  const i=dates.indexOf(cur);
+  $('#prev').disabled = i>=dates.length-1; $('#next').disabled = i<=0;
+  if(!story){ $('#main').innerHTML='<div class="empty">이 날은 기록이 없어요.</div>'; $('#shareRow').hidden=true; }
+  else{
+    const ps=story.papers||[], d=ps.filter(p=>DAILY.has(p)), e=ps.filter(p=>ECON.has(p));
+    const qa=(story.explain||[]).filter(x=>x.q||x.a);
+    $('#main').innerHTML=`
+      <h1 class="hl">${esc(story.title)}</h1>
+      ${story.summary?`<p class="sum">${esc(story.summary)}</p>`:''}
+      <div class="cntbox">
+        <div class="cnt"><span><b>${ps.length}곳</b> / 18곳 1면</span><div class="bar"><i class="d" style="width:${d.length/18*100}%"></i><i class="e" style="width:${e.length/18*100}%"></i></div></div>
+        <div class="split"><span style="--c:var(--daily)">종합일간지 ${d.length}/9</span><span style="--c:var(--econ)">경제지 ${e.length}/9</span></div>
+        <div class="chips">${ps.map(p=>`<span class="chip ${DAILY.has(p)?'d':'e'}">${esc(SHORT[p]||p)}</span>`).join('')}</div>
+      </div>
+      ${qa.length?`<h2 class="sec">💡 쉽게 풀어보기</h2>${qa.map(x=>`<div class="qa">${x.q?`<h3>${esc(x.q)}</h3>`:''}<p>${esc(x.a)}</p></div>`).join('')}`:''}
+      ${story.link?`<a class="src" href="${esc(story.link)}" target="_blank" rel="noopener nofollow">원문 기사 보기 →</a>`:''}`;
+    $('#shareRow').hidden=false;
+    document.title=`${f.short} 신문 1면: ${story.title} · 오늘의 1면`;
+  }
+  $('#arch').innerHTML=dates.slice(0,30).map(d=>`<li><a href="?d=${d}" data-d="${d}" class="${d===cur?'on':''}"><span>${fmt(d).dot} ${fmt(d).wd}</span>${esc(titles[d]||'')}</a></li>`).join('');
+}
+
+async function load(d,push){
+  cur=d;
+  try{ const r=await fetch(`data/${d}.json?nc=${Date.now()}`); story=r.ok?pick(await r.json()):null }catch(e){ story=null }
+  if(push) history.pushState({d},'',`?d=${d}`);
+  render();
+}
+
+async function init(){
+  try{ const j=await (await fetch(`data/index.json?nc=${Date.now()}`)).json(); dates=j.dates||[]; titles=j.titles||{} }catch(e){ dates=[] }
+  dates.sort().reverse();
+  const q=new URLSearchParams(location.search).get('d');
+  const d = (q && dates.includes(q)) ? q : dates[0];
+  if(!d){ $('#date').textContent='아직 기록이 없어요'; $('#main').innerHTML='<div class="empty">곧 첫 1면이 올라와요.</div>'; return }
+  load(d,false);
+}
+
+$('#prev').onclick=()=>{const i=dates.indexOf(cur); if(i<dates.length-1) load(dates[i+1],true)};
+$('#next').onclick=()=>{const i=dates.indexOf(cur); if(i>0) load(dates[i-1],true)};
+$('#arch').addEventListener('click',e=>{const a=e.target.closest('a[data-d]'); if(!a) return; e.preventDefault(); load(a.dataset.d,true); window.scrollTo({top:0,behavior:'smooth'})});
+window.onpopstate=()=>{const q=new URLSearchParams(location.search).get('d'); if(q&&dates.includes(q)) load(q,false)};
+
+function shareText(){
+  const qa=(story.explain||[]).filter(x=>x.q);
+  return `📰 ${fmt(cur).short} 신문 1면\n${story.title} (18곳 중 ${(story.papers||[]).length}곳)`+(qa.length?`\n\n💡 ${qa.map(x=>x.q).join('\n💡 ')}`:'');
+}
+function pageUrl(){return `https://towardself.co.kr/news/?d=${cur}`}
+$('#shareBtn').onclick=async()=>{
+  const text=shareText(), url=pageUrl();
+  try{ gtag('event','news_share',{date:cur}) }catch(e){}
+  if(navigator.share){ try{ await navigator.share({title:'오늘의 1면',text,url}); return }catch(e){ if(e.name==='AbortError') return } }
+  try{ await navigator.clipboard.writeText(text+'\n\n'+url); toast('복사했어요. 카톡에 붙여넣기 하세요') }catch(e){ toast('복사가 안 돼요') }
+};
+$('#copyBtn').onclick=async()=>{ try{ await navigator.clipboard.writeText(pageUrl()); toast('링크를 복사했어요') }catch(e){ toast('복사가 안 돼요') } };
+init();
+</script>
+</body>
+</html>
