@@ -74,14 +74,21 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--line)}
 .qa h3{font-size:1.02rem;margin:0 0 6px;line-height:1.45;word-break:keep-all}
 .qa h3::before{content:"Q. ";color:var(--accent)}
 .qa p{margin:0;line-height:1.8;font-size:.97rem;word-break:keep-all;white-space:pre-line}
-.cards{display:grid;gap:14px}
-.card{display:block;text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:14px}
-.card:last-child{border-bottom:0}
-.card img{display:block;width:100%;aspect-ratio:1200/630;object-fit:cover;border-radius:6px;background:var(--soft);margin-bottom:8px}
-.card .ct{display:block;font-family:var(--gothic);font-weight:700;font-size:1rem;line-height:1.45;word-break:keep-all}
-.card .cs{display:block;font-size:.78rem;color:var(--muted);margin-top:4px}
+.rel{margin-top:10px}
+.cards{display:grid;grid-auto-flow:column;grid-auto-columns:70%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+.card{display:block;text-decoration:none;scroll-snap-align:start;min-width:0}
+.card img,.card .noimg{display:block;width:100%;aspect-ratio:1200/630;object-fit:cover;border-radius:6px;background:var(--soft);margin-bottom:8px}
+.card .noimg{display:grid;place-items:center;font-size:1.6rem}
+.card .ct{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-family:var(--gothic);font-weight:700;font-size:.95rem;line-height:1.45;word-break:keep-all}
+.card .cs{display:block;font-size:.76rem;color:var(--muted);margin-top:4px}
 .card:hover .ct{text-decoration:underline}
-@media (min-width:900px){.cards.multi{grid-template-columns:1fr 1fr;gap:18px}.cards.multi .card{border-bottom:0;padding-bottom:0}.cards.multi .card .ct{font-size:.92rem}}
+@media (min-width:900px){
+ .cards{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;overflow:visible;padding-bottom:0}
+ .card .ct{font-size:.9rem}
+ #main.has .cols{align-items:stretch}
+ #main.has .lead{display:flex;flex-direction:column}
+ #main.has .lead .cntbox{margin-top:auto}
+}
 .share{display:flex;gap:8px;margin:24px 0 6px}
 .share[hidden]{display:none}
 .share button{flex:1;padding:13px;border-radius:12px;border:0;font-family:var(--gothic);font-weight:700;font-size:.95rem;cursor:pointer;background:#FEE500;color:#191600}
@@ -167,11 +174,10 @@ function render(){
         <div class="chips">${ps.map(p=>`<span class="chip ${DAILY.has(p)?'d':'e'}">${esc(SHORT[p]||p)}</span>`).join('')}</div>
       </div>
       </div>
-      ${(qa.length||links(story).length)?`<div class="side">
-        ${qa.length?`<h2 class="sec">💡 쉽게 풀어보기</h2>${qa.map(x=>`<div class="qa">${x.q?`<h3>${esc(x.q)}</h3>`:''}<p>${esc(x.a)}</p></div>`).join('')}`:''}
-        ${links(story).length?`<h2 class="sec">📰 관련 기사</h2><div class="cards${links(story).length>1?' multi':''}">${links(story).map(u=>{const c=(story.cards||[]).find(c=>c.url===u)||{}; const src=host(u);
-          return `<a class="card" href="${esc(u)}" target="_blank" rel="noopener nofollow">${c.image&&/^https:\/\//.test(c.image)?`<img src="${esc(c.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:''}<span class="ct">${esc(c.title||src+' 기사 보기')}</span><span class="cs">${esc(src)} →</span></a>`}).join('')}</div>`:''}
-      </div>`:''}</div>`;
+      ${qa.length?`<div class="side"><h2 class="sec">💡 쉽게 풀어보기</h2>${qa.map(x=>`<div class="qa">${x.q?`<h3>${esc(x.q)}</h3>`:''}<p>${esc(x.a)}</p></div>`).join('')}</div>`:''}
+      </div>
+      ${links(story).length?`<section class="rel"><h2 class="sec">📰 관련 기사</h2><div class="cards">${links(story).map(u=>{const c=(story.cards||[]).find(c=>c.url===u)||{}; const src=host(u);
+          return `<a class="card" href="${esc(u)}" target="_blank" rel="noopener nofollow">${c.image&&/^https:\/\//.test(c.image)?`<img src="${esc(c.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:'<span class="noimg">📰</span>'}<span class="ct">${esc(c.title||src+' 기사 보기')}</span><span class="cs">${esc(src)} →</span></a>`}).join('')}</div></section>`:''}`;
     $('#shareRow').hidden=false;
     document.title=`${f.short} 신문 1면: ${story.title} · 오늘의 1면`;
   }
