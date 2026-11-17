@@ -6,8 +6,8 @@
   "links": [
    "https://www.hani.co.kr/arti/politics/politics_general/1287724.html",
    "https://www.chosun.com/national/education/2026/11/17/C6GKPOVP5JGZLLNFP6VVYQYRNE/",
-   "https://www.hankyung.com/article/2026111706077",
-   "https://www.mk.co.kr/news/economy/12210643"
+   "https://www.mk.co.kr/news/economy/12210643",
+   "https://biz.heraldcorp.com/article/10940148?ref=naver"
   ],
   "papers": [
    "경향신문",
@@ -51,14 +51,14 @@
     "image": "https://www.chosun.com/resizer/v2/67X4Z7VL5VMNJOGU6WQTGWZ4OY.JPG?auth=f0beeb74fbda8efa43c56c0fed691bf53a1afbf5948a3cce17a4bf12f081279f&width=1200&height=630&focal=2649,1431"
    },
    {
-    "url": "https://www.hankyung.com/article/2026111706077",
-    "title": "출근길 안경까지 벗긴다…산업기밀·국가안보도 '빨간불'",
-    "image": "https://img.hankyung.com/photo/202611/02.46441265.1.jpg"
-   },
-   {
     "url": "https://www.mk.co.kr/news/economy/12210643",
     "title": "죽어라 공부해서 얻은 ‘사짜 직업’…“AI로 땄나?” 취급에 일자리도 전멸 - 매일경제",
     "image": "https://pimg.mk.co.kr/news/cms/202611/17/news-p.v1.20261116.ecbb2bf0114e4d60ac20c52391cbade2_R.jpg"
+   },
+   {
+    "url": "https://biz.heraldcorp.com/article/10940148?ref=naver",
+    "title": "[단독] 세무사 시험 90점 이상 고득점자 1년새 2명→66명 폭증…“조직적 AI 부정행위 의심” [세상&]",
+    "image": "https://wimg.heraldcorp.com/news/cms/2026/11/17/rcv.YNA.20261117.PYH2026111708470001300_P1.jpg"
    }
   ]
  }
