@@ -194,7 +194,7 @@ function pick(j){ return j.story || (j.stories&&j.stories[0]) || null }
 function render(){
   const f=fmt(cur);
   const i=dates.indexOf(cur);
-  $('#date').innerHTML=`${f.year} ${f.long}<span class="sep">·</span><span class="no">제 ${dates.length-i}호</span><span class="pc"><span class="sep">·</span>신문 18곳 1면 분석</span>`;
+  $('#date').innerHTML=`${f.year} ${f.long}<span class="sep">·</span><span class="no">제 ${dates.length-i}호</span>`;
   $('#prev').disabled = i>=dates.length-1; $('#next').disabled = i<=0;
   if(!story){ $('#main').className=''; $('#main').innerHTML='<div class="empty">이 날은 기록이 없어요.</div>'; $('#shareRow').hidden=true; }
   else{
