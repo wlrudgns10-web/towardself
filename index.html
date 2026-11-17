@@ -53,9 +53,7 @@ h1.hl{font-size:2.05rem;line-height:1.3;margin:0;padding:24px 0 20px;font-weight
  #main.has .lead{padding-top:24px}
  h1.hl{font-size:2.6rem;line-height:1.25;padding:34px 40px 28px}
  .sum{font-size:1rem;margin-bottom:22px}
- .share{max-width:560px}
- .arch{columns:2;column-gap:44px}
- .arch li{break-inside:avoid}
+ .tail{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:0 44px;align-items:start}
 }
 .cntbox{border:1px solid var(--line);border-radius:14px;padding:12px 14px}
 .cnt{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--muted)}
@@ -89,8 +87,8 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--line)}
  #main.has .lead{display:flex;flex-direction:column}
  #main.has .lead .cntbox{margin-top:auto}
 }
-.share{display:flex;gap:8px;margin:24px 0 6px}
-.share[hidden]{display:none}
+.share{display:flex;gap:8px;margin:0 0 6px}
+.sharebox[hidden]{display:none}
 .share button{flex:1;padding:13px;border-radius:12px;border:0;font-family:var(--gothic);font-weight:700;font-size:.95rem;cursor:pointer;background:#FEE500;color:#191600}
 .share button.alt{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:99px;font-size:.88rem;opacity:0;transition:.2s;pointer-events:none}
@@ -123,13 +121,19 @@ footer nav{display:flex;gap:12px;justify-content:center;margin-top:6px}
 <div id="pvBar" hidden style="margin-top:12px;padding:10px 12px;border-radius:10px;background:#FFF4D6;color:#5A4300;font-size:.85rem;text-align:center">👀 미리보기예요. 아직 사이트에 올라가지 않았어요.</div>
 <main id="main"></main>
 
-<div class="share" id="shareRow" hidden>
-  <button id="shareBtn">카톡으로 공유</button>
-  <button id="copyBtn" class="alt">링크 복사</button>
+<div class="tail">
+  <div class="archbox">
+    <h2 class="sec">지난 1면</h2>
+    <ul class="arch" id="arch"></ul>
+  </div>
+  <div class="sharebox" id="shareRow" hidden>
+    <h2 class="sec">친구에게 공유</h2>
+    <div class="share">
+      <button id="shareBtn">카톡으로 공유</button>
+      <button id="copyBtn" class="alt">링크 복사</button>
+    </div>
+  </div>
 </div>
-
-<h2 class="sec">지난 1면</h2>
-<ul class="arch" id="arch"></ul>
 
 <footer>
   요약과 풀이는 운영자가 신문 1면을 직접 보고 쓴 것이에요. 기사 원문과 저작권은 각 언론사에 있어요.<br>
