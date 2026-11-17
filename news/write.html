@@ -75,10 +75,10 @@ details p{line-height:1.6}
 <div class="chips e" id="chipsE"></div>
 <div class="pc" id="pc"></div>
 
-<h2>② 쉽게 풀어보기</h2>
+<h2>② 쉽게 뜯어보기</h2>
 <p class="hint">알기 어려운 말이나 부분을 질문으로 적고, 쉽게 풀어서 답해 주세요.</p>
 <div id="qaList"></div>
-<button class="add" id="addQa">+ 풀이 추가</button>
+<button class="add" id="addQa">+ 뜯어보기 추가</button>
 
 
 
@@ -125,7 +125,7 @@ function drawPc(){ $('#pc').textContent=`18곳 중 ${S.papers.length}곳 선택`
 function drawQa(){
   $('#qaList').innerHTML=S.explain.map((x,i)=>`
   <div class="qa" data-i="${i}">
-    <div class="hd"><b>풀이 ${i+1}</b>${S.explain.length>1?`<button class="del" data-del="${i}">삭제</button>`:''}</div>
+    <div class="hd"><b>뜯어보기 ${i+1}</b>${S.explain.length>1?`<button class="del" data-del="${i}">삭제</button>`:''}</div>
     <label class="f">어려운 부분 (질문으로)</label>
     <input type="text" data-k="q" value="${esc(x.q)}" maxlength="60" placeholder="예: 기준금리가 뭐길래 다들 신경 써?">
     <label class="f">쉽게 풀면</label>
@@ -144,7 +144,7 @@ document.addEventListener('click',e=>{
   b.setAttribute('aria-pressed', S.papers.includes(p)); drawPc(); saveDraft();
 });
 $('#qaList').addEventListener('input',e=>{const c=e.target.closest('.qa'); if(!c||!e.target.dataset.k) return; S.explain[+c.dataset.i][e.target.dataset.k]=e.target.value; saveDraft()});
-$('#qaList').addEventListener('click',e=>{const b=e.target.closest('[data-del]'); if(!b) return; if(confirm('이 풀이를 지울까요?')){ S.explain.splice(+b.dataset.del,1); drawQa(); saveDraft() }});
+$('#qaList').addEventListener('click',e=>{const b=e.target.closest('[data-del]'); if(!b) return; if(confirm('이 뜯어보기를 지울까요?')){ S.explain.splice(+b.dataset.del,1); drawQa(); saveDraft() }});
 $('#addQa').onclick=()=>{S.explain.push({q:'',a:''}); drawQa(); saveDraft(); const q=document.querySelectorAll('.qa'); q[q.length-1].querySelector('input').focus()};
 
 async function loadDate(){
