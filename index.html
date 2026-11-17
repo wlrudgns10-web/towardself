@@ -38,6 +38,9 @@ header.top{border-bottom:3px double var(--ink);padding:18px 0 10px;text-align:ce
 .mast{font-weight:900;font-size:2rem;letter-spacing:-.02em;margin:0;text-decoration:none;display:inline-block}
 .mast b{color:var(--accent)}
 .mast img{vertical-align:-5px;margin-right:8px}
+.mast img.logo{display:block;height:58px;width:auto;margin:0 auto 4px}
+@media (min-width:900px){.mast img.logo{height:76px}}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .mast img.logo{filter:invert(1) hue-rotate(180deg)}}
 .tag{font-size:.82rem;color:var(--muted);margin-top:2px}
 .datebar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 0;border-bottom:1px solid var(--line)}
 .datebar button{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;width:36px;height:36px;font-size:1rem;cursor:pointer}
@@ -114,7 +117,7 @@ footer nav{display:flex;gap:12px;justify-content:center;margin-top:6px}
 <body>
 <div class="wrap">
 <header class="top">
-  <a class="mast" href="/"><img src="/news/icon.svg" alt="" width="34" height="34">오늘의 <b>1면</b></a>
+  <a class="mast" href="/"><img class="logo" src="/news/logo.png" alt="오늘의 1면" width="900" height="213"></a>
   <div class="tag">신문 1면에 가장 많이 실린 뉴스, 쉽게 풀어보기</div>
 </header>
 
