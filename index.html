@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>오늘의 1면 · 신문 1면 뉴스, 쉽게 풀어보기</title>
 <meta name="description" content="중앙일간지 9곳과 경제지 9곳 1면에 가장 많이 실린 오늘의 뉴스 하나를 골라, 어려운 부분을 쉽게 풀어 드려요. 매일 아침 업데이트.">
-<link rel="canonical" href="https://towardself.co.kr/">
+<link rel="canonical" href="https://1myeon.kr/">
 <meta property="og:title" content="오늘의 1면 · 오늘 신문 1면 뉴스, 쉽게 풀어보기">
 <meta property="og:description" content="신문 18곳 1면에 가장 많이 실린 뉴스 하나, 1분 만에 이해하기">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://towardself.co.kr/">
+<meta property="og:url" content="https://1myeon.kr/">
 <meta property="og:site_name" content="오늘의 1면">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="https://towardself.co.kr/img/og-news.jpg?v=1">
+<meta property="og:image" content="https://1myeon.kr/img/og-news.jpg?v=1">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="오늘의 1면 - 신문 1면에 가장 많이 실린 뉴스, 쉽게 풀어보기">
@@ -225,7 +225,7 @@ function shareText(){
   const qa=(story.explain||[]).filter(x=>x.q);
   return `📰 ${fmt(cur).short} 신문 1면\n${story.title} (18곳 중 ${(story.papers||[]).length}곳)`+(qa.length?`\n\n💡 ${qa.map(x=>x.q).join('\n💡 ')}`:'');
 }
-function pageUrl(){return `https://towardself.co.kr/?d=${cur}`}
+function pageUrl(){return `https://1myeon.kr/?d=${cur}`}
 $('#shareBtn').onclick=async()=>{
   const text=shareText(), url=pageUrl();
   try{ gtag('event','news_share',{date:cur}) }catch(e){}

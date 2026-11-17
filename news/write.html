@@ -223,6 +223,13 @@ $('#clearToken').onclick=()=>{store('ghToken'); tokenState(); $('#msg').classNam
 
 function tokenState(){ $('#setupSum').textContent = LOCAL ? '저장 설정 (내 컴퓨터 테스트 중)' : read('ghToken') ? '저장 설정 (토큰 저장됨 ✅)' : '저장 설정 ⚠️ 토큰이 아직 없어요'; }
 $('#view').addEventListener('click',()=>saveDraft());
+// 옛 주소(towardself.co.kr)에서 저장 열쇠를 옮겨 받기
+window.addEventListener('message',ev=>{
+  if(ev.origin!=='https://1myeon.kr'||!ev.data||ev.data.type!=='ghToken'||!/^[A-Za-z0-9_]{20,}$/.test(ev.data.token||'')) return;
+  store('ghToken',ev.data.token); tokenState();
+  try{ ev.source.postMessage('ghToken-ok',ev.origin) }catch(e){}
+  $('#msg').className='msg ok'; $('#msg').textContent='저장 열쇠를 새 주소로 옮겼어요.';
+});
 tokenState();
 $('#date').value=todayKST(); loadDate();
 </script>
