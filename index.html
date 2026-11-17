@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>오늘의 1면 · 신문 1면 뉴스, 쉽게 뜯어보기</title>
+<title>오늘의 1면 · 신문 1면 뉴스, 쉽게 풀어보기</title>
 <meta name="description" content="중앙일간지 9곳과 경제지 9곳 1면에 가장 많이 실린 오늘의 뉴스 하나를 골라, 어려운 부분을 쉽게 풀어 드려요. 매일 아침 업데이트.">
 <link rel="canonical" href="https://1myeon.kr/">
-<meta property="og:title" content="오늘의 1면 · 오늘 신문 1면 뉴스, 쉽게 뜯어보기">
+<meta property="og:title" content="오늘의 1면 · 오늘 신문 1면 뉴스, 쉽게 풀어보기">
 <meta property="og:description" content="신문 18곳 1면에 가장 많이 실린 뉴스 하나, 1분 만에 이해하기">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://1myeon.kr/">
@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://1myeon.kr/img/og-news.jpg?v=1">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="오늘의 1면 - 신문 1면에 가장 많이 실린 뉴스, 쉽게 뜯어보기">
+<meta property="og:image:alt" content="오늘의 1면 - 신문 1면에 가장 많이 실린 뉴스, 쉽게 풀어보기">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/news/icon.svg" type="image/svg+xml"><link rel="icon" href="/news/icon-48.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="/news/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
@@ -35,14 +35,17 @@ h1,h2,h3,.mast,.date,.qa h3,.cnt b{font-family:var(--gothic)}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--myeongjo);-webkit-tap-highlight-color:transparent}
 a{color:inherit}
 .wrap{max-width:680px;margin:0 auto;padding:0 16px}
-header.top{border-bottom:3px double var(--ink);padding:18px 0 10px;text-align:center}
+header.top{margin-top:22px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 0 16px;text-align:center}
+:root{--rule:#8C8C8C}
 .mast{font-weight:900;font-size:2rem;letter-spacing:-.02em;margin:0;text-decoration:none;display:inline-block}
 .mast b{color:var(--accent)}
 .mast img{vertical-align:-5px;margin-right:8px}
-.mast img.logo{display:block;height:58px;width:auto;margin:0 auto 4px}
-@media (min-width:900px){.mast img.logo{height:76px}}
+.mast img.logo{display:block;height:50px;width:auto;margin:0 auto 10px}
+@media (min-width:900px){header.top{margin-top:34px;padding:30px 0 22px}.mast img.logo{height:84px;margin-bottom:14px}}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .mast img.logo{filter:invert(1) hue-rotate(180deg)}}
-.tag{font-size:.82rem;color:var(--muted);margin-top:2px}
+.tag{font-family:var(--myeongjo);font-weight:700;font-size:.95rem;color:#3A3A3A;letter-spacing:-.01em}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tag{color:#CFCFCF}}
+@media (min-width:900px){.tag{font-size:1.2rem}}
 .datebar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid var(--ink)}
 .datebar button{background:none;border:0;color:var(--ink);width:32px;height:30px;font-size:.8rem;cursor:pointer}
 .datebar button:disabled{opacity:.3;cursor:default}
@@ -140,8 +143,8 @@ footer nav{display:flex;gap:12px;justify-content:center;margin-top:6px}
 <body>
 <div class="wrap">
 <header class="top">
-  <a class="mast" href="/"><img class="logo" src="/news/logo.png" alt="오늘의 1면" width="900" height="213"></a>
-  <div class="tag">신문 1면에 가장 많이 실린 뉴스, 쉽게 뜯어보기</div>
+  <a class="mast" href="/"><img class="logo" src="/news/logo2.png" alt="오늘의 1면" width="800" height="160"></a>
+  <div class="tag">신문 1면에 가장 많이 실린 뉴스, 쉽게 풀어보기</div>
 </header>
 
 <div class="datebar">
