@@ -101,6 +101,8 @@ h2.sec{font-size:1.15rem;margin:30px 0 12px;font-weight:900;display:flex;align-i
 .qa h3::before{content:"Q. ";color:var(--accent)}
 .qa p{margin:0;line-height:1.8;font-size:.97rem;word-break:keep-all;white-space:pre-line}
 .rel{margin-top:10px}
+.rel h2.sec{margin-bottom:4px}
+.relnote{margin:0 0 12px;font-size:.76rem;color:var(--muted);line-height:1.5;word-break:keep-all}
 .qas{border-top:1px solid var(--line);margin-top:28px;padding-top:22px}
 .cards{display:grid;grid-auto-flow:column;grid-auto-columns:70%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
 .card{display:block;text-decoration:none;scroll-snap-align:start;min-width:0}
@@ -167,7 +169,7 @@ footer nav{display:flex;gap:12px;justify-content:center;margin-top:6px}
 </div>
 
 <footer>
-  요약과 뜯어보기는 운영자가 신문 1면을 직접 보고 쓴 것이에요. 기사 원문과 저작권은 각 언론사에 있어요.<br>
+  요약과 뜯어보기는 운영자가 신문 1면을 직접 보고 쓴 것이에요. 제목은 그날 아침 신문 기준이며, 이후 새 소식은 관련 기사에 담아요. 기사 원문과 저작권은 각 언론사에 있어요.<br>
   기준 신문: 스크랩마스터 중앙일간지 9곳 · 중앙경제지 9곳
   <nav><a href="/about.html">소개</a><a href="/contact.html">문의</a><a href="/privacy.html">개인정보처리방침</a></nav>
   <div class="extra"><a href="/game.html">미니게임</a> · <a href="/test.html">속닥이 테스트</a></div>
@@ -208,7 +210,7 @@ function render(){
         ${[['d','종합일간지',PAPERS.daily,d.length],['e','경제지',PAPERS.econ,e.length]].map(([k,n,list,c])=>`<div class="grp ${k}"><div class="gh">${n} <b>${c}</b>/9</div><div class="tiles">${list.map(p=>`<span class="tile${ps.includes(p)?' on':''}">${ps.includes(p)?'✓ ':''}${esc(p)}</span>`).join('')}</div></div>`).join('')}
       </div>
       </div>
-      ${links(story).length?`<section class="side rel"><h2 class="sec">📰 관련 기사</h2><div class="cards">${links(story).slice(0,4).map(u=>{const c=(story.cards||[]).find(c=>c.url===u)||{}; const src=host(u);
+      ${links(story).length?`<section class="side rel"><h2 class="sec">📰 관련 기사</h2><p class="relnote">제목은 아침 신문 기준이에요. 그 뒤 새 소식은 여기에 담아요.</p><div class="cards">${links(story).slice(0,4).map(u=>{const c=(story.cards||[]).find(c=>c.url===u)||{}; const src=host(u);
           return `<a class="card" href="${esc(u)}" target="_blank" rel="noopener nofollow">${c.image&&/^https:\/\//.test(c.image)?`<img src="${esc(c.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:'<span class="noimg">📰</span>'}<span class="ct">${esc(c.title||src+' 기사 보기')}</span><span class="cs">${esc(src)} →</span></a>`}).join('')}</div></section>`:''}
       </div>
       ${qa.length?`<section class="qas" aria-label="뜯어보기">${qa.map(x=>`<div class="qa">${x.q?`<h3>${esc(x.q)}</h3>`:''}<p>${esc(x.a)}</p></div>`).join('')}</section>`:''}`;
