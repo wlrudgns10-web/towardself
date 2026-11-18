@@ -185,6 +185,72 @@ async function putFile(path,text,msg){
   const g=await gh(path); const sha=g.ok?(await g.json()).sha:undefined;
   await gh(path,'PUT',{message:msg,content:b64(text),sha});
 }
+async function putBin(path,base64,msg){
+  if(LOCAL){ const r=await fetch('/'+path,{method:'PUT',body:Uint8Array.from(atob(base64),c=>c.charCodeAt(0))}); if(!r.ok) throw new Error('local '+r.status); return }
+  const g=await gh(path); const sha=g.ok?(await g.json()).sha:undefined;
+  await gh(path,'PUT',{message:msg,content:base64,sha});
+}
+
+// ---- 날짜별 카톡 미리보기 이미지(1200x630)와 공유용 페이지 ----
+const WDAY=['일','월','화','수','목','금','토'];
+function escA(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function wrapLines(x,text,maxW){
+  const lines=[]; let cur='';
+  for(const w of String(text).split(/\s+/).filter(Boolean)){
+    const t=cur?cur+' '+w:w; if(x.measureText(t).width<=maxW){cur=t;continue}
+    if(cur) lines.push(cur); cur='';
+    if(x.measureText(w).width<=maxW){cur=w;continue}
+    for(const ch of w){ if(x.measureText(cur+ch).width>maxW){lines.push(cur);cur=ch} else cur+=ch }
+  }
+  if(cur) lines.push(cur); return lines;
+}
+async function makeCard(d,story,no){
+  const G='"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif';
+  const wait=(p,ms)=>Promise.race([p,new Promise(r=>setTimeout(r,ms))]);
+  await wait(Promise.all(['900 60px "Noto Sans KR"','700 26px "Noto Sans KR"'].map(f=>document.fonts.load(f).catch(()=>{}))),8000);
+  const logo=new Image(); await wait(new Promise(r=>{logo.onload=logo.onerror=r; logo.src='/news/logo2.png'}),8000);
+  const W=1200,H=630,c=document.createElement('canvas'); c.width=W; c.height=H; const x=c.getContext('2d');
+  const box=(X,Y,w,h,col)=>{ x.fillStyle=col; x.beginPath(); if(x.roundRect) x.roundRect(X,Y,w,h,h/2); else x.rect(X,Y,w,h); x.fill() };
+  x.fillStyle='#FFFFFF'; x.fillRect(0,0,W,H);
+  x.fillStyle='#8C8C8C'; x.fillRect(60,34,W-120,2);
+  if(logo.naturalWidth){ const lh=60, lw=logo.naturalWidth*lh/logo.naturalHeight; x.drawImage(logo,(W-lw)/2,56,lw,lh) }
+  const [y,m,dd]=d.split('-').map(Number), left=`${y}년 ${m}월 ${dd}일 ${WDAY[new Date(y,m-1,dd).getDay()]}요일  ·  `, right=`제 ${no}호`;
+  x.font=`700 26px ${G}`; const sx=(W-x.measureText(left+right).width)/2;
+  x.fillStyle='#444444'; x.fillText(left,sx,160); x.fillStyle='#C8321E'; x.fillText(right,sx+x.measureText(left).width,160);
+  x.fillStyle='#111111'; x.fillRect(60,182,W-120,3);
+  let size=70, lines; for(;;){ x.font=`900 ${size}px ${G}`; lines=wrapLines(x,story.title,W-160); if(lines.length<=3||size<=40) break; size-=4 }
+  lines=lines.slice(0,3); const lh=size*1.3, top=196, bottom=512; let ly=top+(bottom-top-lines.length*lh)/2+size*1.0;
+  x.fillStyle='#111111'; x.textAlign='center'; lines.forEach((l,i)=>x.fillText(l,W/2,ly+i*lh)); x.textAlign='left';
+  const n=story.papers.length, dn=story.papers.filter(p=>PAPERS.daily.includes(p)).length, en=n-dn;
+  x.fillStyle='#E3E3E3'; x.fillRect(60,520,W-120,1);
+  x.font=`900 46px ${G}`; x.fillStyle='#111111'; x.fillText(String(n),60,588); let bx=60+x.measureText(String(n)).width+6;
+  x.font=`700 24px ${G}`; x.fillStyle='#666666'; x.fillText('/18곳 신문 1면',bx,588); bx+=x.measureText('/18곳 신문 1면').width+26;
+  x.font=`700 24px ${G}`; const site='1myeon.kr', ex=W-60-x.measureText(site).width; x.fillStyle='#C8321E'; x.fillText(site,ex,588);
+  const bw=ex-30-bx; box(bx,567,bw,14,'#EEEEEE');
+  if(n){ x.save(); x.beginPath(); const fw=Math.max(14,bw*n/18); if(x.roundRect) x.roundRect(bx,567,fw,14,7); else x.rect(bx,567,fw,14); x.clip();
+    x.fillStyle='#2E7A5B'; x.fillRect(bx,567,fw,14); if(dn){ x.fillStyle='#2F4F7A'; x.fillRect(bx,567,bw*dn/18,14) } x.restore() }
+  return c.toDataURL('image/png').split(',')[1];
+}
+function sharePage(d,story){
+  const [y,m,dd]=d.split('-').map(Number), t=`${m}월 ${dd}일 신문 1면: ${story.title}`;
+  const desc=`18곳 중 ${story.papers.length}곳 1면` + (story.summary?` · ${story.summary}`:'');
+  return `<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${escA(t)} · 오늘의 1면</title>
+<link rel="canonical" href="https://1myeon.kr/?d=${d}">
+<meta name="description" content="${escA(desc)}">
+<meta property="og:type" content="article"><meta property="og:site_name" content="오늘의 1면">
+<meta property="og:title" content="${escA(t)}">
+<meta property="og:description" content="${escA(desc)}">
+<meta property="og:url" content="https://1myeon.kr/d/${d}">
+<meta property="og:image" content="https://1myeon.kr/d/${d}.png?v=${Date.now()}">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>location.replace('/?d=${d}')<\/script>
+</head><body><a href="/?d=${d}">오늘의 1면 보기</a></body></html>
+`;
+}
+
 async function getIndex(){
   let j={dates:[]};
   if(LOCAL){ const r=await fetch('data/index.json?nc='+Date.now()); if(r.ok) j=await r.json() }
@@ -214,6 +280,9 @@ $('#save').onclick=async()=>{
     idx.dates.sort().reverse(); idx.titles[d]=story.title;
     await putFile('news/data/index.json', JSON.stringify(idx), `1면 목록 ${d}`);
     store('draft1:'+d);
+    m.textContent='카톡 미리보기 이미지 만드는 중...';
+    try{ await putBin(`d/${d}.png`, await makeCard(d,story,[...idx.dates].sort().indexOf(d)+1), `1면 이미지 ${d}`) }catch(e){ console.warn('card',e) }
+    try{ await putFile(`d/${d}.html`, sharePage(d,story), `1면 공유 ${d}`) }catch(e){ console.warn('share page',e) }
     m.className='msg ok'; m.textContent = LOCAL ? '저장했어요. 미리보기를 눌러 보세요.' : '올렸어요! 1~2분 뒤 사이트에 보여요.';
   }catch(e){ const c=e.message; err(/401/.test(c)?'저장 실패: 토큰이 틀렸거나 만료됐어요. 토큰을 다시 넣어 주세요.':/40[34]/.test(c)?'저장 실패: 토큰 권한이 부족해요. towardself 선택과 Contents: Read and write를 확인해 주세요.':'저장 실패 ('+c+'). 인터넷 연결을 확인하고 다시 눌러 주세요.') }
   $('#save').disabled=false;

@@ -215,7 +215,7 @@ function render(){
       ${links(story).length?`<section class="side rel"><h2 class="sec">📰 관련 기사</h2><p class="relnote">제목은 아침 신문 기준이에요. 그 뒤 새 소식은 여기에 담아요.</p><div class="cards">${links(story).slice(0,4).map(u=>{const c=(story.cards||[]).find(c=>c.url===u)||{}; const src=host(u);
           return `<a class="card" href="${esc(u)}" target="_blank" rel="noopener nofollow">${c.image&&/^https:\/\//.test(c.image)?`<img src="${esc(c.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:'<span class="noimg">📰</span>'}<span class="ct">${esc(c.title||src+' 기사 보기')}</span><span class="cs">${esc(src)} →</span></a>`}).join('')}</div></section>`:''}
       </div>`;
-    $('#shareRow').hidden=false;
+    $('#shareRow').hidden=false; if(!PREVIEW) checkShare(cur);
     document.title=`${f.short} 신문 1면: ${story.title} · 오늘의 1면`;
   }
   $('#arch').innerHTML=dates.slice(0,30).map(d=>`<li><a href="?d=${d}" data-d="${d}" class="${d===cur?'on':''}"><span>${fmt(d).dot} ${fmt(d).wd}</span>${esc(titles[d]||'')}</a></li>`).join('');
@@ -248,7 +248,10 @@ window.onpopstate=()=>{const q=new URLSearchParams(location.search).get('d'); if
 function shareText(){
   return `📰 ${fmt(cur).short} 신문 1면\n${story.title} (18곳 중 ${(story.papers||[]).length}곳)`;
 }
-function pageUrl(){return `https://1myeon.kr/?d=${cur}`}
+// 날짜별 공유 페이지(/d/날짜)가 있으면 그걸로 공유해요: 카톡에 그날 제목이 담긴 미리보기 이미지가 떠요
+const _sp2={};
+async function checkShare(d){ if(d in _sp2) return; _sp2[d]=false; try{ const r=await fetch(`/d/${d}.png`,{method:'HEAD',cache:'no-store'}); _sp2[d]=r.ok }catch(e){} }
+function pageUrl(){return _sp2[cur]?`https://1myeon.kr/d/${cur}`:`https://1myeon.kr/?d=${cur}`}
 $('#shareBtn').onclick=async()=>{
   const text=shareText(), url=pageUrl();
   try{ gtag('event','news_share',{date:cur}) }catch(e){}
