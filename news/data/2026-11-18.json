@@ -4,10 +4,10 @@
   "title": "李 “수능 부정신고 건당 1억 포상”…수험생 단추 스티커 부착도",
   "summary": "정부가 19일 치러지는 2027학년도 대학수학능력시험(수능)을 앞두고 첨단 기술을 악용한 부정행위 차단에 나섰다. 초소형 카메라 등 전자기기 반입 단속을 강화하고, AI를 활용한 부정행위 신고자에게는 건당 1억원 이상의 포상금을 지급한다.",
   "links": [
-   "https://www.chosun.com/national/education/2026/11/18/YJ72OU6WKNFHDHY3ZBCGS7JYUY/",
    "https://www.joongang.co.kr/article/25479641",
    "https://www.donga.com/news/Society/article/all/20261118/135043061/2",
-   "https://www.hankyung.com/article/2026111832187"
+   "https://www.hankyung.com/article/2026111832187",
+   "https://www.etoday.co.kr/news/view/2649726?trc=main_top"
   ],
   "papers": [
    "경향신문",
@@ -32,11 +32,6 @@
   "explain": [],
   "cards": [
    {
-    "url": "https://www.chosun.com/national/education/2026/11/18/YJ72OU6WKNFHDHY3ZBCGS7JYUY/",
-    "title": "李 “수능 부정 신고땐 건당 1억 포상”",
-    "image": "https://www.chosun.com/resizer/v2/HBRWGMRZHEZWCZBYGM3DIYJWMY.jpg?auth=be1779f49e9d1e772b2aed76a7659fefe435e334bdd10f67fbb3524eca55a6a7&width=1200&height=630&focal=1072,201"
-   },
-   {
     "url": "https://www.joongang.co.kr/article/25479641",
     "title": "“몰카 천국 만드느라 애썼다”…국회가 10년간 키운 ‘수능 재앙’ | 중앙일보",
     "image": "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202611/18/4db2479f-c0e6-4622-a593-9c48a957f7d5.jpg"
@@ -50,6 +45,11 @@
     "url": "https://www.hankyung.com/article/2026111832187",
     "title": "오늘 55만명 수능 예비소집…AI 부정행위 단속 강화",
     "image": "https://img.hankyung.com/photo/202611/01.42354644.1.jpg"
+   },
+   {
+    "url": "https://www.etoday.co.kr/news/view/2649726?trc=main_top",
+    "title": "수능 하루 전 필기구 규정 변경⋯‘흑색 연필’만 휴대 가능",
+    "image": "https://img.etoday.co.kr/pto_db/2026/11/20261118112819_2419509_1200_751.jpg"
    }
   ]
  }
