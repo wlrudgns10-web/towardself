@@ -1,0 +1,63 @@
+name: 신문별 기사 찾기
+
+on:
+  push:
+    branches: [main]
+    paths: ['news/data/2*.json']
+  workflow_dispatch:
+    inputs:
+      date:
+        description: '날짜 (예: 2026-11-19). 비우면 가장 최근 날짜'
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paperlinks
+  cancel-in-progress: false
+
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 바뀐 날짜 확인
+        id: dates
+        run: |
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            echo "list=${{ github.event.inputs.date }}" >> "$GITHUB_OUTPUT"
+          else
+            list=$(git diff --name-only HEAD~1 HEAD -- 'news/data/2*.json' 2>/dev/null | sed -E 's#.*/([0-9-]+)\.json#\1#' | tr '\n' ' ')
+            echo "list=$list" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 다른 저장이 끝날 때까지 잠깐 기다리기
+        if: github.event_name == 'push'
+        run: sleep 25
+
+      - name: 최신으로 맞추기
+        run: git pull -q --ff-only origin main
+
+      - name: 기사 찾기
+        env:
+          NAVER_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+        run: node .github/scripts/paperlinks.mjs ${{ steps.dates.outputs.list }}
+
+      - name: 올리기
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add news/data
+          if git diff --cached --quiet; then echo "올릴 것 없음"; exit 0; fi
+          git commit -q -m "신문별 기사 링크 자동 추가"
+          for i in 1 2 3; do
+            git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0
+            sleep 5
+          done
+          exit 1
