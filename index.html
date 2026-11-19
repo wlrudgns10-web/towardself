@@ -93,6 +93,10 @@ h1.hl{font-size:2.05rem;line-height:1.3;margin:0;padding:24px 0 20px;font-weight
 .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
 .tile{font-family:var(--gothic);font-size:.72rem;text-align:center;padding:5px 3px;border-radius:6px;background:var(--soft);color:var(--muted);border:1px dashed var(--line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tile.on{background:var(--c);color:#fff;border:1px solid var(--c);font-weight:700}
+a.tile{position:relative;display:block;text-decoration:none;padding-left:12px;padding-right:12px}
+a.tile::after{content:'↗';position:absolute;top:50%;right:4px;transform:translateY(-50%);font-size:.62rem;font-weight:400;opacity:.75}
+a.tile:hover{filter:brightness(1.12)}
+.tilenote{font-family:var(--gothic);font-size:.72rem;color:var(--muted);margin:10px 0 0}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tile.on{color:#111}}
 @media (min-width:900px){.cntbox{padding:14px 16px 16px}.tiles{gap:5px}.tile{font-size:.76rem;padding:6px 3px}}
 .chips{display:flex;flex-wrap:wrap;gap:4px}
@@ -190,6 +194,9 @@ const _sp=new URLSearchParams(location.search), PREVIEW=_sp.get('preview')?_sp.g
 function fmt(d){const [y,m,dd]=d.split('-').map(Number);const w=WD[new Date(y,m-1,dd).getDay()];return {long:`${m}월 ${dd}일 ${w}요일`,year:`${y}년`,short:`${m}월 ${dd}일`,dot:`${m}.${dd}`,wd:w}}
 function links(s){ return (s.links||(s.link?[s.link]:[])).map(u=>String(u||'').trim()).filter(u=>/^https?:\/\//.test(u)) }
 const HOSTS={'chosun.com':'조선일보','joongang.co.kr':'중앙일보','donga.com':'동아일보','hani.co.kr':'한겨레','khan.co.kr':'경향신문','kmib.co.kr':'국민일보','seoul.co.kr':'서울신문','segye.com':'세계일보','hankookilbo.com':'한국일보','dt.co.kr':'디지털타임스','mt.co.kr':'머니투데이','sedaily.com':'서울경제','ajunews.com':'아주경제','edaily.co.kr':'이데일리','etoday.co.kr':'이투데이','etnews.com':'전자신문','fnnews.com':'파이낸셜뉴스','hankyung.com':'한국경제','mk.co.kr':'매일경제','munhwa.com':'문화일보','heraldcorp.com':'헤럴드경제','asiae.co.kr':'아시아경제','yna.co.kr':'연합뉴스','news1.kr':'뉴스1','newsis.com':'뉴시스','nocutnews.co.kr':'노컷뉴스','ohmynews.com':'오마이뉴스','pressian.com':'프레시안','sisain.co.kr':'시사IN','kbs.co.kr':'KBS','imbc.com':'MBC','sbs.co.kr':'SBS','jtbc.co.kr':'JTBC','ytn.co.kr':'YTN','mbn.co.kr':'MBN','ichannela.com':'채널A','tvchosun.com':'TV조선','yonhapnewstv.co.kr':'연합뉴스TV','biz.chosun.com':'조선비즈','joongang.co.kr':'중앙일보','zdnet.co.kr':'지디넷코리아','inews24.com':'아이뉴스24','bloter.net':'블로터','etnews.co.kr':'전자신문','koreaherald.com':'코리아헤럴드','koreatimes.co.kr':'코리아타임스','koreajoongangdaily.joins.com':'코리아중앙데일리','naver.com':'네이버 뉴스','daum.net':'다음 뉴스'};
+const HANJA={'韓':'한','中':'중','美':'미','日':'일','北':'북','英':'영','佛':'프랑스','獨':'독일','露':'러','與':'여당','野':'야당','尹':'윤','李':'이재명','靑':'청와대','檢':'검찰','軍':'군','對':'대'};
+function kw(t){ return String(t||'').replace(/[韓中美日北英佛獨露與野尹李靑檢軍對]/g,c=>HANJA[c]).replace(/[“”"‘’'「」『』\[\]()…·,.!?:;~]/g,' ').split(/\s+/).filter(Boolean).slice(0,5).join(' ') }
+function paperUrl(p){ const u=links(story).find(u=>host(u)===p); return u?{u,direct:1}:{u:'https://search.naver.com/search.naver?where=news&query='+encodeURIComponent(p+' '+kw(story.title))} }
 function host(u){ try{ const h=new URL(u).hostname.replace(/^(www|m|n|news|biz|v)\./,''); const k=Object.keys(HOSTS).find(k=>h===k||h.endsWith('.'+k)); return k?HOSTS[k]:h }catch(e){ return '원문' } }
 function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),1800)}
@@ -209,7 +216,8 @@ function render(){
       ${story.summary?`<p class="sum">${esc(story.summary)}</p>`:''}
       <div class="cntbox">
         <div class="cnt"><span class="big"><b>${ps.length}</b>/18곳</span><span class="cl">신문 1면에<br>실렸어요</span><div class="bar"><i class="d" style="width:${d.length/18*100}%"></i><i class="e" style="width:${e.length/18*100}%"></i></div></div>
-        ${[['d','종합일간지',PAPERS.daily,d.length],['e','경제지',PAPERS.econ,e.length]].map(([k,n,list,c])=>`<div class="grp ${k}"><div class="gh">${n} <b>${c}</b>/9</div><div class="tiles">${list.map(p=>`<span class="tile${ps.includes(p)?' on':''}">${ps.includes(p)?'✓ ':''}${esc(p)}</span>`).join('')}</div></div>`).join('')}
+        ${[['d','종합일간지',PAPERS.daily,d.length],['e','경제지',PAPERS.econ,e.length]].map(([k,n,list,c])=>`<div class="grp ${k}"><div class="gh">${n} <b>${c}</b>/9</div><div class="tiles">${list.map(p=>{ if(!ps.includes(p)) return `<span class="tile">${esc(p)}</span>`; const l=paperUrl(p); return `<a class="tile on" href="${esc(l.u)}" target="_blank" rel="noopener" title="${esc(p)} ${l.direct?'기사 보기':'에서 검색'}">✓ ${esc(p)}</a>` }).join('')}</div></div>`).join('')}
+        <p class="tilenote">신문 이름을 누르면 그 신문 기사로 가요</p>
       </div>
       </div>
       ${links(story).length?`<section class="side rel"><h2 class="sec">📰 관련 기사</h2><p class="relnote">제목은 아침 신문 기준이에요. 그 뒤 새 소식은 여기에 담아요.</p><div class="cards">${links(story).slice(0,4).map(u=>{const c=(story.cards||[]).find(c=>c.url===u)||{}; const src=host(u);
