@@ -119,6 +119,7 @@ canvas#cv{display:block;width:100%;height:100%}
     <ul>
       <li><b>외부 여성</b>(원피스)은 땅으로 걸어와요. 스페이스바나 화면 터치로 <b>점프</b>해서 넘어가세요.</li>
       <li><b>사내 여성</b>(사원증)은 가까이 오면 머리 위로 덮쳐 와요. 이때는 <b>가만히</b> 있어야 피할 수 있어요. 점프하면 공중에서 부딪혀요.</li>
+      <li><b>낯선 여성</b>(검은 옷, 머리 위 ❗)은 15명을 피하면 나타나요. 갑자기 2배로 달려오거나, 멈칫 섰다가 오거나, 깡충깡충 뛰어와요. 매번 달라서 예측할 수 없어요.</li>
       <li>공중에 뜬 <b>칩</b>을 먹으면 목숨이 하나 늘어요. 최대 5개까지 모을 수 있어요.</li>
       <li>목숨은 3개로 시작해요.</li>
     </ul>
@@ -166,15 +167,22 @@ const BUBBLES=["오빠~","자기야~","LOVE~","사진 한 장만~","♥"];
 const HAIRS=['#4A3328','#8A5631','#2B2633','#C77A3A'], DRESSES=['#FF9EBB','#C3A3FF','#FFB45E','#6FD3BC'];
 
 function fit(){const r=cv.getBoundingClientRect(); if(!r.width) return; H=Math.round(W*r.height/r.width); cv.height=H; GROUND=H-55; if(P.onG) P.y=GROUND; draw()}
-function reset(){chip=null;chipDelay=0;sinceChip=0;chipEvery=14+Math.floor(Math.random()*6);gain=0;taunt=0;tauntText='';speed=7;dodged=0;dist=0;obs=[];nextGap=70;flash=0;lives=3;inv=0;react=0;shake=0;P.y=GROUND;P.vy=0;P.onG=true;P.hold=false;t=0}
+function reset(){chip=null;chipDelay=0;sinceChip=0;chipEvery=14+Math.floor(Math.random()*6);gain=0;taunt=0;tauntText='';seenOdd=false;speed=7;dodged=0;dist=0;obs=[];nextGap=70;flash=0;lives=3;inv=0;react=0;shake=0;P.y=GROUND;P.vy=0;P.onG=true;P.hold=false;t=0}
 function jump(){ if(state!=='play') return; if(P.onG){P.vy=-15;P.onG=false;P.holdT=0} P.hold=true }
 function release(){ P.hold=false }
 
-const OFFICE_BUB=["팀장님~","회식 가요~","커피 한 잔?","보고드릴게요~"], OUT_BUB=["오빠~","사진 한 장만~","LOVE~","자기야~"];
+const OFFICE_BUB=["팀장님~","회식 가요~","커피 한 잔?","보고드릴게요~"], OUT_BUB=["오빠~","사진 한 장만~","LOVE~","자기야~"], ODD_BUB=["저기요!","잠깐만요~","거기 서요!","어머!"];
+let seenOdd=false;
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 const JT=42, JH=175; // office woman's leap: frames, height
 function spawn(){
   const look=Math.floor(Math.random()*4);
+  if(dodged>=15 && Math.random()<Math.min(0.35,0.14+(dodged-15)/100)){
+    const mode=pick(['dash','stop','hop']);
+    obs.push({x:W+30,kind:'odd',mode,w:44,bub:pick(ODD_BUB),v:mode==='dash'?-speed*0.45:0.8,look,jy:0,trig:200+Math.random()*130,stopT:0,done:false,ph:0});
+    if(!seenOdd){seenOdd=true; tauntText='⚠️ 낯선 여성 등장! 예측 불가'; taunt=110}
+    sinceChip++; nextGap=nextGapCalc()+22; return;
+  }
   const office = dodged>=2 && Math.random()<Math.min(0.62,0.4+dodged/90);
   if(office) obs.push({x:W+30,kind:'office',w:44,bub:pick(OFFICE_BUB),v:0.6,look,jt:-1,jy:0});
   else obs.push({x:W+30,kind:'out',w:44,bub:pick(OUT_BUB),v:0.8,look,jy:0});
@@ -204,6 +212,11 @@ function update(){
       // leap so the top of the arc is right above the uncle
       if(o.jt<0 && o.x+o.w/2-P.x < vx*JT/2) o.jt=0;
       if(o.jt>=0 && o.jt<=JT){ const s=o.jt/JT; o.jy=4*JH*s*(1-s); o.jt++ } else o.jy=0;
+    } else if(o.kind==='odd'){
+      const gap=o.x-P.x;
+      if(o.mode==='dash'){ if(!o.done && gap<o.trig){o.done=true; o.dashing=true} o.v=o.dashing?speed*0.85:-speed*0.45 }
+      else if(o.mode==='stop'){ if(!o.done && gap<o.trig+40){o.done=true; o.stopT=24+Math.floor(Math.random()*22)} if(o.stopT>0){o.stopT--; o.v=-speed} else o.v=0.8 }
+      else { o.ph++; const s=(o.ph%34)/34; o.jy=4*58*s*(1-s) }
     }
     if(!o.passed && o.x+o.w<P.x-20){o.passed=true; if(!o.hit){dodged++;checkTaunt()}}
     if(inv>0 || o.hit) continue;
@@ -239,7 +252,27 @@ function bubble(text,cx,by,color){
   g.beginPath(); g.moveTo(cx-5,by+27); g.lineTo(cx,by+35); g.lineTo(cx+5,by+27); g.fill();
   g.fillStyle=color; g.fillText(text,bx+10,by+19);
 }
-/* chibi woman, same outline style as the uncle sprite */
+/* women sprites: [x,y,w,h] in women.webp (drawn facing left) */
+const WS=new Image(); WS.src='/img/women.webp';
+const WSP={out:[0,0,194,240],office:[198,0,179,240],dash:[381,0,264,240],stop:[649,0,218,240],hop:[871,0,211,240]};
+function woman2(o){
+  const cx=o.x+22, jy=o.jy, y=GROUND-jy;
+  g.fillStyle=`rgba(0,0,0,${jy>0?.06:.10})`; g.beginPath(); g.ellipse(cx,GROUND+2,24-Math.min(14,jy/14),5,0,0,7); g.fill();
+  let name=o.kind==='office'?'office':o.kind==='out'?'out':(o.mode==='stop'&&o.stopT>0?'stop':o.mode==='hop'?'hop':'dash');
+  const run=jy>0||name==='stop'?0:Math.abs(Math.sin(t*0.32+o.look))*5, tilt=name==='stop'?0:Math.sin(t*0.32+o.look)*0.05;
+  const s=WSP[name], h=name==='out'||name==='office'?118:108, w=h*s[2]/s[3];
+  if(WS.complete&&WS.naturalWidth){ g.save(); g.translate(cx,y-run+3); g.rotate(tilt); g.scale(-1,1); g.drawImage(WS,s[0],s[1],s[2],s[3],-w/2,-h,w,h); g.restore(); }
+  else woman(cx,t*0.32,o.look,o.bub,false,o.kind==='office',jy);
+  if(o.kind==='odd'){
+    const ex=cx+w*0.32, ey=y-h-6;
+    g.font='900 30px system-ui,sans-serif'; g.fillStyle=o.mode==='stop'&&o.stopT>0?'#3A6FD8':'#E0322B';
+    g.fillText(o.mode==='stop'&&o.stopT>0?'?':'!',ex,ey+Math.sin(t*0.4)*3);
+    if(o.dashing){ g.strokeStyle='rgba(120,120,140,.55)'; g.lineWidth=3; for(let i=0;i<3;i++){const ly=y-30-i*22; g.beginPath(); g.moveTo(cx+w/2+6,ly); g.lineTo(cx+w/2+34+i*8,ly); g.stroke()} }
+  } else heart(cx+20,y-h-6+Math.sin(t*0.15+cx*0.05)*3,8,'#FF7DA0');
+  const showBub=!o.hit && jy===0 && o.x<W-70 && o.x>P.x+60;
+  if(showBub) bubble(o.bub,cx,y-h-50,o.kind==='odd'?'#B4232B':'#E0476A');
+}
+/* old hand-drawn woman: fallback while the sprite sheet loads */
 function woman(cx,phase,look,bub,showBub,office,jy){
   const y=GROUND-jy, O='#2B2633', hair=HAIRS[look], dress=office?'#3D4A6B':DRESSES[(look+1)%4], step=jy>0?4:Math.sin(phase)*7;
   g.lineJoin='round'; g.lineCap='round';
@@ -327,7 +360,7 @@ function draw(){
   g.fillStyle='#26222F'; g.fillRect(-20,GROUND,W+40,3);
   g.fillStyle='#BFE3A0'; for(let i=0;i<18;i++){const gx=((i*61-dist*10)%1100+1100)%1100-40; g.fillRect(gx,GROUND+16+(i%3)*11,18,3)}
   if(chip) drawChip(chip.x,chip.y);
-  for(const o of obs) woman(o.x+22,t*0.32,o.look,o.bub,!o.hit && o.jy===0 && o.x<W-70 && o.x>P.x+60,o.kind==='office',o.jy);
+  for(const o of obs) woman2(o);
   drawUncle();
   if(gain>0){g.font='900 26px system-ui,sans-serif'; g.fillStyle=`rgba(90,170,40,${Math.min(1,gain/20)})`; g.fillText('목숨 +1 💚',P.x-40,P.y-170+gain/2)}
   // HUD
