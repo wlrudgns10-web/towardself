@@ -147,23 +147,26 @@ function sprite(name,cx,bottom,h,alpha=1,tilt=0){
 function paintPic(id,name){const c=$(id),x=c.getContext('2d'),s=SP[name];x.clearRect(0,0,c.width,c.height);x.drawImage(SH,s[0],s[1],s[2],s[3],0,0,c.width,c.height)}
 
 let state='ready', t=0, speed, dodged, dist, obs, nextGap, flash=0, best=0, lives, inv, react, reactWord, shake=0;
-let chip=null, chipDelay=0, sinceChip=0, chipEvery=14, gain=0;
+let chip=null, chipDelay=0, sinceChip=0, chipEvery=14, gain=0, taunt=0, tauntText='';
+const TAUNTS={5:'몸풀기 끝. 진짜는 지금부터',10:'10명? 친구들은 이 정도 기본이던데',15:'속도 올라간다~ 손가락 괜찮아?',20:'여기서 죽으면 단톡방 놀림감 확정',25:'아직도 안 찍혔어? 수상한데',30:'이 정도면 매니저가 스케줄 다 비워 둠',40:'사람이야, 기계야?',50:'전설 등극… 근데 일은 언제 해?'};
+function checkTaunt(){ const s=TAUNTS[dodged]||(dodged>50&&dodged%10===0?`${dodged}명?! 아직도 살아있어? 😱`:''); if(s){tauntText=s;taunt=110} }
 const P={x:120,y:0,vy:0,onG:true,hold:false,holdT:0};
 try{best=+localStorage.getItem('jacketBest')||0}catch(e){}
 
 const LINES=[
   [0,"첫 번째 여자분부터 피하지 못했습니다. 기자회견을 준비하세요."],
-  [3,"몇 명은 피했지만, 결국 사진이 찍혔습니다."],
-  [8,"이 정도면 사과문은 한 장으로 끝납니다."],
+  [3,"몇 명은 피했지만 결국 찍혔습니다. 이 점수로 공유하면 놀림받아요."],
+  [8,"사과문 한 장으로 끝날 수준. 친구한테 보여 주긴 좀 애매하죠?"],
   [15,"GPU보다 빠른 회피 반응속도. 진작 이렇게 하시지."],
-  [25,"철벽 인증. 주가가 소폭 반등했습니다."],
-  [40,"전설의 철벽. 가죽재킷이 아니라 방탄재킷이었습니다."]
+  [25,"철벽 인증. 주가가 소폭 반등했습니다. 이제 친구들 기 좀 죽여 보세요."],
+  [40,"전설의 철벽. 가죽재킷이 아니라 방탄재킷이었습니다."],
+  [60,"이 점수는 캡처각. 단톡방에 올리고 도발하세요."]
 ];
 const BUBBLES=["오빠~","자기야~","LOVE~","사진 한 장만~","♥"];
 const HAIRS=['#4A3328','#8A5631','#2B2633','#C77A3A'], DRESSES=['#FF9EBB','#C3A3FF','#FFB45E','#6FD3BC'];
 
 function fit(){const r=cv.getBoundingClientRect(); if(!r.width) return; H=Math.round(W*r.height/r.width); cv.height=H; GROUND=H-55; if(P.onG) P.y=GROUND; draw()}
-function reset(){chip=null;chipDelay=0;sinceChip=0;chipEvery=10+Math.floor(Math.random()*6);gain=0;speed=6;dodged=0;dist=0;obs=[];nextGap=70;flash=0;lives=3;inv=0;react=0;shake=0;P.y=GROUND;P.vy=0;P.onG=true;P.hold=false;t=0}
+function reset(){chip=null;chipDelay=0;sinceChip=0;chipEvery=14+Math.floor(Math.random()*6);gain=0;taunt=0;tauntText='';speed=7;dodged=0;dist=0;obs=[];nextGap=70;flash=0;lives=3;inv=0;react=0;shake=0;P.y=GROUND;P.vy=0;P.onG=true;P.hold=false;t=0}
 function jump(){ if(state!=='play') return; if(P.onG){P.vy=-15;P.onG=false;P.holdT=0} P.hold=true }
 function release(){ P.hold=false }
 
@@ -172,18 +175,18 @@ const pick=a=>a[Math.floor(Math.random()*a.length)];
 const JT=42, JH=175; // office woman's leap: frames, height
 function spawn(){
   const look=Math.floor(Math.random()*4);
-  const office = dodged>=2 && Math.random()<0.45;
+  const office = dodged>=2 && Math.random()<Math.min(0.62,0.4+dodged/90);
   if(office) obs.push({x:W+30,kind:'office',w:44,bub:pick(OFFICE_BUB),v:0.6,look,jt:-1,jy:0});
   else obs.push({x:W+30,kind:'out',w:44,bub:pick(OUT_BUB),v:0.8,look,jy:0});
   sinceChip++;
-  if(sinceChip>=chipEvery && !chip){ sinceChip=0; chipEvery=12+Math.floor(Math.random()*10); chipDelay=Math.floor(nextGapCalc()/2) }
+  if(sinceChip>=chipEvery && !chip){ sinceChip=0; chipEvery=16+Math.floor(Math.random()*12); chipDelay=Math.floor(nextGapCalc()/2) }
   nextGap=nextGapCalc();
 }
-function nextGapCalc(){ return Math.max(44,110-speed*4.2)+Math.random()*50 }
+function nextGapCalc(){ return Math.max(38,104-speed*4.2)+Math.random()*44 }
 
 function update(){
-  t++; dist+=speed/10; speed=Math.min(17,6+dist/170);
-  if(inv>0) inv--; if(react>0) react--; if(shake>0) shake--; if(gain>0) gain--;
+  t++; dist+=speed/10; speed=Math.min(21,7+dist/115);
+  if(taunt>0) taunt--; if(inv>0) inv--; if(react>0) react--; if(shake>0) shake--; if(gain>0) gain--;
   const holding=P.hold && P.vy<0 && P.holdT++<14;
   P.vy+=holding?0.62:0.95; P.y+=P.vy;
   if(P.y>=GROUND){P.y=GROUND;P.vy=0;P.onG=true}
@@ -202,7 +205,7 @@ function update(){
       if(o.jt<0 && o.x+o.w/2-P.x < vx*JT/2) o.jt=0;
       if(o.jt>=0 && o.jt<=JT){ const s=o.jt/JT; o.jy=4*JH*s*(1-s); o.jt++ } else o.jy=0;
     }
-    if(!o.passed && o.x+o.w<P.x-20){o.passed=true; if(!o.hit) dodged++}
+    if(!o.passed && o.x+o.w<P.x-20){o.passed=true; if(!o.hit){dodged++;checkTaunt()}}
     if(inv>0 || o.hit) continue;
     const ox1=o.x+8,ox2=o.x+o.w-8,oy2=GROUND-o.jy,oy1=oy2-82;
     if(px2>ox1 && px1<ox2 && py2>oy1 && py1<oy2){ hit(o); if(state!=='play') return }
@@ -216,10 +219,12 @@ function hit(o){
 }
 function gameOver(o){
   state='over';
+  const prev=best, rec=dodged>best&&dodged>0;
   if(dodged>best){best=dodged;try{localStorage.setItem('jacketBest',best)}catch(e){}}
   let line=LINES[0][1]; for(const [n,s] of LINES) if(dodged>=n) line=s;
   $('ovScore').textContent=`${dodged}명 피함`;
-  $('ovLine').innerHTML=line+`<br><small>최고 기록 ${best}명</small>`;
+  const sub=rec?(prev?`🔥 신기록! (전 기록 ${prev}명) 이제 친구들 차례예요`:`최고 기록 ${best}명`):(best-dodged<=3&&best>0?`최고 기록 ${best}명까지 ${best-dodged}명! 아깝다, 한 판 더?`:`최고 기록 ${best}명… 여기서 포기?`);
+  $('ovLine').innerHTML=line+`<br><small>${sub}</small>`;
   paintPic('picOver','dizzy'); if(window.gtag)gtag('event','game_over',{score:dodged});
   requestAnimationFrame(loop);
   setTimeout(()=>$('over').classList.remove('hide'),700);
@@ -329,6 +334,14 @@ function draw(){
   g.fillStyle='#26222F'; g.font='900 21px system-ui,sans-serif'; g.fillText(`피한 여자 ${dodged}명`,18,34);
   g.font='14px system-ui,sans-serif'; g.fillStyle='#6B6578'; g.fillText(`최고 ${best}명`,18,55);
   drawLives();
+  if(taunt>0 && state==='play'){
+    const a=Math.min(1,taunt/15,(110-taunt)/8); g.globalAlpha=a;
+    g.font='900 22px system-ui,sans-serif'; g.textAlign='center';
+    const tw=g.measureText(tauntText).width+36, ty=92;
+    g.fillStyle='#26222F'; rr(W/2-tw/2,ty-26,tw,40,20); g.fill();
+    g.fillStyle='#FFE14D'; g.fillText(tauntText,W/2,ty+1);
+    g.textAlign='left'; g.globalAlpha=1;
+  }
   g.restore();
   if(flash>0){g.fillStyle=`rgba(255,255,255,${flash})`; g.fillRect(0,0,W,H); flash=Math.max(0,flash-0.07)}
 }
@@ -344,7 +357,7 @@ $('again').onclick=e=>{e.stopPropagation();start()};
 $('share').onclick=async e=>{
   e.stopPropagation();
   if(window.gtag)gtag('event','game_share',{score:dodged});
-  const text=`가죽재킷 아저씨로 여자 ${dodged}명 피함 🧥💨 너는 몇 명 피할 수 있어?`;
+  const text=`가죽재킷 아저씨로 여자 ${dodged}명 피함 🧥💨 이거 못 넘으면 밥 사라 ㅋㅋ`;
   try{ if(navigator.share){await navigator.share({title:'가죽재킷 아저씨의 모험',text,url:location.href});return} }catch(err){ if(err.name==='AbortError') return }
   try{await navigator.clipboard.writeText(text+' '+location.href);$('share').textContent='복사했어요!'}catch(err){prompt('복사해서 공유하세요',text+' '+location.href)}
 };
