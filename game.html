@@ -261,7 +261,7 @@ function woman2(o){
   let name=o.kind==='office'?'office':o.kind==='out'?'out':(o.mode==='stop'&&o.stopT>0?'stop':o.mode==='hop'?'hop':'dash');
   const run=jy>0||name==='stop'?0:Math.abs(Math.sin(t*0.32+o.look))*5, tilt=name==='stop'?0:Math.sin(t*0.32+o.look)*0.05;
   const s=WSP[name], h=name==='out'||name==='office'?118:108, w=h*s[2]/s[3];
-  if(WS.complete&&WS.naturalWidth){ g.save(); g.translate(cx,y-run+3); g.rotate(tilt); g.scale(-1,1); g.drawImage(WS,s[0],s[1],s[2],s[3],-w/2,-h,w,h); g.restore(); }
+  if(WS.complete&&WS.naturalWidth){ g.save(); g.translate(cx,y-run+3); g.rotate(tilt); if(name!=='office') g.scale(-1,1); g.drawImage(WS,s[0],s[1],s[2],s[3],-w/2,-h,w,h); g.restore(); }
   else woman(cx,t*0.32,o.look,o.bub,false,o.kind==='office',jy);
   if(o.kind==='odd'){
     const ex=cx+w*0.32, ey=y-h-6;
