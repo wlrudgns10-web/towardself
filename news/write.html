@@ -218,9 +218,27 @@ async function makeCard(d,story,no){
   x.font=`700 26px ${G}`; const sx=(W-x.measureText(left+right).width)/2;
   x.fillStyle='#444444'; x.fillText(left,sx,160); x.fillStyle='#C8321E'; x.fillText(right,sx+x.measureText(left).width,160);
   x.fillStyle='#111111'; x.fillRect(60,182,W-120,3);
+  // 참고 기사 사진(있으면 왼쪽에). 다른 사이트 사진은 그대로 못 써서 images.weserv.nl을 거쳐 불러와요
+  const imgUrl=((story.cards||[]).find(c=>c&&/^https:\/\//.test(c.image||''))||{}).image;
+  let photo=null;
+  if(imgUrl){ const im=new Image(); im.crossOrigin='anonymous';
+    const ok=await wait(new Promise(r=>{im.onload=()=>r(true); im.onerror=()=>r(false); im.src='https://images.weserv.nl/?url='+encodeURIComponent(imgUrl)+'&w=900&h=640&fit=cover&a=attention&output=jpg'}),10000);
+    if(ok===true&&im.naturalWidth) photo=im }
+  const top=196, bottom=512;
+  if(photo){
+    const PX=60,PY=top+10,PW=450,PH=bottom-top-20;
+    x.save(); x.beginPath(); if(x.roundRect) x.roundRect(PX,PY,PW,PH,14); else x.rect(PX,PY,PW,PH); x.clip();
+    const s=Math.max(PW/photo.naturalWidth,PH/photo.naturalHeight), iw=photo.naturalWidth*s, ih=photo.naturalHeight*s;
+    x.drawImage(photo,PX+(PW-iw)/2,PY+(PH-ih)/2,iw,ih); x.restore();
+    const TX=PX+PW+40, TW=W-60-TX;
+    let size=58, lines; for(;;){ x.font=`900 ${size}px ${G}`; lines=wrapLines(x,story.title,TW); if(lines.length<=4||size<=34) break; size-=4 }
+    lines=lines.slice(0,4); const lh=size*1.3; let ly=top+(bottom-top-lines.length*lh)/2+size*1.0;
+    x.fillStyle='#111111'; lines.forEach((l,i)=>x.fillText(l,TX,ly+i*lh));
+  } else {
   let size=70, lines; for(;;){ x.font=`900 ${size}px ${G}`; lines=wrapLines(x,story.title,W-160); if(lines.length<=3||size<=40) break; size-=4 }
-  lines=lines.slice(0,3); const lh=size*1.3, top=196, bottom=512; let ly=top+(bottom-top-lines.length*lh)/2+size*1.0;
+  lines=lines.slice(0,3); const lh=size*1.3; let ly=top+(bottom-top-lines.length*lh)/2+size*1.0;
   x.fillStyle='#111111'; x.textAlign='center'; lines.forEach((l,i)=>x.fillText(l,W/2,ly+i*lh)); x.textAlign='left';
+  }
   const n=story.papers.length, dn=story.papers.filter(p=>PAPERS.daily.includes(p)).length, en=n-dn;
   x.fillStyle='#E3E3E3'; x.fillRect(60,520,W-120,1);
   x.font=`900 46px ${G}`; x.fillStyle='#111111'; x.fillText(String(n),60,588); let bx=60+x.measureText(String(n)).width+6;
@@ -249,6 +267,19 @@ function sharePage(d,story){
 <script>location.replace('/?d=${d}')<\/script>
 </head><body><a href="/?d=${d}">오늘의 1면 보기</a></body></html>
 `;
+}
+
+// 1myeon.kr 주소만 공유해도 그날 카드가 뜨도록, 첫 화면(index.html)의 공유 정보(og 태그)를 그날 것으로 바꿔요
+async function homeOg(d,story){
+  let html;
+  if(LOCAL){ const r=await fetch('/index.html?nc='+Date.now()); if(!r.ok) throw new Error('local '+r.status); html=await r.text() }
+  else{ const g=await gh('index.html'); if(!g.ok) throw new Error('GitHub '+g.status); html=unb64((await g.json()).content) }
+  const [,m,dd]=d.split('-').map(Number), t=`${m}월 ${dd}일 신문 1면: ${story.title}`;
+  const desc=`18곳 중 ${story.papers.length}곳 1면` + (story.summary?` · ${story.summary}`:'');
+  const set=(prop,val)=>{ html=html.replace(new RegExp(`(<meta property="${prop}" content=")[^"]*(">)`),(_,a,b)=>a+escA(val)+b) };
+  set('og:title',t); set('og:description',desc); set('og:image:alt',t);
+  set('og:image',`https://1myeon.kr/d/${d}.png?v=${Date.now()}`);
+  await putFile('index.html', html, `첫 화면 공유 정보 ${d}`);
 }
 
 async function getIndex(){
@@ -283,6 +314,8 @@ $('#save').onclick=async()=>{
     m.textContent='카톡 미리보기 이미지 만드는 중...';
     try{ await putBin(`d/${d}.png`, await makeCard(d,story,[...idx.dates].sort().indexOf(d)+1), `1면 이미지 ${d}`) }catch(e){ console.warn('card',e) }
     try{ await putFile(`d/${d}.html`, sharePage(d,story), `1면 공유 ${d}`) }catch(e){ console.warn('share page',e) }
+    // 가장 최근 날짜를 올릴 때만 첫 화면 공유 정보를 바꿔요
+    if(d===[...idx.dates].sort().pop()){ try{ await homeOg(d,story) }catch(e){ console.warn('home og',e) } }
     m.className='msg ok'; m.textContent = LOCAL ? '저장했어요. 미리보기를 눌러 보세요.' : '올렸어요! 1~2분 뒤 사이트에 보여요.';
   }catch(e){ const c=e.message; err(/401/.test(c)?'저장 실패: 토큰이 틀렸거나 만료됐어요. 토큰을 다시 넣어 주세요.':/40[34]/.test(c)?'저장 실패: 토큰 권한이 부족해요. towardself 선택과 Contents: Read and write를 확인해 주세요.':'저장 실패 ('+c+'). 인터넷 연결을 확인하고 다시 눌러 주세요.') }
   $('#save').disabled=false;
