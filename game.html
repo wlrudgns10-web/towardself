@@ -254,6 +254,7 @@ function bubble(text,cx,by,color){
 }
 /* women sprites: [x,y,w,h] in women.webp (drawn facing left) */
 const WS=new Image(); WS.src='/img/women.webp';
+const BG=new Image(); BG.src='/img/game-bg.webp'; BG.onload=()=>{ if(state!=='play') draw() };
 const WSP={out:[0,0,194,240],office:[198,0,179,240],dash:[381,0,264,240],stop:[649,0,218,240],hop:[871,0,211,240]};
 function woman2(o){
   const cx=o.x+22, jy=o.jy, y=GROUND-jy;
@@ -261,7 +262,7 @@ function woman2(o){
   let name=o.kind==='office'?'office':o.kind==='out'?'out':(o.mode==='stop'&&o.stopT>0?'stop':o.mode==='hop'?'hop':'dash');
   const run=jy>0||name==='stop'?0:Math.abs(Math.sin(t*0.32+o.look))*5, tilt=name==='stop'?0:Math.sin(t*0.32+o.look)*0.05;
   const s=WSP[name], h=name==='out'||name==='office'?118:108, w=h*s[2]/s[3];
-  if(WS.complete&&WS.naturalWidth){ g.save(); g.translate(cx,y-run+3); g.rotate(tilt); if(name!=='office') g.scale(-1,1); g.drawImage(WS,s[0],s[1],s[2],s[3],-w/2,-h,w,h); g.restore(); }
+  if(WS.complete&&WS.naturalWidth){ g.save(); g.translate(cx,y-run+3); g.rotate(tilt); if(name!=='office') g.scale(-1,1); g.shadowColor='rgba(255,255,255,.95)'; g.shadowBlur=7; g.drawImage(WS,s[0],s[1],s[2],s[3],-w/2,-h,w,h); g.restore(); }
   else woman(cx,t*0.32,o.look,o.bub,false,o.kind==='office',jy);
   if(o.kind==='odd'){
     const ex=cx+w*0.32, ey=y-h-6;
@@ -353,17 +354,32 @@ function draw(){
   g.save();
   if(shake>0) g.translate((Math.random()-.5)*shake*0.8,(Math.random()-.5)*shake*0.5);
   g.fillStyle='#FFFDF7'; g.fillRect(-20,-20,W+40,H+40);
-  // soft background shapes
+  if(BG.complete && BG.naturalWidth){
+    // night city backdrop: its floor line (76.7% down) sits on GROUND; mirrored tiles scroll slowly
+    const s=Math.max(GROUND/(0.767*BG.naturalHeight),(H+20)/BG.naturalHeight*0.5), tw=BG.naturalWidth*s, th=BG.naturalHeight*s, ty=GROUND-0.767*th;
+    const off=(dist*1.6)%(tw*2);
+    for(let x=-off, i=0; x<W+20; x+=tw, i++){
+      if(i%2===0) g.drawImage(BG,x,ty,tw+1,th);
+      else { g.save(); g.translate(x+tw,ty); g.scale(-1,1); g.drawImage(BG,0,0,tw+1,th); g.restore(); }
+    }
+    if(ty+th<H+20){ g.fillStyle='#1E1A2B'; g.fillRect(-20,ty+th,W+40,H-ty-th+20) }
+    g.fillStyle='rgba(255,253,247,.22)'; g.fillRect(-20,-20,W+40,H+40);
+    g.fillStyle='rgba(139,212,72,.55)'; for(let i=0;i<18;i++){const gx=((i*61-dist*10)%1100+1100)%1100-40; g.fillRect(gx,GROUND+16+(i%3)*11,18,3)}
+  } else {
+  // soft background shapes (until the backdrop loads)
   g.fillStyle='#F3EEE3';
   for(let i=0;i<9;i++){const bx=((i*115-dist*2)%1035+1035)%1035-110, bh=70+((i*41)%80); rr(bx,GROUND-bh,76,bh+4,10); g.fill()}
   g.fillStyle='#EAF6DD'; g.fillRect(-20,GROUND,W+40,H-GROUND+20);
   g.fillStyle='#26222F'; g.fillRect(-20,GROUND,W+40,3);
   g.fillStyle='#BFE3A0'; for(let i=0;i<18;i++){const gx=((i*61-dist*10)%1100+1100)%1100-40; g.fillRect(gx,GROUND+16+(i%3)*11,18,3)}
+  }
   if(chip) drawChip(chip.x,chip.y);
   for(const o of obs) woman2(o);
   drawUncle();
   if(gain>0){g.font='900 26px system-ui,sans-serif'; g.fillStyle=`rgba(90,170,40,${Math.min(1,gain/20)})`; g.fillText('목숨 +1 💚',P.x-40,P.y-170+gain/2)}
-  // HUD
+  // HUD (on light pills so it reads over the night backdrop)
+  g.fillStyle='rgba(255,253,247,.88)'; g.font='900 21px system-ui,sans-serif'; rr(8,10,g.measureText(`피한 여자 ${dodged}명`).width+22,54,12); g.fill();
+  { const n=Math.max(3,lives); rr(W-62-n*28,10,n*28+54,34,12); g.fill(); }
   g.fillStyle='#26222F'; g.font='900 21px system-ui,sans-serif'; g.fillText(`피한 여자 ${dodged}명`,18,34);
   g.font='14px system-ui,sans-serif'; g.fillStyle='#6B6578'; g.fillText(`최고 ${best}명`,18,55);
   drawLives();
