@@ -167,7 +167,7 @@ const BUBBLES=["오빠~","자기야~","LOVE~","사진 한 장만~","♥"];
 const HAIRS=['#4A3328','#8A5631','#2B2633','#C77A3A'], DRESSES=['#FF9EBB','#C3A3FF','#FFB45E','#6FD3BC'];
 
 function fit(){const r=cv.getBoundingClientRect(); if(!r.width) return; H=Math.round(W*r.height/r.width); cv.height=H; GROUND=H-55; if(P.onG) P.y=GROUND; draw()}
-function reset(){chip=null;chipDelay=0;sinceChip=0;chipEvery=14+Math.floor(Math.random()*6);gain=0;taunt=0;tauntText='';seenOdd=false;speed=7;dodged=0;dist=0;obs=[];nextGap=70;flash=0;lives=3;inv=0;react=0;shake=0;P.y=GROUND;P.vy=0;P.onG=true;P.hold=false;t=0}
+function reset(){chip=null;chipDelay=0;sinceChip=0;chipEvery=14+Math.floor(Math.random()*6);gain=0;taunt=0;tauntText='';seenOdd=false;bgU=0;speed=7;dodged=0;dist=0;obs=[];nextGap=70;flash=0;lives=3;inv=0;react=0;shake=0;P.y=GROUND;P.vy=0;P.onG=true;P.hold=false;t=0}
 function jump(){ if(state!=='play') return; if(P.onG){P.vy=-15;P.onG=false;P.holdT=0} P.hold=true }
 function release(){ P.hold=false }
 
@@ -193,7 +193,7 @@ function spawn(){
 function nextGapCalc(){ return Math.max(38,104-speed*4.2)+Math.random()*44 }
 
 function update(){
-  t++; dist+=speed/10; speed=Math.min(21,7+dist/115);
+  t++; dist+=speed/10; speed=Math.min(21,7+dist/115); bgU+=speed*0.3/bgS;
   if(taunt>0) taunt--; if(inv>0) inv--; if(react>0) react--; if(shake>0) shake--; if(gain>0) gain--;
   const holding=P.hold && P.vy<0 && P.holdT++<14;
   P.vy+=holding?0.62:0.95; P.y+=P.vy;
@@ -254,6 +254,7 @@ function bubble(text,cx,by,color){
 }
 /* women sprites: [x,y,w,h] in women.webp (drawn facing left) */
 const WS=new Image(); WS.src='/img/women.webp';
+let bgU=0, bgS=1; // backdrop scroll in image pixels, last draw scale
 const BG=new Image(); BG.src='/img/game-bg.webp'; BG.onload=()=>{ if(state!=='play') draw() };
 const WSP={out:[0,0,194,240],office:[198,0,179,240],dash:[381,0,264,240],stop:[649,0,218,240],hop:[871,0,211,240]};
 function woman2(o){
@@ -356,8 +357,10 @@ function draw(){
   g.fillStyle='#FFFDF7'; g.fillRect(-20,-20,W+40,H+40);
   if(BG.complete && BG.naturalWidth){
     // night city backdrop: its floor line (76.7% down) sits on GROUND; mirrored tiles scroll slowly
-    const s=Math.max(GROUND/(0.767*BG.naturalHeight),(H+20)/BG.naturalHeight*0.5), tw=BG.naturalWidth*s, th=BG.naturalHeight*s, ty=GROUND-0.767*th;
-    const off=(dist*1.6)%(tw*2);
+    // starts zoomed in (sky cropped) and pulls back as the run goes on; floor line stays on GROUND
+    const zoom=1.4-0.4*Math.min(1,dist/1700);
+    const s=GROUND/(0.767*BG.naturalHeight)*zoom, tw=BG.naturalWidth*s, th=BG.naturalHeight*s, ty=GROUND-0.767*th;
+    bgS=s; const off=(bgU%(BG.naturalWidth*2))*s;
     for(let x=-off, i=0; x<W+20; x+=tw, i++){
       if(i%2===0) g.drawImage(BG,x,ty,tw+1,th);
       else { g.save(); g.translate(x+tw,ty); g.scale(-1,1); g.drawImage(BG,0,0,tw+1,th); g.restore(); }
